@@ -215,3 +215,65 @@ let a generated frame invent the product. Anchor every product moment to a real
 photograph, and inspect the result against the brand's signature details
 (flush frameless glass, no visible screws, circular touch points, cool
 blue-white indicator).
+
+---
+
+## Revision 3: the hero is built in code, and the theme is black and gold
+
+Two client decisions reshaped the build.
+
+**1. The panel is drawn, not generated.** The client's spec was a panel showing
+temperature, lights, curtains, date, day and time, with their mark bottom right.
+Legible interface text and exact mark placement are the two things AI video is
+worst at, and they are precisely what the no-text guard exists to avoid asking
+for. So the hero is now a real 3D object built in HTML, CSS and SVG: a Nexora
+10.1 inch panel that rotates and seats flush into the wall as the visitor
+scrolls, with a screen that shows the visitor's real local time and date.
+
+DEVIATION SAID OUT LOUD: this replaces the AI-generated hero film. It is the
+right call here for three reasons. The product can never render wrong because
+every pixel is authored. The screen text is genuinely crisp rather than model
+mush. And it costs no credits and needs no media host, which matters while the
+media CDN is blocked by network policy. The scroll engine is unchanged: the same
+lerped progress, gated writes and five static-hero gates now drive CSS custom
+properties instead of a video's currentTime. `USE_VIDEO` is a one-line flag, so
+footage can be reinstated later without unpicking anything.
+
+**2. Black, gold and milky white.** Client brief, replacing the pale cool linen.
+
+```css
+:root{
+  --canvas:#0B0A08;        /* warm near-black, never pure #000 */
+  --panel:#141210;
+  --ink:#F5F1E7;           /* milky white */
+  --text-secondary:#A9A294;
+  --accent:#D4AF37;        /* gold, kept rare */
+  --accent-hover:#E8C860;
+  --accent-lit:#F2DC97;
+  --accent-muted:rgba(212,175,55,.16);
+  --signal:#EDE7D6;        /* the product's own light, milky not cyan */
+  --signal-lit:#F7F2E4;
+}
+```
+
+Near-black with a warm accent is a banned default reach, and it is taken here
+only because the client explicitly briefed it. It is earned by keeping the light
+seam signature, keeping the section layouts distinct, holding the gold to the
+call to action and the device's own lit states, and never letting it become a
+wash. Measured contrast on the new palette: body 17.6:1, secondary 7.8:1, gold
+9.4:1, dark-on-gold buttons 9.0:1. All well clear of the floor.
+
+**The hero beat map, driven by scroll progress:**
+
+| p | what the panel does | caption |
+|---|---|---|
+| 0.00 to 0.22 | front on, screen wakes | "One panel." |
+| 0.26 to 0.50 | turns to -46 degrees | "Light, climate, security, sound." |
+| 0.54 to 0.76 | turns back, travels toward the wall | "Then it goes into your wall." |
+| 0.81 to 1.00 | seats flush, wall lights to morning | "And you forget it is there." |
+
+Three registration bugs found by measuring in a real browser rather than
+trusting the CSS: the recess and shadow were absolutely positioned and never
+picked up the scene's grid centring, so they drifted ~106px below the panel;
+the screen relied on flex stretch and did not fill the face; and the nav kept
+light type while the hero's own wall turned light underneath it.

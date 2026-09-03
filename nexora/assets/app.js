@@ -109,6 +109,7 @@ function updateCaptions(p){
       bd.el.style.setProperty('--k',k.toFixed(3)); bd.k = k;
     }
   }
+  drivePanel(p);
   updateHud(p);
 }
 
@@ -169,9 +170,21 @@ if('IntersectionObserver' in window){
 /* ============================================================
    6. The streamed Blob with an honest ring
    ============================================================ */
+var USE_VIDEO=false;          /* the hero is the code-built panel, not footage */
 var heroInit=false;
 function initHeroOnce(){
   if(heroInit) return; heroInit=true;
+
+  /* Band one's one-time assembly ramp. It belongs to the captions, not to the
+     video, so it must run in panel mode too or the hero opens wordless. */
+  loadStart=performance.now();
+  (function ramp(){
+    loadK=Math.min(1,(performance.now()-loadStart)/1100);
+    updateCaptions(shown);
+    if(loadK<1) requestAnimationFrame(ramp);
+  })();
+
+  if(!USE_VIDEO){ stage.classList.add('panel-mode'); return; }
   poster.style.backgroundImage = "url('"+POSTER_URL+"')";
   var started=false;
   function startBlobFetch(){
@@ -185,12 +198,6 @@ function initHeroOnce(){
   pi.src=POSTER_URL;
   setTimeout(startBlobFetch,4000);
 
-  loadStart=performance.now();
-  (function ramp(){
-    loadK=Math.min(1,(performance.now()-loadStart)/1100);
-    updateCaptions(shown);
-    if(loadK<1) requestAnimationFrame(ramp);
-  })();
 }
 
 function loadHeroBlob(){
@@ -238,6 +245,77 @@ function failVideo(){
   }
   poster.classList.add('on');
 }
+
+
+/* ============================================================
+   The panel drive. One eased journey: wake, turn, approach, seat.
+   Writes only when a value actually changed, like the bands.
+   ============================================================ */
+var roomEl = document.getElementById('stage');
+var panelState = {ry:null,ps:null,tz:null,wake:null,seat:null,dawn:null};
+
+function ease(t){ return t*t*(3-2*t); }
+
+function drivePanel(p){
+  if(!roomEl) return;
+  var wake = clamp((p-0.04)/0.16,0,1);
+  var out  = ease(clamp((p-0.24)/0.28,0,1));     /* turning away  */
+  var back = ease(clamp((p-0.56)/0.24,0,1));     /* turning back  */
+  var ry   = -46*(out-back);
+  var app  = ease(clamp((p-0.60)/0.30,0,1));     /* toward the wall */
+  var ps   = 1-0.28*app;
+  var tz   = -150*app;
+  var seat = ease(clamp((p-0.84)/0.16,0,1));
+  var dawn = ease(clamp((p-0.52)/0.44,0,1));
+  set('--ry', ry.toFixed(2)+'deg', 'ry', ry, 0.15);
+  set('--ps', ps.toFixed(4), 'ps', ps, 0.002);
+  set('--tz', tz.toFixed(1)+'px', 'tz', tz, 0.5);
+  set('--wake', wake.toFixed(3), 'wake', wake, 0.008);
+  set('--seat', seat.toFixed(3), 'seat', seat, 0.008);
+  set('--dawn', dawn.toFixed(3), 'dawn', dawn, 0.008);
+  /* the wall is light from here on, so the nav swaps to dark type */
+  var lit = dawn > 0.55;
+  if(lit !== navLit){ navLit = lit; navEl.classList.toggle('over-lit', lit && navOver); }
+}
+var navLit=false;
+function set(prop, str, key, val, eps){
+  var prev = panelState[key];
+  var terminal = (val===0 || val===1);
+  if(prev===null || Math.abs(val-prev)>eps || (terminal && val!==prev)){
+    roomEl.style.setProperty(prop, str);
+    panelState[key]=val;
+  }
+}
+
+/* ============================================================
+   The screen is live: real time, real date, on the visitor's clock.
+   ============================================================ */
+var DAYS=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+var MONS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+var lastClock='';
+function tickClock(){
+  var d=new Date();
+  var hh=String(d.getHours()).padStart(2,'0'), mm=String(d.getMinutes()).padStart(2,'0');
+  var t=hh+':'+mm;
+  if(t===lastClock) return;
+  lastClock=t;
+  var h=d.getHours();
+  var greet = h<5?'Still asleep' : h<12?'Good morning' : h<18?'Good afternoon' : 'Good evening';
+  var date = DAYS[d.getDay()]+' '+d.getDate()+' '+MONS[d.getMonth()];
+  [].forEach.call(document.querySelectorAll('.js-time'),function(e){e.textContent=t});
+  [].forEach.call(document.querySelectorAll('.js-date'),function(e){e.textContent=date});
+  [].forEach.call(document.querySelectorAll('.js-greet'),function(e){e.textContent=greet});
+}
+
+/* the static hero shows the same panel, so it can never drift out of sync */
+(function cloneForStatic(){
+  var src=document.getElementById('panel3d'), host=document.getElementById('shscene');
+  if(!src||!host) return;
+  var c=src.cloneNode(true); c.removeAttribute('id');
+  host.appendChild(c);
+})();
+tickClock();
+setInterval(tickClock, 15000);
 
 /* ============================================================
    7. The five gates, live in BOTH directions
@@ -352,6 +430,7 @@ function navUpdate(){
   var solid = window.scrollY>40 && !over;
   if(solid!==navSolid){ navSolid=solid; navEl.classList.toggle('solid',solid); }
   if(over!==navOver){ navOver=over; navEl.classList.toggle('over-video',over); }
+  navEl.classList.toggle('over-lit', navOver && navLit);
 }
 
 /* ============================================================
