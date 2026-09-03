@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Nexora</title>
-<meta name="description" content="Nexora is one quiet system for light, climate, security and sound. Nothing to open, nothing to remember. The home that handles it.">
+<title>Nexora Homes</title>
+<meta name="description" content="Nexora Homes. Ultra luxury needs future technology. One panel runs light, climate, security and sound across your home. DHA Phase 6, 0323 4508739.">
 <meta name="theme-color" content="#0B0A08">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230B0A08'/%3E%3Ccircle cx='16' cy='16' r='5.5' fill='none' stroke='%23D4AF37' stroke-width='1.6'/%3E%3Ccircle cx='16' cy='16' r='1.7' fill='%23D4AF37'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='13' fill='%230B0A08'/%3E%3Cpath d='M23.2 12.4a13.2 13.2 0 0 1 17.6 0' fill='none' stroke='%23D4AF37' stroke-width='3.4' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='21' r='2.6' fill='%23D4AF37'/%3E%3Cpath d='M13 55V27L51 55V27' fill='none' stroke='%23D4AF37' stroke-width='7' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E">
 
 <!-- DEPLOY STEP: patch og:url and og:image with the live absolute URL before zipping -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="Nexora">
-<meta property="og:description" content="One quiet system for light, climate, security and sound. Nothing to open, nothing to remember.">
+<meta property="og:title" content="Nexora Homes">
+<meta property="og:description" content="Ultra luxury needs future technology. One panel runs light, climate, security and sound across your home.">
 <meta property="og:url" content="REPLACE_AT_DEPLOY">
 <meta property="og:image" content="REPLACE_AT_DEPLOY/assets/hero-ending.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -113,9 +113,18 @@ button{font:inherit;color:inherit}
   border-bottom:1px solid transparent;
 }
 .nav.solid{background:rgba(11,10,8,.84);backdrop-filter:blur(14px) saturate(1.2);border-bottom-color:var(--hairline)}
-.brand{display:flex;align-items:center;gap:10px;text-decoration:none;letter-spacing:.2em;font-size:13px;font-family:var(--mono);text-transform:uppercase}
-.brand .mk{width:15px;height:15px;flex:none}
-.brand .mk circle{transition:stroke .6s var(--ease),fill .6s var(--ease)}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;letter-spacing:.2em;font-size:13px;font-family:var(--mono);text-transform:uppercase}
+.brand .mk{width:26px;height:26px;flex:none}
+.brand b{font-weight:400;color:var(--accent)}
+.navend{display:flex;align-items:center;gap:18px}
+.tel{
+  display:inline-flex;align-items:center;gap:8px;text-decoration:none;
+  font-family:var(--mono);font-size:12.5px;letter-spacing:.08em;color:var(--accent);
+  transition:color .3s var(--ease);
+}
+.tel svg{width:15px;height:15px;flex:none}
+.tel:hover{color:var(--accent-hover)}
+@media (max-width:980px){.tel span,.navend .tel{display:none}}
 .navlinks{display:flex;align-items:baseline;gap:26px;font-size:14px}
 .navlinks a{text-decoration:none;color:var(--text-secondary);transition:color .3s var(--ease)}
 .navlinks a:hover{color:var(--ink)}
@@ -378,15 +387,12 @@ button{font:inherit;color:inherit}
 .tile.on i{color:var(--accent)}
 /* the mark, bottom right on the panel, exactly as asked */
 .scr-mark{
-  position:absolute;right:clamp(12px,1.9vw,26px);bottom:clamp(11px,1.7vw,22px);
-  font-family:var(--mono);font-size:clamp(8px,.86vw,11px);letter-spacing:.36em;
-  color:rgba(242,247,249,.72);text-transform:uppercase;
+  position:absolute;right:clamp(12px,1.9vw,26px);bottom:clamp(10px,1.6vw,20px);
+  display:flex;align-items:center;gap:clamp(5px,.6vw,8px);
+  font-family:var(--mono);font-size:clamp(7px,.72vw,9.5px);letter-spacing:.24em;
+  color:rgba(242,247,249,.66);text-transform:uppercase;
 }
-.scr-mark::before{
-  content:"";display:inline-block;width:5px;height:5px;border-radius:50%;
-  background:var(--accent);margin-right:8px;vertical-align:middle;
-  box-shadow:0 0 9px rgba(212,175,55,.9);opacity:var(--wake);
-}
+.scr-mark svg{width:clamp(13px,1.5vw,20px);height:clamp(13px,1.5vw,20px);flex:none;opacity:calc(.35 + .65*var(--wake))}
 
 /* the panel is the hero now, so the video layers stand down */
 .stage.panel-mode .poster,
@@ -415,9 +421,12 @@ button{font:inherit;color:inherit}
 .statichero .shscrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,11,14,.62) 0%,rgba(8,11,14,.3) 38%,rgba(8,11,14,.82) 100%)}
 .statichero .shin{position:relative;z-index:2;padding:120px var(--gut) 64px calc(var(--gut) + 18px);color:#F5F1E7;width:100%}
 .statichero h1{font-size:clamp(2.5rem,10.5vw,4.2rem);letter-spacing:-.032em;text-shadow:var(--tshadow);margin-top:16px}
-.statichero .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.17em;text-transform:uppercase;color:rgba(245,241,231,.76);text-shadow:var(--tshadow)}
+.statichero .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,241,231,.8);text-shadow:var(--tshadow);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.shmk{width:26px;height:26px;flex:none}
 .statichero p{margin-top:18px;max-width:38ch;color:rgba(245,241,231,.9);text-shadow:var(--tshadow);font-size:1.02rem}
-.statichero .btn{margin-top:28px}
+.statichero .shtel{margin-top:14px;font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;color:rgba(245,241,231,.72);text-shadow:var(--tshadow)}
+.statichero .shtel a{color:var(--accent);text-decoration:none}
+.statichero .btn{margin-top:26px}
 
 /* ============================================================
    THE PAGE BELOW
@@ -594,19 +603,40 @@ textarea{min-height:112px;resize:vertical}
 input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-muted)}
 form .btn{width:100%;margin-top:6px}
 .formnote{margin-top:14px;font-size:.86rem;color:var(--text-secondary);text-align:center}
+.callrow{margin-top:16px;font-size:1.02rem;color:var(--text-secondary)}
+.callrow a{color:var(--accent);text-decoration:none;font-family:var(--mono);letter-spacing:.06em;
+  border-bottom:1px solid var(--accent-muted);transition:border-color .3s var(--ease)}
+.callrow a:hover{border-bottom-color:var(--accent)}
+/* Out of flow until it has something to say, or it reserves a block of empty
+   space above the footer for every visitor who never submits. */
 .done{
+  display:none;
   margin-top:22px;padding:20px;border:1px solid var(--accent-muted);background:var(--accent-muted);
   border-radius:2px;text-align:center;font-size:1.02rem;
   opacity:0;transform:translateY(10px);transition:opacity .7s var(--ease),transform .7s var(--ease);
 }
+.done.shown{display:block}
 .done.on{opacity:1;transform:none}
 
 /* ---------- footer ---------- */
 footer{background:#100E0B;color:var(--text-secondary);padding:clamp(56px,7vw,88px) var(--gut) 40px calc(var(--gut) + var(--seam));position:relative;z-index:2}
 @media (max-width:1180px){footer{padding-left:var(--gut)}}
 .ftop{display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap;max-width:1320px}
-.fbrand{display:flex;align-items:center;gap:10px;color:var(--ink);font-family:var(--mono);letter-spacing:.2em;font-size:13px;text-transform:uppercase;text-decoration:none}
+.fbrand{display:flex;align-items:center;gap:11px;color:var(--ink);font-family:var(--mono);letter-spacing:.2em;font-size:13px;text-transform:uppercase;text-decoration:none}
+.fbrand .mk{width:30px;height:30px;flex:none}
+.fbrand b{font-weight:400;color:var(--accent)}
+.ftag{margin-top:12px;font-size:.9rem;color:var(--text-secondary);letter-spacing:.01em}
+.fcontact{margin-top:16px;font-style:normal;display:flex;flex-direction:column;gap:5px;font-size:.92rem}
+.fcontact a{color:var(--accent);text-decoration:none;font-family:var(--mono);letter-spacing:.06em}
+.fcontact a:hover{color:var(--accent-hover)}
+.fcontact span{color:var(--text-secondary)}
+.fright{display:flex;flex-direction:column;align-items:flex-end;gap:20px}
+@media (max-width:760px){.fright{align-items:flex-start}}
 .fnav{display:flex;gap:24px;flex-wrap:wrap;font-size:14px}
+.fsocial{display:flex;gap:14px}
+.fsocial a{color:var(--text-secondary);transition:color .3s var(--ease)}
+.fsocial a:hover{color:var(--accent)}
+.fsocial svg{width:20px;height:20px;display:block}
 .fnav a{color:var(--text-secondary);text-decoration:none;transition:color .3s var(--ease)}
 .fnav a:hover{color:var(--ink)}
 .fbot{margin-top:44px;padding-top:22px;border-top:1px solid var(--hairline);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:12.5px;color:rgba(169,162,148,.7);max-width:1320px}
@@ -658,6 +688,27 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="nxg" x1="0" y1="0" x2="0.9" y2="1">
+      <stop offset="0%" stop-color="#FBF3D2"/>
+      <stop offset="42%" stop-color="#D4AF37"/>
+      <stop offset="72%" stop-color="#F7E9AE"/>
+      <stop offset="100%" stop-color="#C39A2B"/>
+    </linearGradient>
+    <symbol id="nxmark" viewBox="0 0 64 64">
+      <path d="M23.2 12.4a13.2 13.2 0 0 1 17.6 0" fill="none" stroke="url(#nxg)" stroke-width="3.4" stroke-linecap="round"/>
+      <path d="M27.4 18.2a7.6 7.6 0 0 1 9.2 0" fill="none" stroke="url(#nxg)" stroke-width="3.4" stroke-linecap="round"/>
+      <circle cx="32" cy="23.4" r="2.2" fill="url(#nxg)"/>
+      <path d="M12 57.5V23.5L52 57.5V23.5" fill="none" stroke="url(#nxg)" stroke-width="7.6" stroke-linejoin="round" stroke-linecap="round"/>
+      <rect x="28.1" y="46.6" width="3.5" height="3.5" rx=".5" fill="url(#nxg)"/>
+      <rect x="32.4" y="46.6" width="3.5" height="3.5" rx=".5" fill="url(#nxg)"/>
+      <rect x="28.1" y="50.9" width="3.5" height="3.5" rx=".5" fill="url(#nxg)"/>
+      <rect x="32.4" y="50.9" width="3.5" height="3.5" rx=".5" fill="url(#nxg)"/>
+    </symbol>
+  </defs>
+</svg>
+
 <a class="skip" href="#main">Skip to content</a>
 
 <div class="env" aria-hidden="true"></div>
@@ -678,12 +729,9 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
 </div>
 
 <nav class="nav over-video" id="nav">
-  <a class="brand" href="#top" aria-label="Nexora, back to top">
-    <svg class="mk" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <circle cx="12" cy="12" r="8.4" stroke="currentColor" stroke-width="1.3" opacity=".45"/>
-      <circle cx="12" cy="12" r="2.6" fill="currentColor"/>
-    </svg>
-    Nexora
+  <a class="brand" href="#top" aria-label="Nexora Homes, back to top">
+    <svg class="mk" aria-hidden="true"><use href="#nxmark"/></svg>
+    <span>Nexora <b>Homes</b></span>
   </a>
   <div class="navlinks">
     <a href="#how">How it works</a>
@@ -691,7 +739,10 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
     <a href="#pricing">Pricing</a>
     <a href="#faq">Questions</a>
   </div>
-  <a class="btn" href="#start">Design my system</a>
+  <div class="navend">
+    <a class="tel" href="tel:+923234508739"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.5 3.5h3l1.5 4-2 1.4a12.5 12.5 0 0 0 6.1 6.1l1.4-2 4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.7a2 2 0 0 1 2-2.2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>0323 4508739</a>
+    <a class="btn" href="#start">Design my system</a>
+  </div>
 </nav>
 
 <div id="top"></div>
@@ -740,7 +791,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
                   <b>Climate</b><i>21&deg;</i>
                 </div>
               </div>
-              <div class="scr-mark">NEXORA</div>
+              <div class="scr-mark"><svg aria-hidden="true"><use href="#nxmark"/></svg>Nexora Homes</div>
             </div>
           </div>
         </div>
@@ -768,7 +819,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
       <div class="band e-rise" data-band="3" data-a="0.81" data-b="1" data-ramp="0.05">
         <div class="inner">
           <h2 class="line"><span class="sr">And you forget it is there.</span><span class="vis" aria-hidden="true"></span></h2>
-          <p class="sub settle-sub">One panel runs light, climate, security and sound. Nothing to open. Nothing to remember.</p>
+          <p class="sub settle-sub">Ultra luxury needs future technology. One panel runs light, climate, security and sound across your home.</p>
           <div class="ctarow settle-cta">
             <a class="btn" href="#start">Design my system</a>
             <a class="btn ghost" href="#how">See how it works</a>
@@ -791,9 +842,10 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
   <div class="shscene" id="shscene" aria-hidden="true"></div>
   <div class="shscrim" aria-hidden="true"></div>
   <div class="shin">
-    <p class="eyebrow">One panel. Then you forget it is there.</p>
+    <p class="eyebrow"><svg class="shmk" aria-hidden="true"><use href="#nxmark"/></svg>Nexora Homes &middot; Ultra luxury needs future technology</p>
     <h1>It goes into your wall, and disappears.</h1>
     <p>One panel runs light, climate, security and sound. Nothing to open. Nothing to remember.</p>
+    <p class="shtel"><a href="tel:+923234508739">0323 4508739</a> &middot; DHA Phase 6</p>
     <a class="btn" href="#start">Design my system</a>
   </div>
 </section>
@@ -926,9 +978,9 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
     <p class="kick up">What it costs</p>
     <h2 class="up">No quote hidden behind a phone call.</h2>
     <div class="tiers">
-      <div class="tier up"><span class="tn">Essential</span><span class="amt"><small>from</small> £2,400</span><p>Light and climate, up to six rooms. Fitted in a day.</p><a class="btn ghost" href="#start">Start here</a></div>
-      <div class="tier feat up"><span class="tn">Whole home</span><span class="amt"><small>from</small> £6,900</span><p>Every room, plus locks, cameras and sound. Fitted in two days.</p><a class="btn" href="#start">Start here</a></div>
-      <div class="tier up"><span class="tn">Estate</span><span class="amt"><small>from</small> £18,000</span><p>Multiple floors or buildings, a named engineer, and a yearly service visit.</p><a class="btn ghost" href="#start">Start here</a></div>
+      <div class="tier up"><span class="tn">Essential &middot; PKR</span><span class="amt"><small>from</small> 250,000</span><p>Light and climate, up to six rooms. Fitted in a day.</p><a class="btn ghost" href="#start">Start here</a></div>
+      <div class="tier feat up"><span class="tn">Whole home &middot; PKR</span><span class="amt"><small>from</small> 850,000</span><p>Every room, plus locks, cameras and sound. Fitted in two days.</p><a class="btn" href="#start">Start here</a></div>
+      <div class="tier up"><span class="tn">Estate &middot; PKR</span><span class="amt"><small>from</small> 2,500,000</span><p>Multiple floors or buildings, a named engineer, and a yearly service visit.</p><a class="btn ghost" href="#start">Start here</a></div>
     </div>
     <p class="pricenote up">Every price includes the survey, the fitting, and the two week learning period. No subscription to use your own house.</p>
   </section>
@@ -955,6 +1007,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
       <p class="kick up">Start here</p>
       <h2 class="up">Tell us about your home.</h2>
       <p class="lede up">One hour, no pressure, no obligation. You will get a written plan and a real price, whether you go ahead or not.</p>
+      <p class="callrow up">Or just call us on <a href="tel:+923234508739">0323 4508739</a></p>
       <form id="form" class="up" novalidate>
         <div class="f2">
           <div><label for="nm">Your name</label><input id="nm" name="name" type="text" autocomplete="name" required></div>
@@ -977,21 +1030,32 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
 
 <footer>
   <div class="ftop">
-    <a class="fbrand" href="#top">
-      <svg class="mk" width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <circle cx="12" cy="12" r="8.4" stroke="#D4AF37" stroke-width="1.3" opacity=".6"/>
-        <circle cx="12" cy="12" r="2.6" fill="#D4AF37" class="pulse"/>
-      </svg>
-      Nexora
-    </a>
-    <div class="fnav">
-      <a href="#how">How it works</a><a href="#runs">What it runs</a>
-      <a href="#pricing">Pricing</a><a href="#faq">Questions</a><a href="#start">Design my system</a>
+    <div class="fleft">
+      <a class="fbrand" href="#top">
+        <svg class="mk" aria-hidden="true"><use href="#nxmark"/></svg>
+        <span>Nexora <b>Homes</b></span>
+      </a>
+      <p class="ftag">Ultra luxury needs future technology</p>
+      <address class="fcontact">
+        <a href="tel:+923234508739">0323 4508739</a>
+        <span>DHA Phase 6</span>
+      </address>
+    </div>
+    <div class="fright">
+      <div class="fnav">
+        <a href="#how">How it works</a><a href="#runs">What it runs</a>
+        <a href="#pricing">Pricing</a><a href="#faq">Questions</a><a href="#start">Design my system</a>
+      </div>
+      <div class="fsocial">
+        <a href="https://instagram.com/nexorahomes" aria-label="Nexora Homes on Instagram"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5"/><circle cx="17" cy="7" r="1.2" fill="currentColor"/></svg></a>
+        <a href="https://facebook.com/nexorahomes" aria-label="Nexora Homes on Facebook"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14.5 21v-8h2.7l.4-3h-3.1V8.2c0-.9.3-1.5 1.5-1.5H17.7V4a21 21 0 0 0-2.4-.1c-2.4 0-4 1.4-4 4.1V10H8.6v3h2.7v8Z" fill="currentColor"/></svg></a>
+        <a href="https://tiktok.com/@nexorahomes" aria-label="Nexora Homes on TikTok"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 3.5h2.6a5 5 0 0 0 4.2 4.2v2.6a7.6 7.6 0 0 1-4.2-1.4v5.8a5.7 5.7 0 1 1-5.7-5.7c.3 0 .6 0 .9.1v2.7a3 3 0 1 0 2.2 2.9Z" fill="currentColor"/></svg></a>
+      </div>
     </div>
   </div>
   <div class="fbot">
-    <span>&copy; <span id="yr">2026</span> Nexora. Light, climate, security and sound.</span>
-    <span id="discl">Imagery on this page is AI generated.</span>
+    <span>&copy; <span id="yr">2026</span> Nexora Homes. Light, climate, security and sound.</span>
+    <span id="discl">DHA Phase 6 &middot; <a href="tel:+923234508739" style="color:var(--accent);text-decoration:none">0323 4508739</a></span>
   </div>
 </footer>
 

@@ -562,7 +562,8 @@ if('IntersectionObserver' in window){
     window.location.href='mailto:'+MAILTO+
       '?subject='+encodeURIComponent('Walkthrough request from '+nm)+
       '&body='+encodeURIComponent(body);
-    done.classList.add('on');
+    done.classList.add('shown');
+    requestAnimationFrame(function(){ done.classList.add('on'); });
   });
 })();
 

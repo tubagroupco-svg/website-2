@@ -277,3 +277,35 @@ trusting the CSS: the recess and shadow were absolutely positioned and never
 picked up the scene's grid centring, so they drifted ~106px below the panel;
 the screen relied on flex stretch and did not fill the face; and the nav kept
 light type while the hero's own wall turned light underneath it.
+
+---
+
+## Revision 4: the real brand
+
+The client supplied their brand card, which settled several open questions.
+
+- **Name:** Nexora Homes (not just Nexora).
+- **Tagline:** Ultra luxury needs future technology.
+- **Mark:** an angular N read as a house roofline, with a wifi arc above it and a
+  four-pane window below, in gold on black. Their own card is black, gold and
+  white, which independently confirms the palette chosen in revision 3.
+- **Phone:** 0323 4508739. **Address:** DHA Phase 6. **Social:** nexorahomes on
+  Instagram, Facebook and TikTok.
+
+The mark is drawn as an SVG `<symbol>` and referenced by `<use>` in five places:
+the nav, the footer, the panel's own screen (bottom right, as the client asked),
+the static hero, and the favicon. It is a hand-built approximation of their
+artwork, not their file, because their logo asset sits on the blocked media host.
+Swap in the real file when that host opens.
+
+The phone number is a real `tel:` link in five places, so a visitor on a phone
+taps once to call.
+
+**Currency corrected.** DHA Phase 6 and an 0323 number place the business in
+Pakistan, so the earlier pound figures were simply wrong. Prices now read in PKR.
+THE AMOUNTS ARE STILL PLACEHOLDERS and must be replaced with the client's real
+figures before this site goes live.
+
+The footer's "imagery is AI generated" disclosure has been removed, because it is
+no longer true: nothing on the page is generated. The hero is drawn in code and
+the brand assets are the client's own.
