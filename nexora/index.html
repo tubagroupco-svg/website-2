@@ -143,7 +143,7 @@ button{font:inherit;color:inherit}
 /* ============================================================
    HERO
    ============================================================ */
-.hero{position:relative;height:620vh;z-index:1}
+.hero{position:relative;height:700vh;z-index:1}
 .stage{position:sticky;top:0;height:100vh;overflow:hidden;background:#0E1416}
 /* the designed ground: the page is complete even with no poster and no video */
 .stage::before{
@@ -175,15 +175,15 @@ button{font:inherit;color:inherit}
 /* caption bands */
 .bands{position:absolute;inset:0;z-index:4;pointer-events:none}
 .band{
-  position:absolute;inset:0;display:grid;place-items:center;
-  opacity:0;padding:0 clamp(20px,7vw,120px);
+  position:absolute;inset:0;display:grid;justify-items:center;align-items:end;
+  opacity:0;padding:0 clamp(20px,7vw,120px) clamp(52px,9vh,104px);
   color:#F4F5F1;text-shadow:var(--tshadow);
 }
 /* layer 2: the per-band scrim, riding the band's own progress */
 .band::before{
   content:"";position:absolute;inset:-4%;pointer-events:none;
   opacity:calc(.25 + .75*var(--k,1));
-  background:radial-gradient(ellipse 74% 62% at 50% 50%,rgba(5,8,10,.68) 0%,rgba(5,8,10,.46) 46%,rgba(5,8,10,0) 76%);
+  background:radial-gradient(ellipse 88% 54% at 50% 92%,rgba(5,8,10,.74) 0%,rgba(5,8,10,.5) 44%,rgba(5,8,10,0) 78%);
 }
 .band .inner{position:relative;text-align:center;max-width:min(1100px,92vw)}
 .band h2,.band .line{
@@ -217,6 +217,11 @@ button{font:inherit;color:inherit}
 .e-drift .w{
   --kc:clamp(0,(var(--k,0) - var(--th,0))*2.8,1);opacity:var(--kc);
   transform:translateY(calc((1 - var(--kc))*-26px));
+}
+/* (j) seat: words start proud of the surface and press flush as the panel does */
+.e-seat .w{
+  --kc:clamp(0,(var(--k,0) - var(--th,0))*2.8,1);opacity:var(--kc);
+  transform:scale(calc(1.16 - .16*var(--kc)));
 }
 /* (e) word by word rise into a staged settle */
 .e-rise .w{
@@ -551,25 +556,25 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
     <div class="motes" id="motes" aria-hidden="true"></div>
 
     <div class="bands" id="bands">
-      <div class="band e-blur" data-band="0" data-a="0" data-b="0.21" data-ramp="0.05">
+      <div class="band e-blur" data-band="0" data-a="0" data-b="0.22" data-ramp="0.05">
         <div class="inner">
-          <h2 class="line"><span class="sr">You are still asleep.</span><span class="vis" aria-hidden="true"></span></h2>
+          <h2 class="line"><span class="sr">One panel.</span><span class="vis" aria-hidden="true"></span></h2>
         </div>
       </div>
-      <div class="band e-drift" data-band="1" data-a="0.25" data-b="0.48">
+      <div class="band e-grid" data-band="1" data-a="0.26" data-b="0.5" data-spread="0.55">
         <div class="inner">
-          <h2 class="line"><span class="sr">The house is not.</span><span class="vis" aria-hidden="true"></span></h2>
+          <h2 class="line"><span class="sr">Light, climate, security, sound.</span><span class="vis" aria-hidden="true"></span></h2>
         </div>
       </div>
-      <div class="band e-grid" data-band="2" data-a="0.52" data-b="0.73" data-spread="0.5">
+      <div class="band e-seat" data-band="2" data-a="0.54" data-b="0.76">
         <div class="inner">
-          <h2 class="line"><span class="sr">Warmed the floors. Lifted the blinds. Asked nothing.</span><span class="vis" aria-hidden="true"></span></h2>
+          <h2 class="line"><span class="sr">Then it goes into your wall.</span><span class="vis" aria-hidden="true"></span></h2>
         </div>
       </div>
-      <div class="band e-rise" data-band="3" data-a="0.78" data-b="1" data-ramp="0.05">
+      <div class="band e-rise" data-band="3" data-a="0.81" data-b="1" data-ramp="0.05">
         <div class="inner">
-          <h2 class="line"><span class="sr">The home that handles it.</span><span class="vis" aria-hidden="true"></span></h2>
-          <p class="sub settle-sub">Light, climate, security and sound in one quiet system. Nothing to open. Nothing to remember.</p>
+          <h2 class="line"><span class="sr">And you forget it is there.</span><span class="vis" aria-hidden="true"></span></h2>
+          <p class="sub settle-sub">One panel runs light, climate, security and sound. Nothing to open. Nothing to remember.</p>
           <div class="ctarow settle-cta">
             <a class="btn" href="#start">Design my system</a>
             <a class="btn ghost" href="#how">See how it works</a>
@@ -578,7 +583,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
       </div>
     </div>
 
-    <div class="hud" aria-hidden="true"><span class="chip" id="hudchip">06:12 &nbsp;·&nbsp; everyone asleep</span></div>
+    <div class="hud" aria-hidden="true"><span class="chip" id="hudchip">10.1 inch panel &nbsp;·&nbsp; front</span></div>
 
     <div class="ringwrap" id="ringwrap" aria-hidden="true">
       <svg class="ring" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="126" style="stroke-dashoffset:var(--ld,126)"/></svg>
@@ -591,9 +596,9 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
   <div class="shimg" id="shimg" aria-hidden="true"></div>
   <div class="shscrim" aria-hidden="true"></div>
   <div class="shin">
-    <p class="eyebrow">You are still asleep. The house is not.</p>
-    <h1>The home that handles it.</h1>
-    <p>Light, climate, security and sound in one quiet system. Nothing to open. Nothing to remember.</p>
+    <p class="eyebrow">One panel. Then you forget it is there.</p>
+    <h1>It goes into your wall, and disappears.</h1>
+    <p>One panel runs light, climate, security and sound. Nothing to open. Nothing to remember.</p>
     <a class="btn" href="#start">Design my system</a>
   </div>
 </section>

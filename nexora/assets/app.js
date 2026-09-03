@@ -116,9 +116,8 @@ var lastHud='', lastHudAt=0;
 function updateHud(p){
   var now=performance.now();
   if(now-lastHudAt<100) return;
-  var mins = Math.round(6*60+12 + p*46);
-  var txt  = String(Math.floor(mins/60)).padStart(2,'0')+':'+String(mins%60).padStart(2,'0')+
-             '  ·  '+(p<0.3?'everyone asleep':p<0.62?'the house begins':p<0.86?'blinds lifting':'ready');
+  var txt = '10.1 inch panel  ·  ' +
+            (p<0.28?'front':p<0.58?'turning':p<0.86?'seating':'flush');
   if(txt===lastHud) return;
   lastHud=txt; lastHudAt=now;
   var el=document.getElementById('hudchip'); if(el) el.textContent=txt;
