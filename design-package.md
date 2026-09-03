@@ -309,3 +309,37 @@ figures before this site goes live.
 The footer's "imagery is AI generated" disclosure has been removed, because it is
 no longer true: nothing on the page is generated. The hero is drawn in code and
 the brand assets are the client's own.
+
+---
+
+## Revision 5: the real range, the real prices, the real email
+
+The client supplied their catalogue, so the invented tier pricing is gone and the
+section is now their actual products.
+
+| Product | Price after discount |
+|---|---|
+| Nexora Gate Automation, 1200 kg motor, track, two remotes | PKR 129,000 |
+| Nexora Door Lock, 9 in 1 | PKR 43,000 |
+| Nexora 7 inch Control Panel with music | PKR 79,000 |
+| Nexora 4 Gang Zigbee tempered glass switch | PKR 6,500 |
+| Nexora 4 Gang Soft Touch smart panel | PKR 6,500 |
+
+Form email: nexorahomes@yahoo.com.
+
+**Product imagery is drawn, not photographed.** The client's product photos live
+on the blocked media host, so each product is illustrated as gold line art in the
+same language as the hero panel. This is a deliberate choice rather than a
+placeholder: fine gold linework on near-black suits "ultra luxury needs future
+technology" better than a grid of white-background catalogue shots would, and it
+holds the page together as one designed system. Swap in real photography later if
+the client prefers it; the card layout takes an image without changes.
+
+The client also asked for the hero panel to be more prominent with its writing
+clearer. Panel width went from 50vw/620px to 60vw/760px, the scene padding
+tightened, every type size on the screen went up a step, the screen's resting
+brightness rose from 0.5 to 0.62, and the caption type dropped a step so the
+bigger panel keeps its air.
+
+Five products in a four-column auto-fit grid left an orphan on row two, so the
+grid is pinned to three columns above 1080px and reads as three plus two.

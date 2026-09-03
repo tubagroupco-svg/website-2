@@ -8,7 +8,7 @@ var VIDEO_URL   = 'assets/hero-scrub.mp4';
 var VIDEO_BYTES = 6200000;              /* real byte size, patched at build */
 var POSTER_URL  = 'assets/hero-poster.jpg';
 var ENDING_URL  = 'assets/hero-ending.jpg';
-var MAILTO      = 'hello@nexora.example';
+var MAILTO      = 'nexorahomes@yahoo.com';
 
 var video   = document.getElementById('hero');
 var stage   = document.getElementById('stage');
