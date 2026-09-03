@@ -68,7 +68,7 @@ Two rules that follow from it:
 
 ## 4. The band map
 
-Hero height 500vh, so the scroll range is 400vh and each beat gets about 100vh of plateau.
+Hero height 620vh for the 8 second shot, so the scroll range is 520vh and each beat gets about 115vh of plateau.
 
 | Band | Range (starting point) | Footage moment | Copy (verbatim) | Entrance |
 |---|---|---|---|---|
@@ -188,3 +188,30 @@ Every viewer-facing line above ships verbatim. The built page must pass the Phas
 gate, zero em dashes and zero stock words, plus the body copy sweep for AI tells, before
 anyone sees it. The band 3 triplet and the staccato lines in S1 are deliberate brand
 devices from this package and stay.
+
+---
+
+## Revision 2, after the first video gate was rejected
+
+The first hero video was rejected by the client. Their words: the product is not
+ours, it is not looking real. Both are fair, and both trace to one mistake:
+the ending was described in words and left to the model to imagine, instead of
+being anchored to a real photograph of the product.
+
+Decisions taken from that feedback:
+
+- **Hero product: the 10.1 inch control panel.** The journey comes to rest on it.
+- **The ending frame is built from the client's real product photo**, not
+  invented. Their uploaded media is used as an image reference, and the result
+  is passed to the video model as an explicit `end_image`, so the shot is forced
+  to arrive at the real product rather than a generated lookalike.
+- **Model: Kling 2.6.** Chosen for advanced physics and real-world motion, since
+  realism was the stated failure. At 5 credits a re-roll is close to free, which
+  matters while the media host is blocked and frames cannot be inspected locally.
+- **Concept: being described by the client in their own words.** Not yet chosen.
+
+Standing constraint that caused the miss, recorded so it is not repeated: never
+let a generated frame invent the product. Anchor every product moment to a real
+photograph, and inspect the result against the brand's signature details
+(flush frameless glass, no visible screws, circular touch points, cool
+blue-white indicator).
