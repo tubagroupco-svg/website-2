@@ -343,3 +343,32 @@ bigger panel keeps its air.
 
 Five products in a four-column auto-fit grid left an orphan on row two, so the
 grid is pinned to three columns above 1080px and reads as three plus two.
+
+---
+
+## Revision 6: product drawings redrawn from the photographs
+
+The client re-sent the product photographs, and although chat images still cannot
+become files on this machine, they can be read directly. The three weakest
+drawings were redrawn against them:
+
+- **Gate motor:** tapered white housing on a black base, warning triangle,
+  release panel with its key barrel, the toothed rack running beneath, a remote
+  and the flashing beacon.
+- **Door lock:** camera strip, card reader, a full four-row keypad, and the
+  prominent fingerprint ring with its outer halo, which is the detail that
+  identifies this product at a glance.
+- **7 inch panel:** the icon sidebar, the 09:20 clock, media cards, the circular
+  26 degree dial on the right, and the music bar along the bottom edge.
+
+The glass and soft-touch switches were already accurate and were left alone.
+
+The brand lockup (mark, name, tagline) now appears in the hero settle, entering
+early in that band so it reads before the closing line.
+
+**One contrast bug this exposed.** The nav flips to dark type over the lit wall,
+but its gold accents did not follow, leaving the brand word and the phone number
+at 1.64:1 on the lit wall. Both now darken to #6E5410, measured at 5.58:1. The
+settle lockup drops its gold entirely and lets the mark carry it, because that
+element sits over a background travelling from black to fully lit and no single
+gold works across that whole range.
