@@ -411,8 +411,13 @@ signal settling into quiet. The "what it runs" section image is now the real
 control panel photograph, and og:image points at it too. Every asset reference
 on the page now resolves; there are no dead files left.
 
-**FLAGGED FOR THE CLIENT, UNRESOLVED:** the gate motor photograph carries
-another manufacturer's branding, "WOLE", and is rated "800kg" on the casing,
-while the site sells this as a Nexora 1200 kg motor. Both the competing brand
-mark and the contradicted specification are visible at card size. This is the
-client's call and must be settled before launch.
+**RESOLVED:** the gate motor photograph carried another manufacturer's branding,
+"WOLE", and was rated "800kg" on the casing, while the site sells this as a
+Nexora 1200 kg motor. Both were legible at card size. Raised with the client, who
+chose to drop the photograph and keep the gold line drawing for that card. The
+drawing carries no competing mark and states no capacity, so it contradicts
+nothing. The unused photograph was deleted rather than left in the folder.
+
+Final asset state: three real photographs (lock, panel, soft touch) at 20KB
+total, and two drawn cards (gate, zigbee switch). The zigbee card stays drawn
+because its source file is 107x81 pixels; a usable file would replace it.
