@@ -13,7 +13,7 @@
 <meta property="og:title" content="Nexora Homes">
 <meta property="og:description" content="Ultra luxury needs future technology. One panel runs light, climate, security and sound across your home.">
 <meta property="og:url" content="REPLACE_AT_DEPLOY">
-<meta property="og:image" content="REPLACE_AT_DEPLOY/assets/hero-ending.jpg">
+<meta property="og:image" content="REPLACE_AT_DEPLOY/assets/p-panel.webp">
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -482,8 +482,16 @@ main{position:relative;z-index:2;background:var(--canvas)}
   position:relative;aspect-ratio:4/5;border-radius:3px;overflow:hidden;background:#15120E;
   box-shadow:inset 0 0 0 1px var(--hairline);
 }
-.step .shot::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,11,14,0) 46%,rgba(8,11,14,.5) 100%)}
+.step .shot:not(:has(svg))::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,7,5,0) 46%,rgba(8,7,5,.5) 100%)}
 .step .shot img{width:100%;height:100%;object-fit:cover;transition:transform 1.5s var(--ease)}
+.step .shot svg{position:absolute;inset:0;width:100%;height:100%;padding:12%;transition:transform 1.2s var(--ease)}
+.step .shot svg .ln{fill:none;stroke:url(#nxg);stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round}
+.step .shot svg .ln.thin{stroke-width:1.2;opacity:.55}
+.step .shot svg .dot{fill:none;stroke:url(#nxg);stroke-width:1.4;opacity:.8;stroke-linecap:round}
+.step .shot svg .fl{fill:url(#nxg)}
+.step .shot svg .fl.dim{opacity:.45}
+.step:hover .shot svg{transform:scale(1.04)}
+.step .shot:has(svg){background:radial-gradient(66% 56% at 50% 46%,rgba(245,241,231,.09) 0%,rgba(245,241,231,0) 72%),#131109}
 .step:hover .shot img{transform:scale(1.035)}
 .step .n{
   position:absolute;top:14px;left:14px;z-index:2;font-family:var(--mono);font-size:11px;letter-spacing:.14em;
@@ -591,11 +599,18 @@ main{position:relative;z-index:2;background:var(--canvas)}
 .prod:hover{border-color:var(--accent-muted);transform:translateY(-3px);box-shadow:0 16px 44px rgba(0,0,0,.55)}
 .pvis{
   position:relative;aspect-ratio:6/5;border-radius:2px;overflow:hidden;
-  background:radial-gradient(78% 62% at 50% 42%,rgba(212,175,55,.09) 0%,rgba(212,175,55,0) 68%),#0C0A08;
+  background:
+    radial-gradient(66% 56% at 50% 46%,rgba(245,241,231,.12) 0%,rgba(245,241,231,0) 72%),
+    radial-gradient(84% 66% at 50% 40%,rgba(212,175,55,.1) 0%,rgba(212,175,55,0) 70%),
+    #131109;
   box-shadow:inset 0 0 0 1px rgba(212,175,55,.12);
   display:grid;place-items:center;
 }
 .pvis svg{width:82%;height:82%;overflow:visible}
+.pvis img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:7%;
+  transition:transform 1.1s var(--ease);filter:drop-shadow(0 16px 34px rgba(0,0,0,.65))}
+.prod:hover .pvis img{transform:scale(1.045)}
+.pvis.tall img{padding:2%}
 .pvis .ln{fill:none;stroke:url(#nxg);stroke-width:1.7;stroke-linejoin:round;stroke-linecap:round}
 .pvis .ln.thin{stroke-width:1.1;opacity:.62}
 .pvis .fl{fill:url(#nxg)}
@@ -924,17 +939,46 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
     </div>
     <div class="steps">
       <article class="step up">
-        <div class="shot"><span class="n">01</span><img src="assets/step-1.jpg" alt="A Nexora engineer walking through a quiet home, mapping the rooms" loading="lazy" width="1200" height="1500"></div>
+        <div class="shot"><span class="n">01</span><svg viewBox="0 0 100 125" fill="none" aria-hidden="true">
+<path class="ln" d="M14 26h72v74H14z"/>
+<path class="ln thin" d="M50 26v34M14 60h72M50 60v40M14 84h36"/>
+<path class="ln thin" d="M50 100v-6M32 84v-8"/>
+<path class="dot" d="M24 96q10-14 22-10t16-16 18-6" stroke-dasharray="3 5"/>
+<circle class="fl" cx="24" cy="96" r="3"/>
+<circle class="ln" cx="80" cy="64" r="4"/>
+<path class="ln thin" d="M69 41a9 9 0 0 1 11 0M71.5 46a5 5 0 0 1 6 0"/>
+<circle class="fl" cx="74.5" cy="51" r="1.7"/>
+</svg></div>
         <h3>We walk your home.</h3>
         <p>One hour, room by room. We map what you already do every day. When you leave, when you sleep, which room is always too cold.</p>
       </article>
       <article class="step up">
-        <div class="shot"><span class="n">02</span><img src="assets/step-2.jpg" alt="A flush Nexora glass switch being fitted into a wall" loading="lazy" width="1200" height="1500"></div>
+        <div class="shot"><span class="n">02</span><svg viewBox="0 0 100 125" fill="none" aria-hidden="true">
+<path class="ln thin" d="M8 100h84"/>
+<path class="ln thin" d="M20 100V44M80 100V44"/>
+<rect class="ln" x="28" y="56" width="44" height="44" rx="4"/>
+<rect class="ln thin" x="35" y="63" width="13" height="13" rx="2.5"/>
+<rect class="ln thin" x="52" y="63" width="13" height="13" rx="2.5"/>
+<rect class="ln thin" x="35" y="80" width="13" height="13" rx="2.5"/>
+<rect class="ln thin" x="52" y="80" width="13" height="13" rx="2.5"/>
+<circle class="fl dim" cx="41.5" cy="69.5" r="2"/><circle class="fl" cx="58.5" cy="69.5" r="2"/>
+<rect class="ln" x="34" y="20" width="32" height="22" rx="3"/>
+<path class="dot" d="M50 44v9" stroke-dasharray="3 4"/>
+<path class="ln thin" d="M44 50l6 6 6-6"/>
+</svg></div>
         <h3>We fit it in a day.</h3>
         <p>Wireless where it can be, wired where it has to be. No channels cut through your walls, no dust sheets for a week.</p>
       </article>
       <article class="step up">
-        <div class="shot"><span class="n">03</span><img src="assets/step-3.jpg" alt="A living room at dusk with the lighting already set" loading="lazy" width="1200" height="1500"></div>
+        <div class="shot"><span class="n">03</span><svg viewBox="0 0 100 125" fill="none" aria-hidden="true">
+<path class="ln" d="M10 62c4 0 4-22 8-22s4 34 8 34 4-26 8-26 4 18 8 18 4-12 8-12 5 6 9 6h31"/>
+<path class="ln thin" d="M10 96h80"/>
+<path class="ln thin" d="M10 96v-4M30 96v-4M50 96v-4M70 96v-4M90 96v-4"/>
+<circle class="fl" cx="82" cy="62" r="3"/>
+<rect class="ln thin" x="62" y="20" width="28" height="20" rx="3"/>
+<path class="ln thin" d="M68 27h9M68 32h6"/>
+<circle class="fl dim" cx="84" cy="30" r="2"/>
+</svg></div>
         <h3>It learns, then it goes quiet.</h3>
         <p>For two weeks it watches and adjusts. After that you stop noticing it, which is the entire point.</p>
       </article>
@@ -1008,7 +1052,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
           </div>
         </div>
       </div>
-      <div class="endshot up"><img src="assets/hero-ending.jpg" alt="A Nexora glass switch on a wall in morning light" loading="lazy" width="1600" height="1200"></div>
+      <div class="endshot up"><img src="assets/p-panel.webp" alt="The Nexora control panel screen showing time, weather and room controls" loading="lazy" decoding="async"></div>
     </div>
   </section>
 
@@ -1028,72 +1072,21 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
     <h2 class="up">Five products. One system.</h2>
     <div class="prods">
       <article class="prod up">
-        <div class="pvis"><svg viewBox="0 0 120 100" fill="none" aria-hidden="true">
-<path class="ln" d="M40 56 L43 22c.4-5 4-8 9-8.6l14-1.6c5-.6 9 2.4 9.6 7.4L79 56Z"/>
-<path class="ln" d="M35 56h49v20H35z"/>
-<path class="ln" d="M29 76h61v9H29z"/>
-<path class="ln thin" d="M52 30l7 12h-14z"/>
-<path class="fl" d="M55.6 34h1.6v4h-1.6z"/><circle class="fl" cx="56.4" cy="40" r=".8"/>
-<path class="ln thin" d="M60 62h14v8H60z"/>
-<circle class="ln thin" cx="80" cy="66" r="3"/>
-<path class="ln thin" d="M80 69v5l3 2"/>
-<path class="ln" d="M8 93h104"/>
-<path class="ln thin" d="M8 93v-6l5 6M18 93v-6l5 6M28 93v-6l5 6M38 93v-6l5 6M48 93v-6l5 6M58 93v-6l5 6M68 93v-6l5 6M78 93v-6l5 6M88 93v-6l5 6M98 93v-6l5 6"/>
-<rect class="ln" x="95" y="14" width="13" height="21" rx="3"/>
-<circle class="fl dim" cx="101.5" cy="21" r="1.6"/><circle class="fl dim" cx="101.5" cy="27" r="1.6"/>
-<path class="ln thin" d="M101.5 40v5"/>
-<path class="ln" d="M96 62c0-5 3-8 7-8s7 3 7 8Z"/>
-<path class="ln thin" d="M93 62h20v4H93z"/>
-</svg></div>
+        <div class="pvis"><img src="assets/p-gate.webp" alt="Nexora sliding gate motor with its release lever, key barrel and warning label" loading="lazy" decoding="async"></div>
         <h3>Nexora Gate Automation</h3>
         <p>1200 kg sliding gate motor, supplied with the track and two remotes. Opens from the app, a remote, or on its own when you arrive.</p>
         <div class="pprice"><small>Price after discount</small><b>PKR 129,000</b></div>
         <a class="btn ghost" href="#start">Ask about this</a>
       </article>
       <article class="prod up">
-        <div class="pvis"><svg viewBox="0 0 120 100" fill="none" aria-hidden="true">
-<rect class="ln" x="47" y="4" width="27" height="92" rx="6"/>
-<rect class="ln thin" x="53" y="9" width="15" height="7" rx="2"/>
-<circle class="fl dim" cx="57.5" cy="12.5" r="1.4"/><circle class="fl dim" cx="63.5" cy="12.5" r="1.4"/>
-<rect class="ln thin" x="52" y="20" width="17" height="6" rx="1.5"/>
-<circle class="fl dim" cx="55.5" cy="32" r="1.9"/><circle class="fl dim" cx="60.5" cy="32" r="1.9"/><circle class="fl dim" cx="65.5" cy="32" r="1.9"/>
-<circle class="fl dim" cx="55.5" cy="39" r="1.9"/><circle class="fl dim" cx="60.5" cy="39" r="1.9"/><circle class="fl dim" cx="65.5" cy="39" r="1.9"/>
-<circle class="fl dim" cx="55.5" cy="46" r="1.9"/><circle class="fl dim" cx="60.5" cy="46" r="1.9"/><circle class="fl dim" cx="65.5" cy="46" r="1.9"/>
-<circle class="fl dim" cx="55.5" cy="53" r="1.9"/><circle class="fl dim" cx="60.5" cy="53" r="1.9"/><circle class="fl dim" cx="65.5" cy="53" r="1.9"/>
-<circle class="ln" cx="60.5" cy="67" r="8.5"/>
-<circle class="ln thin" cx="60.5" cy="67" r="12"/>
-<path class="ln thin" d="M57 67a3.5 3.5 0 0 1 7 0M54.5 67a6 6 0 0 1 12 0"/>
-<rect class="ln thin" x="52" y="84" width="17" height="8" rx="2"/>
-<path class="ln thin" d="M85 26a12 12 0 0 1 15 0M88 32a7 7 0 0 1 9 0"/>
-<circle class="fl" cx="92.5" cy="38" r="2"/>
-</svg></div>
+        <div class="pvis tall"><img src="assets/p-lock.webp" alt="Nexora smart door lock showing its camera, keypad and glowing fingerprint reader" loading="lazy" decoding="async"></div>
         <h3>Nexora Door Lock, 9 in 1</h3>
         <p>Opens by fingerprint, face, phone, wifi, pin code or key. Six ways in, so nobody in the house is ever locked out of the front door.</p>
         <div class="pprice"><small>Price after discount</small><b>PKR 43,000</b></div>
         <a class="btn ghost" href="#start">Ask about this</a>
       </article>
       <article class="prod up">
-        <div class="pvis"><svg viewBox="0 0 120 100" fill="none" aria-hidden="true">
-<rect class="ln" x="6" y="24" width="108" height="56" rx="6"/>
-<rect class="ln thin" x="11" y="29" width="98" height="46" rx="3"/>
-<path class="ln thin" d="M22 29v46"/>
-<circle class="fl dim" cx="16.5" cy="37" r="1.6"/><circle class="fl dim" cx="16.5" cy="45" r="1.6"/>
-<circle class="fl dim" cx="16.5" cy="53" r="1.6"/><circle class="fl dim" cx="16.5" cy="61" r="1.6"/>
-<path class="ln thin" d="M27 35h9M27 40h6"/>
-<text x="27" y="57" fill="url(#nxg)" font-family="monospace" font-size="13" letter-spacing="1">09:20</text>
-<rect class="ln thin" x="27" y="62" width="20" height="9" rx="2"/>
-<path class="ln thin" d="M31 66.5h3M37 64.5v4M41 65.5v2"/>
-<rect class="ln thin" x="51" y="34" width="24" height="16" rx="2"/>
-<circle class="ln thin" cx="57" cy="42" r="3"/>
-<path class="ln thin" d="M63 39h9M63 43h6"/>
-<rect class="ln thin" x="51" y="55" width="24" height="16" rx="2"/>
-<path class="ln thin" d="M55 63h4M63 60v6M69 62v2"/>
-<circle class="ln" cx="93" cy="50" r="14"/>
-<path class="ln thin" d="M83 60a14 14 0 1 1 20 0"/>
-<text x="93" y="53" fill="url(#nxg)" font-family="monospace" font-size="9" text-anchor="middle">26°</text>
-<path class="ln" d="M27 78h60" stroke-width="2.4"/>
-<path class="ln thin" d="M30 78v-2M36 78v-4M42 78v-2M48 78v-5M54 78v-3M60 78v-4M66 78v-2M72 78v-4M78 78v-3M84 78v-2"/>
-</svg></div>
+        <div class="pvis"><img src="assets/p-panel.webp" alt="Nexora control panel screen showing the time, weather and room controls" loading="lazy" decoding="async"></div>
         <h3>Nexora 7 inch Control Panel</h3>
         <p>The wall panel that runs the house, with music playback built in. Light, climate, curtains and sound from one screen.</p>
         <div class="pprice"><small>Price after discount</small><b>PKR 79,000</b></div>
@@ -1117,15 +1110,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
         <a class="btn ghost" href="#start">Ask about this</a>
       </article>
       <article class="prod up">
-        <div class="pvis"><svg viewBox="0 0 120 100" fill="none" aria-hidden="true">
-<rect class="ln" x="26" y="16" width="68" height="68" rx="7"/>
-<path class="ln thin" d="M60 20v60"/>
-<path class="ln" d="M42 30v6"/><circle class="ln thin" cx="42" cy="37" r="6"/>
-<path class="ln" d="M78 30v6"/><circle class="ln thin" cx="78" cy="37" r="6"/>
-<path class="ln" d="M42 58v6"/><circle class="ln thin" cx="42" cy="65" r="6"/>
-<path class="ln" d="M78 58v6"/><circle class="ln thin" cx="78" cy="65" r="6"/>
-<path class="ln thin" d="M34 47h16M68 47h20M34 75h16M68 75h20"/>
-</svg></div>
+        <div class="pvis"><img src="assets/p-soft.webp" alt="Nexora four gang soft touch wall switch in black, with labelled zones" loading="lazy" decoding="async"></div>
         <h3>Nexora 4 Gang Soft Touch Panel</h3>
         <p>Soft touch smart wall switch with labelled zones, so anyone in the house knows what each one does without being told.</p>
         <div class="pprice"><small>Price after discount</small><b>PKR 6,500</b></div>

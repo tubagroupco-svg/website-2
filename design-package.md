@@ -372,3 +372,47 @@ at 1.64:1 on the lit wall. Both now darken to #6E5410, measured at 5.58:1. The
 settle lockup drops its gold entirely and lets the mark carry it, because that
 element sits over a background travelling from black to fully lit and no single
 gold works across that whole range.
+
+---
+
+## Revision 7: real product photography
+
+The client uploaded a zip of product images, which finally put real files on disk.
+Four are now used; one was unusable.
+
+| File | Use | Note |
+|---|---|---|
+| Screenshot-...1200x1211.png | Gate motor card | It is the gate kit, not the logo |
+| DOOR SMART LOCK.png | Door lock card | Cleanest cutout of the set |
+| CONTROL PANEL BIG.png | Panel card and the "what it runs" section | Only 334px wide, adequate at card size |
+| 4 gang soft touch.png | Soft touch card | Cropped to the black unit, which suits the theme |
+| 4 GANG PLASTIC.jpg | NOT USED | 107x81 pixels, far too small. That card keeps its drawing |
+
+**Method.** No Pillow, ImageMagick or numpy in the environment, so Pillow was
+installed. Backgrounds are removed by flooding in from the image edges rather
+than keying out white, because the gate motor's own housing is white and a
+colour key would have eaten the product. The flood threshold matters: at 32 it
+crossed the motor's soft edge and chewed the housing; at 10 the cut is clean.
+Alpha is then feathered by 0.6px, any magenta fringe neutralised, the result
+trimmed to its bounding box and exported as WebP. The gate went from 523KB as
+PNG to 42KB as WebP. All four photographs together weigh 64KB.
+
+**A sizing bug worth recording.** `height:100%` on an image inside an
+`aspect-ratio` box creates a sizing cycle: the box grew to 447px instead of
+holding 286px. Absolute positioning with `inset:0` breaks the cycle.
+
+The card backdrop also had to change. Two of these products are black, and on a
+near-black card they disappeared, so `.pvis` now carries a soft milky pool
+behind the product.
+
+**The three "how it works" steps** are drawn in the same gold line language: a
+floor plan with a survey path, a switch being fitted into a wall plate, and a
+signal settling into quiet. The "what it runs" section image is now the real
+control panel photograph, and og:image points at it too. Every asset reference
+on the page now resolves; there are no dead files left.
+
+**FLAGGED FOR THE CLIENT, UNRESOLVED:** the gate motor photograph carries
+another manufacturer's branding, "WOLE", and is rated "800kg" on the casing,
+while the site sells this as a Nexora 1200 kg motor. Both the competing brand
+mark and the contradicted specification are visible at card size. This is the
+client's call and must be settled before launch.
