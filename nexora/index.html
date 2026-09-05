@@ -6,8 +6,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Nexora | The smart part is in the wall</title>
 <meta name="description" content="Nexora control panels put the whole home on one piece of glass, and keep it working when the internet does not. Supplied and fitted by our own team.">
-<meta name="theme-color" content="#0B1016">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230B1016'/%3E%3Cg fill='%2300C2B8'%3E%3Crect x='7' y='7' width='7.5' height='7.5' rx='2.2'/%3E%3Crect x='17.5' y='7' width='7.5' height='7.5' rx='2.2' opacity='.45'/%3E%3Crect x='7' y='17.5' width='7.5' height='7.5' rx='2.2' opacity='.45'/%3E%3Crect x='17.5' y='17.5' width='7.5' height='7.5' rx='2.2'/%3E%3C/g%3E%3C/svg%3E">
+<meta name="theme-color" content="#0A0908">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230A0908'/%3E%3Cg fill='%23D4AF37'%3E%3Crect x='7' y='7' width='7.5' height='7.5' rx='2.2'/%3E%3Crect x='17.5' y='7' width='7.5' height='7.5' rx='2.2' opacity='.45'/%3E%3Crect x='7' y='17.5' width='7.5' height='7.5' rx='2.2' opacity='.45'/%3E%3Crect x='17.5' y='17.5' width='7.5' height='7.5' rx='2.2'/%3E%3C/g%3E%3C/svg%3E">
 
 <!-- DEPLOY STEP: patch og:url and og:image with the live absolute URL before zipping -->
 <meta property="og:type" content="website">
@@ -29,20 +29,21 @@
    Tokens, then the hero, then the page.
    ============================================================ */
 :root{
-  --canvas:#EDEFF2;
-  --panel:#F7F9FB;
-  --recess:#E1E6EC;
-  --deep:#0B1016;
-  --deep-2:#131A22;
-  --accent:#046B65;
-  --accent-hover:#02534E;
-  --accent-bright:#00C2B8;
-  --accent-muted:rgba(0,194,184,.16);
-  --text-primary:#10141A;
-  --text-secondary:#59616E;
-  --hero-text:#F2F4F6;
-  --line:rgba(16,20,26,.14);
-  --line-strong:rgba(16,20,26,.30);
+  --canvas:#0A0908;        /* warm near-black, never pure #000 */
+  --raised:#12100B;        /* the alternating section ground */
+  --panel:#17140E;         /* cards and raised surfaces */
+  --recess:#0E0C09;        /* the unlit gang zone */
+  --deep:#070605;          /* the hero's deepest dark */
+  --deep-2:#12100B;
+  --accent:#D4AF37;        /* brass gold: CTA fill, kickers, links */
+  --accent-hover:#E4C25A;
+  --accent-bright:#F0D584; /* the light the panel gives off: glows, lit states */
+  --accent-muted:rgba(212,175,55,.16);
+  --text-primary:#F4F1EA;  /* warm off-white */
+  --text-secondary:#A79E8C;
+  --hero-text:#F7F4ED;
+  --line:rgba(212,175,55,.17);
+  --line-strong:rgba(212,175,55,.40);
 
   --display:"Archivo","Archivo Expanded",ui-sans-serif,system-ui,sans-serif;
   --body:"Public Sans",ui-sans-serif,system-ui,-apple-system,sans-serif;
@@ -50,7 +51,7 @@
 
   --ease:cubic-bezier(.22,.61,.36,1);
   --ease-soft:cubic-bezier(.33,0,.2,1);
-  --tshadow:0 1px 2px rgba(5,5,10,.95),0 3px 12px rgba(5,5,10,.78),0 10px 44px rgba(5,5,10,.8);
+  --tshadow:0 1px 2px rgba(4,3,2,.95),0 3px 12px rgba(4,3,2,.8),0 10px 44px rgba(4,3,2,.82);
 
   --hero-vh:560;
   --gut:clamp(20px,5vw,72px);
@@ -82,8 +83,8 @@ a{color:inherit}
 /* --- the environment: one fixed layer behind everything --------- */
 .env{position:fixed;inset:0;z-index:0;pointer-events:none;
   background:
-    radial-gradient(60% 45% at 18% 12%,rgba(0,194,184,.07),transparent 70%),
-    radial-gradient(55% 40% at 85% 78%,rgba(4,107,101,.06),transparent 70%);
+    radial-gradient(60% 45% at 18% 12%,rgba(240,213,132,.055),transparent 70%),
+    radial-gradient(55% 40% at 85% 78%,rgba(212,175,55,.05),transparent 70%);
   animation:envdrift 96s var(--ease-soft) -22s infinite alternate}
 @keyframes envdrift{
   0%{transform:translate3d(0,0,0) scale(1)}
@@ -95,7 +96,7 @@ a{color:inherit}
   padding:16px var(--gut);
   transition:background .5s var(--ease),backdrop-filter .5s var(--ease),border-color .5s var(--ease);
   border-bottom:1px solid transparent}
-.nav.solid{background:rgba(237,239,242,.86);backdrop-filter:blur(14px);border-bottom-color:var(--line)}
+.nav.solid{background:rgba(10,9,8,.82);backdrop-filter:blur(14px);border-bottom-color:var(--line)}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex:0 0 auto}
 .brand svg{width:26px;height:26px;flex:0 0 auto;color:var(--accent-bright);
   transition:color .5s var(--ease)}
@@ -115,10 +116,10 @@ a{color:inherit}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;
   font-family:var(--body);font-weight:500;font-size:15.5px;text-decoration:none;
   padding:13px 22px;border-radius:11px;border:1px solid transparent;cursor:pointer;
-  background:var(--accent);color:#fff;
+  background:var(--accent);color:#0A0908;
   transition:background .35s var(--ease),transform .35s var(--ease),box-shadow .35s var(--ease)}
 .btn:hover{background:var(--accent-hover);transform:translateY(-2px);
-  box-shadow:0 10px 30px rgba(4,107,101,.28)}
+  box-shadow:0 10px 30px rgba(212,175,55,.28)}
 .btn svg{width:17px;height:17px;flex:0 0 auto}
 .btn-ghost{background:transparent;color:var(--text-primary);border-color:var(--line-strong)}
 .btn-ghost:hover{background:transparent;border-color:var(--accent);color:var(--accent);
@@ -137,7 +138,7 @@ a{color:inherit}
 
 .poster{position:absolute;inset:0;background-size:cover;background-position:center;
   background-color:var(--deep);
-  background-image:radial-gradient(58% 48% at 50% 50%,rgba(0,194,184,.10),transparent 72%)}
+  background-image:radial-gradient(58% 48% at 50% 50%,rgba(240,213,132,.10),transparent 72%)}
 #hero{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
   opacity:0;transition:opacity .8s var(--ease);
   will-change:transform;transform:translateZ(0)}
@@ -146,7 +147,7 @@ a{color:inherit}
 
 /* the global base scrim, always on */
 .scrim{position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(ellipse 120% 90% at 50% 45%,rgba(10,10,18,0) 35%,rgba(10,10,18,.62) 100%)}
+  background:radial-gradient(ellipse 120% 90% at 50% 45%,rgba(5,4,3,0) 35%,rgba(5,4,3,.62) 100%)}
 
 /* the loading ring */
 .ring{position:absolute;right:clamp(20px,4vw,54px);bottom:clamp(20px,4vw,54px);
@@ -170,14 +171,14 @@ a{color:inherit}
 .band::before{content:"";position:absolute;inset:-14% -22%;pointer-events:none;z-index:-1;
   opacity:calc(.25 + .75*var(--k,1));
   background:radial-gradient(ellipse 78% 66% at 50% 50%,
-    rgba(5,5,10,.66) 0%,rgba(5,5,10,.44) 46%,rgba(5,5,10,0) 76%)}
+    rgba(4,3,2,.66) 0%,rgba(4,3,2,.44) 46%,rgba(4,3,2,0) 76%)}
 .band-1::before,.band-3::before{background:radial-gradient(ellipse 82% 66% at 42% 50%,
-  rgba(5,5,10,.68) 0%,rgba(5,5,10,.45) 46%,rgba(5,5,10,0) 76%)}
+  rgba(4,3,2,.68) 0%,rgba(4,3,2,.45) 46%,rgba(4,3,2,0) 76%)}
 .band-2::before{background:radial-gradient(ellipse 82% 66% at 58% 50%,
-  rgba(5,5,10,.68) 0%,rgba(5,5,10,.45) 46%,rgba(5,5,10,0) 76%)}
+  rgba(4,3,2,.68) 0%,rgba(4,3,2,.45) 46%,rgba(4,3,2,0) 76%)}
 .band-4::before{inset:-10% -14%;
   background:radial-gradient(ellipse 72% 74% at 50% 62%,
-  rgba(5,5,10,.72) 0%,rgba(5,5,10,.48) 48%,rgba(5,5,10,0) 78%)}
+  rgba(4,3,2,.72) 0%,rgba(4,3,2,.48) 48%,rgba(4,3,2,0) 78%)}
 
 .band-1,.band-3{left:var(--gut);top:50%;transform:translateY(-50%);width:min(34vw,29rem)}
 .band-2{right:var(--gut);top:50%;transform:translateY(-50%);width:min(34vw,29rem);text-align:right}
@@ -225,8 +226,8 @@ a{color:inherit}
 
 /* the chip scrim for small text over footage */
 .chip{display:inline-flex;align-items:center;gap:9px;
-  background:rgba(8,8,15,.55);border:1px solid rgba(96,96,126,.3);border-radius:10px;
-  backdrop-filter:blur(10px);text-shadow:0 1px 3px rgba(5,5,10,.85);
+  background:rgba(7,6,4,.55);border:1px solid rgba(150,128,74,.3);border-radius:10px;
+  backdrop-filter:blur(10px);text-shadow:0 1px 3px rgba(4,3,2,.85);
   font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;
   padding:7px 12px;color:rgba(242,244,246,.92)}
 .band .chip{margin-bottom:20px}
@@ -242,7 +243,7 @@ a{color:inherit}
   max-width:34ch;font-size:clamp(15.5px,4vw,18px)}
 .static-hero .ctarow{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap}
 .static-hero::before{content:"";position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(to top,rgba(5,5,10,.86) 6%,rgba(5,5,10,.42) 46%,rgba(5,5,10,0) 78%)}
+  background:linear-gradient(to top,rgba(4,3,2,.86) 6%,rgba(4,3,2,.42) 46%,rgba(4,3,2,0) 78%)}
 .static-hero>*{position:relative}
 
 /* THE FIVE STATIC-HERO GATES. These five strings are duplicated
@@ -276,10 +277,11 @@ a{color:inherit}
   text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:11px}
 .kicker::before{content:"";width:26px;height:1px;background:var(--accent);opacity:.55;
   flex:0 0 auto}
-.dark{background:var(--deep);color:var(--canvas)}
+.dark{background:var(--raised);color:var(--text-primary);
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .dark .kicker{color:var(--accent-bright)}
 .dark .kicker::before{background:var(--accent-bright)}
-.dark .lede{color:rgba(237,239,242,.76)}
+.dark .lede{color:rgba(244,241,234,.76)}
 h2.big{font-size:clamp(30px,4.4vw,58px);margin-top:20px;max-width:17ch}
 h3{font-size:clamp(19px,1.7vw,24px);letter-spacing:-.015em}
 .lede{margin-top:20px;color:var(--text-secondary);font-size:clamp(16.5px,1.25vw,19px);
@@ -287,7 +289,7 @@ h3{font-size:clamp(19px,1.7vw,24px);letter-spacing:-.015em}
 
 /* the seam line that draws itself at each section break */
 .seam{position:relative;height:1px;background:var(--line);overflow:hidden}
-.dark .seam{background:rgba(237,239,242,.14)}
+.dark .seam{background:rgba(244,241,234,.14)}
 .seam::after{content:"";position:absolute;left:0;top:0;height:100%;width:100%;
   background:linear-gradient(90deg,var(--accent-bright),transparent);
   transform:scaleX(var(--draw,0));transform-origin:left center}
@@ -307,11 +309,12 @@ h3{font-size:clamp(19px,1.7vw,24px);letter-spacing:-.015em}
 .rise.done .part:nth-child(4),.rise.done .part:nth-child(5){transition-delay:0s !important}
 
 /* --- proof strip ------------------------------------------------ */
-.proof{padding:clamp(30px,5vh,54px) var(--gut);background:var(--deep-2);color:var(--canvas)}
+.proof{padding:clamp(30px,5vh,54px) var(--gut);background:var(--raised);color:var(--text-primary);
+  border-block:1px solid var(--line)}
 .proof .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,3vw,44px)}
 .proof .part{display:flex;align-items:baseline;gap:12px;font-family:var(--mono);
   font-size:clamp(12px,1.05vw,13.5px);letter-spacing:.11em;text-transform:uppercase;
-  color:rgba(237,239,242,.9)}
+  color:rgba(244,241,234,.9)}
 .proof .dot{width:7px;height:7px;border-radius:2px;background:var(--accent-bright);
   flex:0 0 auto;position:relative;top:-1px}
 .proof .dot::after{content:"";position:absolute;inset:-5px;border-radius:5px;
@@ -320,12 +323,9 @@ h3{font-size:clamp(19px,1.7vw,24px);letter-spacing:-.015em}
 @media (max-width:760px){.proof .wrap{grid-template-columns:1fr;gap:14px}}
 
 /* --- the product section ---------------------------------------- */
-.product .wrap{display:grid;grid-template-columns:1.05fr .95fr;
-  gap:clamp(32px,5vw,80px);align-items:center}
-@media (max-width:940px){.product .wrap{grid-template-columns:1fr}}
 .specs{margin:34px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
   gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden}
-.specs li{list-style:none;background:var(--canvas);padding:15px 17px;font-family:var(--mono);
+.specs li{list-style:none;background:var(--recess);padding:15px 17px;font-family:var(--mono);
   font-size:12.5px;letter-spacing:.06em;color:var(--text-secondary);
   transition:background .4s var(--ease),color .4s var(--ease)}
 .specs li:hover{background:var(--panel);color:var(--text-primary)}
@@ -335,19 +335,40 @@ h3{font-size:clamp(19px,1.7vw,24px);letter-spacing:-.015em}
   aspect-ratio:4/3;border:1px solid var(--line)}
 .plate::before{content:"";position:absolute;inset:0;
   background:
-    radial-gradient(64% 56% at 50% 46%,rgba(0,194,184,.16),transparent 72%),
-    linear-gradient(160deg,#131A22,#0B1016 68%)}
+    radial-gradient(64% 56% at 50% 46%,rgba(240,213,132,.16),transparent 72%),
+    linear-gradient(160deg,#16130D,#0A0908 68%)}
 .plate img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
   transition:opacity .9s var(--ease)}
 .js .plate img{opacity:0}
 .plate img.ok{opacity:1}
-.plate .grid{position:absolute;inset:0;margin:auto;width:44%;height:auto;opacity:.5;
+.plate .grid{position:absolute;inset:0;margin:auto;width:44%;height:auto;opacity:.66;
   color:var(--accent-bright)}
 .plate img.ok~.grid{opacity:0;transition:opacity .6s var(--ease)}
 .plate .glow{position:absolute;inset:0;pointer-events:none;opacity:0;
-  background:radial-gradient(50% 42% at 50% 46%,rgba(0,194,184,.22),transparent 70%);
+  background:radial-gradient(50% 42% at 50% 46%,rgba(240,213,132,.22),transparent 70%);
   animation:pulse 7s var(--ease-soft) -2.4s infinite}
 .plate-wide{aspect-ratio:16/10}
+
+/* --- the range selector -------------------------------------- */
+.rangetabs{display:flex;flex-wrap:wrap;gap:10px;margin-top:clamp(30px,4.5vh,46px)}
+.rtab{font-family:var(--body);font-size:14.5px;padding:11px 18px;border-radius:11px;
+  background:transparent;color:var(--text-secondary);cursor:pointer;
+  border:1px solid var(--line);
+  transition:border-color .4s var(--ease),color .4s var(--ease),background .4s var(--ease)}
+.rtab:hover{border-color:var(--line-strong);color:var(--text-primary)}
+.rtab[aria-selected="true"]{border-color:var(--accent);color:var(--accent-bright);
+  background:var(--accent-muted)}
+@media (pointer:coarse){.rtab{min-height:44px;display:inline-flex;align-items:center;
+  justify-content:center}}
+.rprod{display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(28px,4.5vw,72px);
+  align-items:center;margin-top:clamp(30px,4.5vh,50px)}
+.rprod[hidden]{display:none}
+.js .rprod{animation:prodin .55s var(--ease) both}
+@keyframes prodin{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.rprod h3{font-size:clamp(23px,2.5vw,34px);letter-spacing:-.02em}
+.rprod p{margin-top:16px;color:var(--text-secondary);font-size:clamp(16px,1.2vw,18px);
+  line-height:1.6;max-width:48ch}
+@media (max-width:940px){.rprod{grid-template-columns:1fr}}
 
 /* --- the interactive moment ------------------------------------- */
 .why .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(34px,5vw,84px);
@@ -358,7 +379,7 @@ h3{font-size:clamp(19px,1.7vw,24px);letter-spacing:-.015em}
 @media (max-width:940px){.why .wrap{grid-template-columns:1fr}}
 .holder{display:flex;flex-direction:column;align-items:center;gap:22px}
 .padwrap{position:relative;width:min(340px,78vw);aspect-ratio:1;
-  border-radius:22px;background:var(--deep-2);border:1px solid rgba(237,239,242,.12);
+  border-radius:22px;background:var(--recess);border:1px solid rgba(244,241,234,.12);
   display:grid;place-items:center;cursor:pointer;touch-action:none;
   transition:border-color .5s var(--ease),box-shadow .5s var(--ease);
   -webkit-tap-highlight-color:transparent}
@@ -367,31 +388,31 @@ h3{font-size:clamp(19px,1.7vw,24px);letter-spacing:-.015em}
   animation:invite 5.2s var(--ease-soft) -1.4s infinite}
 @keyframes invite{0%,100%{opacity:0}50%{opacity:.30}}
 .padwrap.on::after,.holder.done .padwrap::after{animation:none;opacity:0}
-.padwrap:hover,.padwrap:focus-visible{border-color:rgba(0,194,184,.42)}
+.padwrap:hover,.padwrap:focus-visible{border-color:rgba(240,213,132,.42)}
 .padwrap.on{border-color:var(--accent-bright);
-  box-shadow:0 0 0 1px rgba(0,194,184,.3),0 24px 70px rgba(0,194,184,.18)}
+  box-shadow:0 0 0 1px rgba(240,213,132,.3),0 24px 70px rgba(240,213,132,.18)}
 .pad{width:74%;height:74%;color:var(--accent-bright)}
-.pad rect{transition:opacity .45s var(--ease)}
+.pad rect{transition:fill-opacity .45s var(--ease),stroke-opacity .45s var(--ease)}
 .padwrap .fill{position:absolute;inset:0;border-radius:22px;pointer-events:none;
-  background:radial-gradient(58% 58% at 50% 50%,rgba(0,194,184,.30),transparent 70%);
+  background:radial-gradient(58% 58% at 50% 50%,rgba(240,213,132,.30),transparent 70%);
   opacity:calc(var(--h,0)*.95)}
 .holdlabel{font-family:var(--mono);font-size:12px;letter-spacing:.19em;
-  text-transform:uppercase;color:rgba(237,239,242,.62);
+  text-transform:uppercase;color:rgba(244,241,234,.62);
   transition:color .45s var(--ease)}
 .padwrap.on~.holdlabel,.holder.done .holdlabel{color:var(--accent-bright)}
-.holdbar{width:min(340px,78vw);height:2px;background:rgba(237,239,242,.14);
+.holdbar{width:min(340px,78vw);height:2px;background:rgba(244,241,234,.14);
   border-radius:2px;overflow:hidden}
 .holdbar i{display:block;height:100%;background:var(--accent-bright);
   transform:scaleX(var(--h,0));transform-origin:left center}
-.whylist{margin:32px 0 0;padding:0;display:grid;gap:1px;background:rgba(237,239,242,.12);
-  border:1px solid rgba(237,239,242,.12);border-radius:13px;overflow:hidden}
-.whylist li{list-style:none;background:var(--deep);padding:17px 20px;display:flex;
+.whylist{margin:32px 0 0;padding:0;display:grid;gap:1px;background:rgba(244,241,234,.12);
+  border:1px solid rgba(244,241,234,.12);border-radius:13px;overflow:hidden}
+.whylist li{list-style:none;background:var(--recess);padding:17px 20px;display:flex;
   align-items:baseline;gap:14px;opacity:.62;
   transition:opacity .6s var(--ease),background .6s var(--ease)}
-.whylist li.lit{opacity:1;background:var(--deep-2)}
+.whylist li.lit{opacity:1;background:var(--panel)}
 .whylist b{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;
   color:var(--accent-bright);flex:0 0 auto}
-.whylist span{font-size:15.5px;color:rgba(237,239,242,.88)}
+.whylist span{font-size:15.5px;color:rgba(244,241,234,.88)}
 
 /* --- cards: worries + install ----------------------------------- */
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.4vw,30px);
@@ -401,7 +422,7 @@ h3{font-size:clamp(19px,1.7vw,24px);letter-spacing:-.015em}
   padding:0 0 26px;overflow:hidden;
   transition:border-color .5s var(--ease),transform .5s var(--ease),box-shadow .5s var(--ease)}
 .card:hover{border-color:var(--line-strong);transform:translateY(-4px);
-  box-shadow:0 16px 44px rgba(16,20,26,.09)}
+  box-shadow:0 16px 44px rgba(4,3,2,.09)}
 .card .plate{border-radius:0;border:0;border-bottom:1px solid var(--line);aspect-ratio:16/10}
 .card .body{padding:24px clamp(20px,2vw,28px) 0}
 .card h3{margin-bottom:12px}
@@ -414,18 +435,18 @@ h3{font-size:clamp(19px,1.7vw,24px);letter-spacing:-.015em}
 .rail{position:relative;margin-top:clamp(44px,7vh,76px);
   display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(22px,3vw,44px)}
 .rail::before{content:"";position:absolute;left:0;right:0;top:19px;height:1px;
-  background:rgba(237,239,242,.16);transform:scaleX(var(--draw,0));transform-origin:left center;
+  background:rgba(244,241,234,.16);transform:scaleX(var(--draw,0));transform-origin:left center;
   transition:transform 1.6s var(--ease)}
 .rail.drawn::before{transform:scaleX(1)}
 .railitem{position:relative;padding-top:0}
 .railnum{width:38px;height:38px;border-radius:11px;background:var(--deep);
-  border:1px solid rgba(0,194,184,.42);color:var(--accent-bright);
+  border:1px solid rgba(240,213,132,.42);color:var(--accent-bright);
   display:grid;place-items:center;font-family:var(--mono);font-size:13px;font-weight:500;
   position:relative;z-index:1}
 .railitem .plate{margin-top:22px;aspect-ratio:16/9;border-radius:13px;
-  border:1px solid rgba(237,239,242,.12)}
-.railitem h3{margin-top:20px;color:var(--canvas)}
-.railitem p{margin-top:10px;color:rgba(237,239,242,.72);font-size:16px}
+  border:1px solid rgba(244,241,234,.12)}
+.railitem h3{margin-top:20px;color:var(--text-primary)}
+.railitem p{margin-top:10px;color:rgba(244,241,234,.72);font-size:16px}
 @media (max-width:900px){.rail{grid-template-columns:1fr;gap:34px}.rail::before{display:none}}
 /* --- pros band -------------------------------------------------- */
 .pros .wrap{display:flex;gap:clamp(24px,4vw,60px);align-items:center;flex-wrap:wrap}
@@ -451,31 +472,32 @@ h3{font-size:clamp(19px,1.7vw,24px);letter-spacing:-.015em}
 .close .lede{margin-inline:auto}
 .pickers{margin-top:clamp(34px,5vh,54px);display:grid;gap:26px;text-align:left}
 .pick>span{font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;
-  text-transform:uppercase;color:rgba(237,239,242,.62);display:block;margin-bottom:12px}
+  text-transform:uppercase;color:rgba(244,241,234,.62);display:block;margin-bottom:12px}
 .opts{display:flex;flex-wrap:wrap;gap:10px}
 .opt{font-family:var(--body);font-size:15px;padding:11px 18px;border-radius:10px;
-  background:transparent;color:rgba(237,239,242,.86);cursor:pointer;
-  border:1px solid rgba(237,239,242,.2);
+  background:transparent;color:rgba(244,241,234,.86);cursor:pointer;
+  border:1px solid rgba(244,241,234,.2);
   transition:border-color .35s var(--ease),background .35s var(--ease),color .35s var(--ease)}
-.opt:hover{border-color:rgba(0,194,184,.55);color:#fff}
+.opt:hover{border-color:rgba(240,213,132,.55);color:var(--accent-bright)}
 .opt[aria-pressed="true"]{border-color:var(--accent-bright);background:var(--accent-muted);
-  color:#fff}
+  color:var(--accent-bright)}
 @media (pointer:coarse){.opt{min-height:44px;display:inline-flex;align-items:center;
   justify-content:center}}
 .close .go{margin-top:clamp(30px,4vh,44px);display:flex;flex-direction:column;
   align-items:center;gap:14px}
 .close .go .btn{font-size:17px;padding:16px 30px}
-.note{font-size:13.5px;color:rgba(237,239,242,.55);font-family:var(--mono);
+.note{font-size:13.5px;color:rgba(244,241,234,.55);font-family:var(--mono);
   letter-spacing:.03em}
 
 /* --- footer ----------------------------------------------------- */
-footer{position:relative;z-index:1;background:var(--deep);color:rgba(237,239,242,.62);
+footer{position:relative;z-index:1;background:var(--deep);color:var(--text-secondary);
+  border-top:1px solid var(--line);
   padding:clamp(44px,7vh,72px) var(--gut) 40px;font-size:14.5px}
 footer .wrap{display:flex;gap:26px;flex-wrap:wrap;align-items:baseline;
   justify-content:space-between}
 footer a{color:var(--accent-bright);text-decoration:none}
 footer a:hover{text-decoration:underline}
-footer .brand b{color:var(--canvas)}
+footer .brand b{color:var(--text-primary)}
 
 /* --- motes: whisper-level drift in the dark sections only -------- */
 .motes{position:absolute;inset:0;pointer-events:none;overflow:hidden;opacity:.5}
@@ -610,26 +632,79 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
   </div>
 </section>
 
-<!-- ===================== THE PANEL ===================== -->
+<!-- ===================== THE RANGE ===================== -->
 <section class="sec product rise" id="panel">
   <div class="wrap">
-    <div>
-      <div class="part"><span class="kicker">The control panel</span></div>
-      <div class="part"><h2 class="big">One piece of glass. The whole house.</h2></div>
-      <div class="part"><p class="lede">Lights, fans, scenes and the front door, on one wall panel you can reach without hunting for your phone. It wakes when you walk up to it and it goes quiet when you walk away.</p></div>
-      <div class="part">
-        <ul class="specs">
-          <li>Wall mounted</li><li>Glass front</li><li>Works offline</li>
-          <li>Alexa and Google</li><li>Fits a standard box</li>
-          <li>No hub needed</li>
-        </ul>
+    <div class="part"><span class="kicker">The range</span></div>
+    <div class="part"><h2 class="big">Pick the wall you are starting with.</h2></div>
+    <div class="part"><p class="lede">Everything runs on the same system, so you can start with one panel and add the rest whenever you feel like it. Nothing you buy now gets thrown away later.</p></div>
+    <div class="part range" id="range">
+      <div class="rangetabs" role="tablist" aria-label="Nexora products">
+        <button class="rtab" type="button" role="tab" id="tab-panel" aria-controls="prod-panel" aria-selected="true">Control panel</button>
+        <button class="rtab" type="button" role="tab" id="tab-alexa" aria-controls="prod-alexa" aria-selected="false">4 inch panel with Alexa</button>
+        <button class="rtab" type="button" role="tab" id="tab-g8" aria-controls="prod-g8" aria-selected="false">8 gang touch switch</button>
+        <button class="rtab" type="button" role="tab" id="tab-g4" aria-controls="prod-g4" aria-selected="false">4 gang touch switch</button>
+        <button class="rtab" type="button" role="tab" id="tab-lock" aria-controls="prod-lock" aria-selected="false">Smart door lock</button>
       </div>
-    </div>
-    <div class="part">
-      <div class="plate plate-wide">
-        <span class="glow" aria-hidden="true"></span>
-        <img src="assets/panel.jpg" alt="The Nexora wall control panel, lit, mounted on a wall" loading="lazy" decoding="async">
-        <svg class="grid" viewBox="0 0 100 76" aria-hidden="true"><g fill="currentColor"><rect x="2" y="2" width="30" height="30" rx="7" opacity=".85"/><rect x="35" y="2" width="30" height="30" rx="7" opacity=".38"/><rect x="68" y="2" width="30" height="30" rx="7" opacity=".55"/><rect x="2" y="44" width="30" height="30" rx="7" opacity=".38"/><rect x="35" y="44" width="30" height="30" rx="7" opacity=".7"/><rect x="68" y="44" width="30" height="30" rx="7" opacity=".38"/></g></svg>
+      <div class="rprod" id="prod-panel" role="tabpanel" aria-labelledby="tab-panel">
+        <div>
+          <h3>The control panel</h3>
+          <p>Lights, fans, scenes and the front door, on one wall panel you can reach without hunting for your phone. It wakes when you walk up to it and it goes quiet when you walk away.</p>
+          <ul class="specs"><li>Wall mounted</li><li>Glass front</li><li>Works offline</li><li>Alexa and Google</li><li>Fits a standard box</li><li>No hub needed</li></ul>
+        </div>
+        <div class="plate plate-wide">
+          <span class="glow" aria-hidden="true"></span>
+          <img src="assets/panel.jpg" alt="The Nexora wall control panel, lit, mounted on a wall" loading="lazy" decoding="async">
+          <svg class="grid" viewBox="0 0 100 60" aria-hidden="true"><g fill="currentColor"><rect x="4.0" y="4.0" width="28.0" height="24.0" rx="6" opacity=".85"/><rect x="36.0" y="4.0" width="28.0" height="24.0" rx="6" opacity=".42"/><rect x="68.0" y="4.0" width="28.0" height="24.0" rx="6" opacity=".62"/><rect x="4.0" y="32.0" width="28.0" height="24.0" rx="6" opacity=".38"/><rect x="36.0" y="32.0" width="28.0" height="24.0" rx="6" opacity=".72"/><rect x="68.0" y="32.0" width="28.0" height="24.0" rx="6" opacity=".45"/></g></svg>
+        </div>
+      </div>
+      <div class="rprod" id="prod-alexa" role="tabpanel" aria-labelledby="tab-alexa">
+        <div>
+          <h3>The 4 inch panel, with Alexa</h3>
+          <p>The same control, small enough for a bedside wall or a hallway, with Alexa built into the panel itself. Talk to the wall, or just press it. Both work.</p>
+          <ul class="specs"><li>4 inch screen</li><li>Alexa built in</li><li>Works offline</li><li>Scenes and timers</li><li>Flush or wall mount</li><li>Fits a standard box</li></ul>
+        </div>
+        <div class="plate plate-wide">
+          <span class="glow" aria-hidden="true"></span>
+          <img src="assets/panel-alexa.jpg" alt="The Nexora 4 inch control panel with Alexa, lit on a wall" loading="lazy" decoding="async">
+          <svg class="grid" viewBox="0 0 100 60" aria-hidden="true"><g fill="currentColor"><rect x="4.0" y="4.0" width="44.0" height="24.0" rx="6" opacity=".85"/><rect x="52.0" y="4.0" width="44.0" height="24.0" rx="6" opacity=".42"/><rect x="4.0" y="32.0" width="44.0" height="24.0" rx="6" opacity=".62"/><rect x="52.0" y="32.0" width="44.0" height="24.0" rx="6" opacity=".38"/></g></svg>
+        </div>
+      </div>
+      <div class="rprod" id="prod-g8" role="tabpanel" aria-labelledby="tab-g8">
+        <div>
+          <h3>The 8 gang touch switch</h3>
+          <p>For the big board in the hall or the living room, where eight things used to mean eight ugly rockers. One sheet of glass instead, backlit so you can find it in the dark.</p>
+          <ul class="specs"><li>8 points</li><li>Soft touch glass</li><li>Backlit</li><li>Works offline</li><li>Fits a standard box</li><li>No hub needed</li></ul>
+        </div>
+        <div class="plate plate-wide">
+          <span class="glow" aria-hidden="true"></span>
+          <img src="assets/switch-8.jpg" alt="The Nexora 8 gang glass touch switch, backlit" loading="lazy" decoding="async">
+          <svg class="grid" viewBox="0 0 100 60" aria-hidden="true"><g fill="currentColor"><rect x="4.0" y="4.0" width="20.0" height="24.0" rx="6" opacity=".85"/><rect x="28.0" y="4.0" width="20.0" height="24.0" rx="6" opacity=".42"/><rect x="52.0" y="4.0" width="20.0" height="24.0" rx="6" opacity=".62"/><rect x="76.0" y="4.0" width="20.0" height="24.0" rx="6" opacity=".38"/><rect x="4.0" y="32.0" width="20.0" height="24.0" rx="6" opacity=".72"/><rect x="28.0" y="32.0" width="20.0" height="24.0" rx="6" opacity=".45"/><rect x="52.0" y="32.0" width="20.0" height="24.0" rx="6" opacity=".55"/><rect x="76.0" y="32.0" width="20.0" height="24.0" rx="6" opacity=".9"/></g></svg>
+        </div>
+      </div>
+      <div class="rprod" id="prod-g4" role="tabpanel" aria-labelledby="tab-g4">
+        <div>
+          <h3>The 4 gang touch switch</h3>
+          <p>The one that goes in most rooms. Four points, soft touch, and it sits flush where the old switch was. Your guests will press it without asking how.</p>
+          <ul class="specs"><li>4 points</li><li>Soft touch glass</li><li>Backlit</li><li>Works offline</li><li>Fits a standard box</li><li>No hub needed</li></ul>
+        </div>
+        <div class="plate plate-wide">
+          <span class="glow" aria-hidden="true"></span>
+          <img src="assets/switch-4.jpg" alt="The Nexora 4 gang soft touch glass switch, backlit" loading="lazy" decoding="async">
+          <svg class="grid" viewBox="0 0 100 60" aria-hidden="true"><g fill="currentColor"><rect x="4.0" y="4.0" width="44.0" height="24.0" rx="6" opacity=".85"/><rect x="52.0" y="4.0" width="44.0" height="24.0" rx="6" opacity=".42"/><rect x="4.0" y="32.0" width="44.0" height="24.0" rx="6" opacity=".62"/><rect x="52.0" y="32.0" width="44.0" height="24.0" rx="6" opacity=".38"/></g></svg>
+        </div>
+      </div>
+      <div class="rprod" id="prod-lock" role="tabpanel" aria-labelledby="tab-lock">
+        <div>
+          <h3>The smart door lock</h3>
+          <p>The front door, without the keys. Fingerprint, PIN or card for the family, and a real key in the bottom for the day the battery finally dies. It tells you when it locked.</p>
+          <ul class="specs"><li>Fingerprint</li><li>PIN and card</li><li>Physical key backup</li><li>Battery backed</li><li>Auto lock</li><li>Fits standard doors</li></ul>
+        </div>
+        <div class="plate plate-wide">
+          <span class="glow" aria-hidden="true"></span>
+          <img src="assets/lock.jpg" alt="The Nexora smart door lock fitted to a front door" loading="lazy" decoding="async">
+          <svg class="grid" viewBox="0 0 100 60" aria-hidden="true"><g fill="currentColor"><rect x="4.0" y="4.0" width="92.0" height="14.7" rx="6" opacity=".85"/><rect x="4.0" y="22.7" width="92.0" height="14.7" rx="6" opacity=".42"/><rect x="4.0" y="41.3" width="92.0" height="14.7" rx="6" opacity=".62"/></g></svg>
+        </div>
       </div>
     </div>
   </div>
@@ -658,11 +733,11 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
            aria-label="Press and hold to see how the panel responds">
         <span class="fill" aria-hidden="true"></span>
         <svg class="pad" id="pad" viewBox="0 0 100 100" aria-hidden="true">
-          <g fill="currentColor">
-            <rect x="4" y="4" width="43" height="43" rx="10" opacity=".22"/>
-            <rect x="53" y="4" width="43" height="43" rx="10" opacity=".22"/>
-            <rect x="4" y="53" width="43" height="43" rx="10" opacity=".22"/>
-            <rect x="53" y="53" width="43" height="43" rx="10" opacity=".22"/>
+          <g fill="currentColor" stroke="currentColor" stroke-width="1.1">
+            <rect x="4" y="4" width="43" height="43" rx="10" fill-opacity=".13" stroke-opacity=".46"/>
+            <rect x="53" y="4" width="43" height="43" rx="10" fill-opacity=".13" stroke-opacity=".46"/>
+            <rect x="4" y="53" width="43" height="43" rx="10" fill-opacity=".13" stroke-opacity=".46"/>
+            <rect x="53" y="53" width="43" height="43" rx="10" fill-opacity=".13" stroke-opacity=".46"/>
           </g>
         </svg>
       </div>
@@ -1262,7 +1337,8 @@ function paintHold(){
   if (holdBar) holdBar.style.setProperty('--h', hold.toFixed(3));
   for (var i = 0; i < zones.length; i++){
     var lit = hold > (i + 0.35) / zones.length;
-    zones[i].style.opacity = lit ? 1 : (0.22 + hold * 0.3).toFixed(2);
+    zones[i].style.fillOpacity   = lit ? 0.92 : (0.13 + hold * 0.22).toFixed(3);
+    zones[i].style.strokeOpacity = lit ? 1    : (0.46 + hold * 0.4).toFixed(3);
   }
   for (var j = 0; j < rows.length; j++){
     /* once the hold completes the visitor keeps what they earned;
@@ -1308,6 +1384,34 @@ if (padwrap){
     if (e.key === ' ' || e.key === 'Enter'){ holdEnd(); }
   });
 }
+
+
+/* ============================================================
+   9b. The range selector: all panels show without JS, one at a time with it
+   ============================================================ */
+(function(){
+  var tabs = [].slice.call(document.querySelectorAll('.rtab'));
+  var panels = [].slice.call(document.querySelectorAll('.rprod'));
+  if (!tabs.length) return;
+  function show(i){
+    tabs.forEach(function(t,n){ t.setAttribute('aria-selected', n===i ? 'true':'false'); });
+    panels.forEach(function(pn,n){
+      if (n===i){ pn.hidden = false; pn.style.animation='none'; void pn.offsetWidth; pn.style.animation=''; }
+      else pn.hidden = true;
+    });
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click', function(){ show(i); });
+    t.addEventListener('keydown', function(e){
+      var d = e.key==='ArrowRight' ? 1 : e.key==='ArrowLeft' ? -1 : 0;
+      if (!d) return;
+      e.preventDefault();
+      var n = (i + d + tabs.length) % tabs.length;
+      tabs[n].focus(); show(n);
+    });
+  });
+  show(0);
+})();
 
 /* ============================================================
    10. The WhatsApp picker: composes the message, no backend

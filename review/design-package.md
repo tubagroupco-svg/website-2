@@ -21,29 +21,40 @@ If a section does not serve it, it does not belong on the page.
 
 ## 2. Palette as CSS tokens
 
-Direction: **lit glass**. The page is the room after the lights come on. The hero
-is dark and quiet; the video resolves into light and the page below is bright and
-calm, so scrolling the page turns the lights on. Exact values get re-sampled from
+Direction: **brass in the dark**. The brand's own colours are black and gold, so
+gold is treated as the light the panel gives off rather than as decoration. The
+page is the room at night with the panel lit. Exact values get re-sampled from
 the approved footage after the video gate.
+
+**Stated deviation.** Near-black with a warm gold accent is on the banned list in
+`scrub-pipeline.md`, because it is where "dark and cinematic" briefs drift by
+default. The carve-out applies here: the user briefed black and gold as their
+existing brand colours, so it is the subject's own world rather than a default
+reach. It is earned by keeping the invented signature element (the gang grid),
+using a wide engineered sans instead of the stock high-contrast serif, keeping
+the canvas off pure black, and giving the gold CTA near-black text so it reads
+as metal rather than an amber glow.
 
 ```css
 :root{
-  --canvas:#EDEFF2;        /* cool porcelain, tinted toward the footage's cool light, never pure white */
-  --panel:#F7F9FB;         /* raised surfaces, cards */
-  --recess:#E1E6EC;        /* recessed surfaces, the unlit gang zone */
-  --deep:#0B1016;          /* the hero's dark, reused for dark bands, never pure black */
-  --deep-2:#131A22;        /* raised surface inside dark sections */
-  --accent:#046B65;        /* CTA fill and interactive borders; white text on it passes 5.8:1 */
-  --accent-hover:#02534E;
-  --accent-bright:#00C2B8; /* light and glow only, the backlight waking; never text on light */
-  --accent-muted:rgba(0,194,184,.16); /* whisper: borders, glows, particles */
-  --text-secondary:#59616E;
-  --text-primary:#10141A;
+  --canvas:#0A0908;        /* warm near-black, never pure #000 */
+  --raised:#12100B;        /* the alternating section ground */
+  --panel:#17140E;         /* cards and raised surfaces */
+  --recess:#0E0C09;        /* the unlit gang zone */
+  --deep:#070605;          /* the hero's deepest dark */
+  --accent:#D4AF37;        /* brass gold: CTA fill, kickers, links */
+  --accent-hover:#E4C25A;
+  --accent-bright:#F0D584; /* the light the panel gives off: glows, lit states */
+  --accent-muted:rgba(212,175,55,.16);
+  --text-primary:#F4F1EA;  /* warm off-white */
+  --text-secondary:#A79E8C;
 }
 ```
 
-Accent appears in rare doses only: the WhatsApp CTA, focus rings, the live gang
-zones, and the two moments of emphasis. Never as a background wash.
+Measured on the built page: every visible text element passes its WCAG floor,
+with body text at 17.6:1 and the gold accent at 9.4:1 on the canvas. Section
+rhythm comes from elevation and gold hairline borders rather than a light and
+dark flip, since the whole site is dark.
 
 ## 3. The type trio
 
@@ -96,11 +107,21 @@ Install, Questions. WhatsApp button on the right.
 - "Fits your existing switch boxes"
 - "Fitted by our own team"
 
-**The panel** (the big control panel, the product that leads).
-- Kicker: "THE CONTROL PANEL"
-- Headline: "One piece of glass. The whole house."
-- Body: "Lights, fans, scenes and the front door, on one wall panel you can reach without hunting for your phone. It wakes when you walk up to it and it goes quiet when you walk away."
-- Spec list, mono: "Wall mounted", "Glass front", "Works offline", "Alexa and Google", "Fits a standard box"
+**The range** (a selector, five products, control panel selected by default).
+- Kicker: "The range"
+- Headline: "Pick the wall you are starting with."
+- Body: "Everything runs on the same system, so you can start with one panel and add the rest whenever you feel like it. Nothing you buy now gets thrown away later."
+- Five tabs swap one product panel at a time. Without JavaScript all five show
+  stacked, so the range is never hidden behind a script. Arrow keys move between
+  tabs and every tab carries `aria-selected` and `aria-controls`.
+
+| Product | Body (verbatim) | Specs |
+|---|---|---|
+| The control panel | "Lights, fans, scenes and the front door, on one wall panel you can reach without hunting for your phone. It wakes when you walk up to it and it goes quiet when you walk away." | Wall mounted, Glass front, Works offline, Alexa and Google, Fits a standard box, No hub needed |
+| The 4 inch panel, with Alexa | "The same control, small enough for a bedside wall or a hallway, with Alexa built into the panel itself. Talk to the wall, or just press it. Both work." | 4 inch screen, Alexa built in, Works offline, Scenes and timers, Flush or wall mount, Fits a standard box |
+| The 8 gang touch switch | "For the big board in the hall or the living room, where eight things used to mean eight ugly rockers. One sheet of glass instead, backlit so you can find it in the dark." | 8 points, Soft touch glass, Backlit, Works offline, Fits a standard box, No hub needed |
+| The 4 gang touch switch | "The one that goes in most rooms. Four points, soft touch, and it sits flush where the old switch was. Your guests will press it without asking how." | 4 points, Soft touch glass, Backlit, Works offline, Fits a standard box, No hub needed |
+| The smart door lock | "The front door, without the keys. Fingerprint, PIN or card for the family, and a real key in the bottom for the day the battery finally dies. It tells you when it locked." | Fingerprint, PIN and card, Physical key backup, Battery backed, Auto lock, Fits standard doors |
 
 **Why it answers instantly** (the premise section, holds the interactive moment).
 - Kicker: "WHY IT IS FAST"
@@ -208,10 +229,10 @@ so the hero features the actual product.
 > first moment of a slow rotation toward the viewer. Dark quiet interior space
 > receding into soft depth on both sides, both halves given one identical
 > treatment, no objects and no machine parts and no bright highlights on either
-> side. The panel's glass face is unlit and reflective, catching one cool
-> rim of light along its edge. Cool white light, deep blue-grey shadow, a
-> precise teal glow just beginning under the glass. Fine dust suspended in the
-> air. The scene fills the frame edge to edge as one continuous space, with the
+> side. The panel's glass face is unlit and reflective, catching one warm gold
+> rim of light along its edge. Warm gold light against deep warm-black shadow,
+> brass and near-black only, no cool or blue tones anywhere, a gold glow just
+> beginning under the glass. Fine dust suspended in the warm light. The scene fills the frame edge to edge as one continuous space, with the
 > calm receding depth to the left and right of the panel. Cinematic,
 > photorealistic, 16:9. No text, no logos, no lettering, no icons, no symbols,
 > and no markings on any surface.
@@ -224,13 +245,21 @@ so the hero features the actual product.
 > precision inside. The panel stays alive throughout: light wakes beneath the
 > glass and travels across its face, reflections slide over the surface as it
 > turns. The scene stays alive: fine dust drifts through the air and catches the
-> light. As the front parts, a seam of teal light breaks out across the gap, a
+> light. As the front parts, a seam of warm gold light breaks across the gap, a
 > soft bloom washes the lens for a beat, and dust lifts in the escaping glow. The
 > interior reads as lit layers of precision depth and travelling light, not as
 > readable components. The shot ends at rest: the panel open and still, centred,
-> its lit interior glowing evenly, generous empty space above and below the whole
-> product so nothing crops, the room dark and calm around it, the light settled.
+> its lit interior glowing an even warm gold, generous empty space above and
+> below the whole product so nothing crops, the room near-black and calm around
+> it, the light settled. Brass and black throughout, no cool or blue tones.
 > No text, no lettering, no icons, no symbols, and no markings anywhere.
+
+**Supporting stills** (2 to 4, same world). Every still is described in the same
+grade: warm gold light on near-black, brass highlights, no cool or blue tones,
+same lens feel as the approved hero. Slots the build already has wired:
+`panel.jpg`, `panel-alexa.jpg`, `switch-8.jpg`, `switch-4.jpg`, `lock.jpg` for
+the range selector, `wiring.jpg`, `offline.jpg`, `family.jpg` for the three
+worries, and `step-1.jpg` to `step-3.jpg` for the install rail.
 
 **Ending frame check before approval:** view it with the header mocked over the
 top at a wide window and a short one. The whole product must clear both.
