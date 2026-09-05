@@ -1,0 +1,1392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script>document.documentElement.className+=" js"</script>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nexora | The smart part is in the wall</title>
+<meta name="description" content="Nexora control panels put the whole home on one piece of glass, and keep it working when the internet does not. Supplied and fitted by our own team.">
+<meta name="theme-color" content="#0B1016">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230B1016'/%3E%3Cg fill='%2300C2B8'%3E%3Crect x='7' y='7' width='7.5' height='7.5' rx='2.2'/%3E%3Crect x='17.5' y='7' width='7.5' height='7.5' rx='2.2' opacity='.45'/%3E%3Crect x='7' y='17.5' width='7.5' height='7.5' rx='2.2' opacity='.45'/%3E%3Crect x='17.5' y='17.5' width='7.5' height='7.5' rx='2.2'/%3E%3C/g%3E%3C/svg%3E">
+
+<!-- DEPLOY STEP: patch og:url and og:image with the live absolute URL before zipping -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Nexora | The smart part is in the wall">
+<meta property="og:description" content="One panel runs the whole home. It answers instantly, and it keeps working when the internet does not.">
+<meta property="og:url" content="https://REPLACE-AT-DEPLOY/">
+<meta property="og:image" content="https://REPLACE-AT-DEPLOY/assets/hero-ending.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,600;112,700&family=JetBrains+Mono:wght@400;500&family=Public+Sans:wght@400;500&display=swap">
+<link rel="stylesheet" media="print" onload="this.media='all';this.onload=null" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,600;112,700&family=JetBrains+Mono:wght@400;500&family=Public+Sans:wght@400;500&display=swap">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,600;112,700&family=JetBrains+Mono:wght@400;500&family=Public+Sans:wght@400;500&display=swap"></noscript>
+
+<style>
+/* ============================================================
+   NEXORA, lit glass
+   Tokens, then the hero, then the page.
+   ============================================================ */
+:root{
+  --canvas:#EDEFF2;
+  --panel:#F7F9FB;
+  --recess:#E1E6EC;
+  --deep:#0B1016;
+  --deep-2:#131A22;
+  --accent:#046B65;
+  --accent-hover:#02534E;
+  --accent-bright:#00C2B8;
+  --accent-muted:rgba(0,194,184,.16);
+  --text-primary:#10141A;
+  --text-secondary:#59616E;
+  --hero-text:#F2F4F6;
+  --line:rgba(16,20,26,.14);
+  --line-strong:rgba(16,20,26,.30);
+
+  --display:"Archivo","Archivo Expanded",ui-sans-serif,system-ui,sans-serif;
+  --body:"Public Sans",ui-sans-serif,system-ui,-apple-system,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --ease-soft:cubic-bezier(.33,0,.2,1);
+  --tshadow:0 1px 2px rgba(5,5,10,.95),0 3px 12px rgba(5,5,10,.78),0 10px 44px rgba(5,5,10,.8);
+
+  --hero-vh:560;
+  --gut:clamp(20px,5vw,72px);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html,body{overflow-x:hidden;overflow-x:clip}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--canvas);color:var(--text-primary);
+  font-family:var(--body);font-size:clamp(16px,1.05vw,17.5px);line-height:1.65;
+  font-weight:400;-webkit-font-smoothing:antialiased;
+  opacity:0;animation:pagein .9s var(--ease) .05s forwards;
+}
+@keyframes pagein{to{opacity:1}}
+img{max-width:100%;display:block}
+h1,h2,h3,h4{font-family:var(--display);font-weight:700;line-height:1.02;letter-spacing:-.02em;margin:0}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+::selection{background:var(--accent-muted);color:var(--text-primary)}
+
+.skip{position:absolute;left:-9999px;top:0;z-index:200;background:var(--deep);color:#fff;
+  padding:14px 20px;border-radius:0 0 10px 0;font-family:var(--mono);font-size:13px}
+.skip:focus{left:0}
+.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
+
+/* --- the environment: one fixed layer behind everything --------- */
+.env{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(60% 45% at 18% 12%,rgba(0,194,184,.07),transparent 70%),
+    radial-gradient(55% 40% at 85% 78%,rgba(4,107,101,.06),transparent 70%);
+  animation:envdrift 96s var(--ease-soft) -22s infinite alternate}
+@keyframes envdrift{
+  0%{transform:translate3d(0,0,0) scale(1)}
+  100%{transform:translate3d(0,-2.2%,0) scale(1.06)}}
+
+/* --- nav -------------------------------------------------------- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:90;
+  display:flex;align-items:center;gap:clamp(16px,3vw,40px);
+  padding:16px var(--gut);
+  transition:background .5s var(--ease),backdrop-filter .5s var(--ease),border-color .5s var(--ease);
+  border-bottom:1px solid transparent}
+.nav.solid{background:rgba(237,239,242,.86);backdrop-filter:blur(14px);border-bottom-color:var(--line)}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex:0 0 auto}
+.brand svg{width:26px;height:26px;flex:0 0 auto;color:var(--accent-bright);
+  transition:color .5s var(--ease)}
+.nav.solid .brand svg{color:var(--accent)}
+.brand b{font-family:var(--display);font-weight:700;font-size:19px;letter-spacing:.01em;
+  color:var(--hero-text);transition:color .5s var(--ease)}
+.nav.solid .brand b{color:var(--text-primary)}
+.navlinks{display:flex;gap:clamp(14px,2vw,28px);margin-left:auto;align-items:baseline}
+.navlinks a{font-size:14.5px;text-decoration:none;color:rgba(242,244,246,.82);
+  transition:color .35s var(--ease);white-space:nowrap}
+.nav.solid .navlinks a{color:var(--text-secondary)}
+.navlinks a:hover{color:var(--accent-bright)}
+.nav.solid .navlinks a:hover{color:var(--accent)}
+@media (max-width:860px){.navlinks{display:none}}
+
+/* --- buttons ---------------------------------------------------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  font-family:var(--body);font-weight:500;font-size:15.5px;text-decoration:none;
+  padding:13px 22px;border-radius:11px;border:1px solid transparent;cursor:pointer;
+  background:var(--accent);color:#fff;
+  transition:background .35s var(--ease),transform .35s var(--ease),box-shadow .35s var(--ease)}
+.btn:hover{background:var(--accent-hover);transform:translateY(-2px);
+  box-shadow:0 10px 30px rgba(4,107,101,.28)}
+.btn svg{width:17px;height:17px;flex:0 0 auto}
+.btn-ghost{background:transparent;color:var(--text-primary);border-color:var(--line-strong)}
+.btn-ghost:hover{background:transparent;border-color:var(--accent);color:var(--accent);
+  box-shadow:none}
+.nav .btn{padding:10px 17px;font-size:14.5px}
+.band .btn{text-shadow:none}
+@media (pointer:coarse){.btn{min-height:44px;display:inline-flex;align-items:center;justify-content:center}}
+
+/* ============================================================
+   THE HERO
+   ============================================================ */
+.hero{position:relative;height:calc(var(--hero-vh) * 1vh);z-index:1}
+.stage{position:sticky;top:0;height:100vh;overflow:hidden;background:var(--deep)}
+.stage::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(to bottom,rgba(11,16,22,.55) 0%,transparent 22%,transparent 78%,rgba(11,16,22,.7) 100%)}
+
+.poster{position:absolute;inset:0;background-size:cover;background-position:center;
+  background-color:var(--deep);
+  background-image:radial-gradient(58% 48% at 50% 50%,rgba(0,194,184,.10),transparent 72%)}
+#hero{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  opacity:0;transition:opacity .8s var(--ease);
+  will-change:transform;transform:translateZ(0)}
+.stage.video-ready #hero{opacity:1}
+.stage.video-failed #hero{display:none}
+
+/* the global base scrim, always on */
+.scrim{position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 120% 90% at 50% 45%,rgba(10,10,18,0) 35%,rgba(10,10,18,.62) 100%)}
+
+/* the loading ring */
+.ring{position:absolute;right:clamp(20px,4vw,54px);bottom:clamp(20px,4vw,54px);
+  width:44px;height:44px;color:var(--accent-bright);opacity:.85;
+  transform:rotate(-90deg);pointer-events:none}
+.ring circle{transition:stroke-dashoffset .18s linear}
+.stage.video-ready .ring,.stage.video-failed .ring{opacity:0;transition:opacity .5s var(--ease)}
+.cue{position:absolute;right:clamp(20px,4vw,54px);bottom:clamp(20px,4vw,54px);
+  width:44px;height:44px;color:var(--accent-bright);opacity:.7;
+  animation:cuebob 2.6s var(--ease-soft) -.6s infinite}
+@keyframes cuebob{0%,100%{transform:translateY(-3px)}50%{transform:translateY(4px)}}
+
+/* --- caption bands --------------------------------------------- */
+.bands{position:absolute;inset:0;pointer-events:none}
+.band{position:absolute;opacity:0;pointer-events:none;color:var(--hero-text);
+  text-shadow:var(--tshadow)}
+.band.live{pointer-events:auto}
+.band h2,.band p{max-width:22ch}
+
+/* the two-sided scrim: an ellipse anchored on each column, centre lane untouched */
+.band::before{content:"";position:absolute;inset:-14% -22%;pointer-events:none;z-index:-1;
+  opacity:calc(.25 + .75*var(--k,1));
+  background:radial-gradient(ellipse 78% 66% at 50% 50%,
+    rgba(5,5,10,.66) 0%,rgba(5,5,10,.44) 46%,rgba(5,5,10,0) 76%)}
+.band-1::before,.band-3::before{background:radial-gradient(ellipse 82% 66% at 42% 50%,
+  rgba(5,5,10,.68) 0%,rgba(5,5,10,.45) 46%,rgba(5,5,10,0) 76%)}
+.band-2::before{background:radial-gradient(ellipse 82% 66% at 58% 50%,
+  rgba(5,5,10,.68) 0%,rgba(5,5,10,.45) 46%,rgba(5,5,10,0) 76%)}
+.band-4::before{inset:-10% -14%;
+  background:radial-gradient(ellipse 72% 74% at 50% 62%,
+  rgba(5,5,10,.72) 0%,rgba(5,5,10,.48) 48%,rgba(5,5,10,0) 78%)}
+
+.band-1,.band-3{left:var(--gut);top:50%;transform:translateY(-50%);width:min(34vw,29rem)}
+.band-2{right:var(--gut);top:50%;transform:translateY(-50%);width:min(34vw,29rem);text-align:right}
+.band-4{left:50%;bottom:clamp(6vh,9vh,110px);transform:translateX(-50%);
+  width:min(80vw,44rem);text-align:center}
+.band-4 h2,.band-4 p{max-width:none;margin-inline:auto}
+
+.band h2{font-size:clamp(30px,4.1vw,60px);line-height:1.03}
+.band-4 h2{font-size:clamp(32px,5vw,72px)}
+.band .sub{font-size:clamp(15px,1.35vw,19px);line-height:1.55;margin-top:18px;
+  color:rgba(242,244,246,.9);max-width:46ch}
+.band-4 .sub{margin-inline:auto}
+.band .ctarow{margin-top:26px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+/* text choreography: transform + opacity only, scrubbed off --k ---- */
+.band .line{display:block}
+.w{display:inline-block;white-space:pre}
+.c{display:inline-block;will-change:transform,opacity}
+
+/* (a) approach-from-depth, band 1: echoes the panel turning toward us */
+.e-depth .vis{display:inline-block;
+  --kc:clamp(0,var(--k,0)*1.25,1);
+  opacity:var(--kc);
+  transform:scale(calc(.82 + .18*var(--kc)))}
+.e-depth .soft{position:absolute;inset:0;filter:blur(10px);opacity:calc(1 - var(--kc,0));
+  pointer-events:none}
+.e-depth .stack{position:relative;display:block}
+
+/* (b) grid snap-align, band 2: echoes light travelling across the face */
+.e-grid .c{--kc:clamp(0,(var(--k,0) - var(--th,0))*2.6,1);opacity:var(--kc);
+  transform:translateX(calc((1 - var(--kc))*var(--jx,0px)))}
+
+/* (h) halves parting, band 3: echoes the seam opening */
+.e-halves .half{display:inline-block;
+  --kc:clamp(0,(var(--k,0) - var(--th,0))*2.4,1);opacity:var(--kc);
+  transform:translateX(calc((1 - var(--kc))*var(--jx,0px)))}
+
+/* (e) word-by-word rise into a staged settle, band 4 */
+.e-rise .w{--kc:clamp(0,(var(--k,0) - var(--th,0))*3,1);opacity:var(--kc);
+  transform:translateY(calc((1 - var(--kc))*18px))}
+.e-rise .sub{--ks:clamp(0,(var(--k,0) - .66)*4,1);opacity:var(--ks);
+  transform:translateY(calc((1 - var(--ks))*14px))}
+.e-rise .ctarow{--kb:clamp(0,(var(--k,0) - .78)*5,1);opacity:var(--kb);
+  transform:translateY(calc((1 - var(--kb))*14px))}
+
+/* the chip scrim for small text over footage */
+.chip{display:inline-flex;align-items:center;gap:9px;
+  background:rgba(8,8,15,.55);border:1px solid rgba(96,96,126,.3);border-radius:10px;
+  backdrop-filter:blur(10px);text-shadow:0 1px 3px rgba(5,5,10,.85);
+  font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+  padding:7px 12px;color:rgba(242,244,246,.92)}
+.band .chip{margin-bottom:20px}
+.band-4 .chip{margin-inline:auto}
+
+/* --- the static hero (phones, reduced motion) -------------------- */
+.static-hero{position:absolute;inset:0;display:none;flex-direction:column;
+  justify-content:flex-end;padding:0 var(--gut) clamp(48px,10vh,110px);z-index:3}
+.static-hero .chip{margin-bottom:20px;align-self:flex-start}
+.static-hero .sh-h{font-family:var(--display);font-weight:700;line-height:1.02;letter-spacing:-.02em;font-size:clamp(34px,8.5vw,60px);color:var(--hero-text);
+  text-shadow:var(--tshadow);max-width:16ch}
+.static-hero p{margin-top:16px;color:rgba(242,244,246,.9);text-shadow:var(--tshadow);
+  max-width:34ch;font-size:clamp(15.5px,4vw,18px)}
+.static-hero .ctarow{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap}
+.static-hero::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(to top,rgba(5,5,10,.86) 6%,rgba(5,5,10,.42) 46%,rgba(5,5,10,0) 78%)}
+.static-hero>*{position:relative}
+
+/* THE FIVE STATIC-HERO GATES. These five strings are duplicated
+   character for character in the JS GATES array. Change both or neither. */
+@media (max-width: 720px){
+  .hero{height:100vh}.stage{position:relative}.bands,.ring,.cue{display:none}
+  .static-hero{display:flex}}
+@media (orientation: portrait) and (max-width: 1024px){
+  .hero{height:100vh}.stage{position:relative}.bands,.ring,.cue{display:none}
+  .static-hero{display:flex}}
+@media (orientation: portrait) and (pointer: coarse){
+  .hero{height:100vh}.stage{position:relative}.bands,.ring,.cue{display:none}
+  .static-hero{display:flex}}
+@media (orientation: landscape) and (pointer: coarse) and (max-height: 560px){
+  .hero{height:100vh}.stage{position:relative}.bands,.ring,.cue{display:none}
+  .static-hero{display:flex}}
+@media (prefers-reduced-motion: reduce){
+  .hero{height:100vh}.stage{position:relative}.bands,.ring,.cue{display:none}
+  .static-hero{display:flex}}
+
+/* scrub-capable but merely short: keep the scrub, drop the small overlays */
+@media (min-width:721px) and (max-height:560px) and (pointer:fine){
+  .ring,.cue{display:none}}
+
+/* ============================================================
+   THE PAGE BELOW
+   ============================================================ */
+.sec{position:relative;z-index:1;padding:clamp(78px,11vh,148px) var(--gut)}
+.wrap{max-width:1220px;margin:0 auto}
+.kicker{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:11px}
+.kicker::before{content:"";width:26px;height:1px;background:var(--accent);opacity:.55;
+  flex:0 0 auto}
+.dark{background:var(--deep);color:var(--canvas)}
+.dark .kicker{color:var(--accent-bright)}
+.dark .kicker::before{background:var(--accent-bright)}
+.dark .lede{color:rgba(237,239,242,.76)}
+h2.big{font-size:clamp(30px,4.4vw,58px);margin-top:20px;max-width:17ch}
+h3{font-size:clamp(19px,1.7vw,24px);letter-spacing:-.015em}
+.lede{margin-top:20px;color:var(--text-secondary);font-size:clamp(16.5px,1.25vw,19px);
+  line-height:1.62;max-width:56ch}
+
+/* the seam line that draws itself at each section break */
+.seam{position:relative;height:1px;background:var(--line);overflow:hidden}
+.dark .seam{background:rgba(237,239,242,.14)}
+.seam::after{content:"";position:absolute;left:0;top:0;height:100%;width:100%;
+  background:linear-gradient(90deg,var(--accent-bright),transparent);
+  transform:scaleX(var(--draw,0));transform-origin:left center}
+.seam.pin::after{transform:scaleX(1)}
+
+/* --- entrances: prefixed with the container class so they win ---- */
+.js .rise .part{opacity:0;transform:translateY(22px);
+  transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.rise.in .part{opacity:1;transform:none}
+.rise.in .part:nth-child(2){transition-delay:.09s}
+.rise.in .part:nth-child(3){transition-delay:.18s}
+.rise.in .part:nth-child(4){transition-delay:.27s}
+.rise.in .part:nth-child(5){transition-delay:.36s}
+/* retire the stagger so later siblings do not lag on hover forever.
+   the selector repeats :nth-child so it beats the delay rules above. */
+.rise.done .part:nth-child(2),.rise.done .part:nth-child(3),
+.rise.done .part:nth-child(4),.rise.done .part:nth-child(5){transition-delay:0s !important}
+
+/* --- proof strip ------------------------------------------------ */
+.proof{padding:clamp(30px,5vh,54px) var(--gut);background:var(--deep-2);color:var(--canvas)}
+.proof .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,3vw,44px)}
+.proof .part{display:flex;align-items:baseline;gap:12px;font-family:var(--mono);
+  font-size:clamp(12px,1.05vw,13.5px);letter-spacing:.11em;text-transform:uppercase;
+  color:rgba(237,239,242,.9)}
+.proof .dot{width:7px;height:7px;border-radius:2px;background:var(--accent-bright);
+  flex:0 0 auto;position:relative;top:-1px}
+.proof .dot::after{content:"";position:absolute;inset:-5px;border-radius:5px;
+  background:var(--accent-bright);opacity:0;animation:pulse 4.6s var(--ease-soft) -1.2s infinite}
+@keyframes pulse{0%,100%{opacity:0}50%{opacity:.22}}
+@media (max-width:760px){.proof .wrap{grid-template-columns:1fr;gap:14px}}
+
+/* --- the product section ---------------------------------------- */
+.product .wrap{display:grid;grid-template-columns:1.05fr .95fr;
+  gap:clamp(32px,5vw,80px);align-items:center}
+@media (max-width:940px){.product .wrap{grid-template-columns:1fr}}
+.specs{margin:34px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.specs li{list-style:none;background:var(--canvas);padding:15px 17px;font-family:var(--mono);
+  font-size:12.5px;letter-spacing:.06em;color:var(--text-secondary);
+  transition:background .4s var(--ease),color .4s var(--ease)}
+.specs li:hover{background:var(--panel);color:var(--text-primary)}
+
+/* the image plate: designed with or without a photo */
+.plate{position:relative;border-radius:16px;overflow:hidden;background:var(--deep);
+  aspect-ratio:4/3;border:1px solid var(--line)}
+.plate::before{content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(64% 56% at 50% 46%,rgba(0,194,184,.16),transparent 72%),
+    linear-gradient(160deg,#131A22,#0B1016 68%)}
+.plate img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  transition:opacity .9s var(--ease)}
+.js .plate img{opacity:0}
+.plate img.ok{opacity:1}
+.plate .grid{position:absolute;inset:0;margin:auto;width:44%;height:auto;opacity:.5;
+  color:var(--accent-bright)}
+.plate img.ok~.grid{opacity:0;transition:opacity .6s var(--ease)}
+.plate .glow{position:absolute;inset:0;pointer-events:none;opacity:0;
+  background:radial-gradient(50% 42% at 50% 46%,rgba(0,194,184,.22),transparent 70%);
+  animation:pulse 7s var(--ease-soft) -2.4s infinite}
+.plate-wide{aspect-ratio:16/10}
+
+/* --- the interactive moment ------------------------------------- */
+.why .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(34px,5vw,84px);
+  align-items:center}
+.why .wrap>*:first-child{order:2}
+.why .holder{order:1}
+@media (max-width:940px){.why .wrap>*:first-child{order:1}.why .holder{order:2}}
+@media (max-width:940px){.why .wrap{grid-template-columns:1fr}}
+.holder{display:flex;flex-direction:column;align-items:center;gap:22px}
+.padwrap{position:relative;width:min(340px,78vw);aspect-ratio:1;
+  border-radius:22px;background:var(--deep-2);border:1px solid rgba(237,239,242,.12);
+  display:grid;place-items:center;cursor:pointer;touch-action:none;
+  transition:border-color .5s var(--ease),box-shadow .5s var(--ease);
+  -webkit-tap-highlight-color:transparent}
+.padwrap::after{content:"";position:absolute;inset:-1px;border-radius:22px;pointer-events:none;
+  border:1px solid var(--accent-bright);opacity:0;
+  animation:invite 5.2s var(--ease-soft) -1.4s infinite}
+@keyframes invite{0%,100%{opacity:0}50%{opacity:.30}}
+.padwrap.on::after,.holder.done .padwrap::after{animation:none;opacity:0}
+.padwrap:hover,.padwrap:focus-visible{border-color:rgba(0,194,184,.42)}
+.padwrap.on{border-color:var(--accent-bright);
+  box-shadow:0 0 0 1px rgba(0,194,184,.3),0 24px 70px rgba(0,194,184,.18)}
+.pad{width:74%;height:74%;color:var(--accent-bright)}
+.pad rect{transition:opacity .45s var(--ease)}
+.padwrap .fill{position:absolute;inset:0;border-radius:22px;pointer-events:none;
+  background:radial-gradient(58% 58% at 50% 50%,rgba(0,194,184,.30),transparent 70%);
+  opacity:calc(var(--h,0)*.95)}
+.holdlabel{font-family:var(--mono);font-size:12px;letter-spacing:.19em;
+  text-transform:uppercase;color:rgba(237,239,242,.62);
+  transition:color .45s var(--ease)}
+.padwrap.on~.holdlabel,.holder.done .holdlabel{color:var(--accent-bright)}
+.holdbar{width:min(340px,78vw);height:2px;background:rgba(237,239,242,.14);
+  border-radius:2px;overflow:hidden}
+.holdbar i{display:block;height:100%;background:var(--accent-bright);
+  transform:scaleX(var(--h,0));transform-origin:left center}
+.whylist{margin:32px 0 0;padding:0;display:grid;gap:1px;background:rgba(237,239,242,.12);
+  border:1px solid rgba(237,239,242,.12);border-radius:13px;overflow:hidden}
+.whylist li{list-style:none;background:var(--deep);padding:17px 20px;display:flex;
+  align-items:baseline;gap:14px;opacity:.62;
+  transition:opacity .6s var(--ease),background .6s var(--ease)}
+.whylist li.lit{opacity:1;background:var(--deep-2)}
+.whylist b{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;
+  color:var(--accent-bright);flex:0 0 auto}
+.whylist span{font-size:15.5px;color:rgba(237,239,242,.88)}
+
+/* --- cards: worries + install ----------------------------------- */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.4vw,30px);
+  margin-top:clamp(38px,6vh,64px)}
+@media (max-width:900px){.cards{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;
+  padding:0 0 26px;overflow:hidden;
+  transition:border-color .5s var(--ease),transform .5s var(--ease),box-shadow .5s var(--ease)}
+.card:hover{border-color:var(--line-strong);transform:translateY(-4px);
+  box-shadow:0 16px 44px rgba(16,20,26,.09)}
+.card .plate{border-radius:0;border:0;border-bottom:1px solid var(--line);aspect-ratio:16/10}
+.card .body{padding:24px clamp(20px,2vw,28px) 0}
+.card h3{margin-bottom:12px}
+.card p{color:var(--text-secondary);font-size:16px}
+.step{font-family:var(--mono);font-size:12px;letter-spacing:.2em;color:var(--accent);
+  margin-bottom:12px}
+
+
+/* --- the install rail: a different skeleton from the cards above ---- */
+.rail{position:relative;margin-top:clamp(44px,7vh,76px);
+  display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(22px,3vw,44px)}
+.rail::before{content:"";position:absolute;left:0;right:0;top:19px;height:1px;
+  background:rgba(237,239,242,.16);transform:scaleX(var(--draw,0));transform-origin:left center;
+  transition:transform 1.6s var(--ease)}
+.rail.drawn::before{transform:scaleX(1)}
+.railitem{position:relative;padding-top:0}
+.railnum{width:38px;height:38px;border-radius:11px;background:var(--deep);
+  border:1px solid rgba(0,194,184,.42);color:var(--accent-bright);
+  display:grid;place-items:center;font-family:var(--mono);font-size:13px;font-weight:500;
+  position:relative;z-index:1}
+.railitem .plate{margin-top:22px;aspect-ratio:16/9;border-radius:13px;
+  border:1px solid rgba(237,239,242,.12)}
+.railitem h3{margin-top:20px;color:var(--canvas)}
+.railitem p{margin-top:10px;color:rgba(237,239,242,.72);font-size:16px}
+@media (max-width:900px){.rail{grid-template-columns:1fr;gap:34px}.rail::before{display:none}}
+/* --- pros band -------------------------------------------------- */
+.pros .wrap{display:flex;gap:clamp(24px,4vw,60px);align-items:center;flex-wrap:wrap}
+.pros .txt{flex:1 1 340px}
+.pros h2{font-size:clamp(25px,3vw,38px);max-width:15ch}
+
+/* --- faq -------------------------------------------------------- */
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;padding:22px 0;display:flex;gap:18px;
+  align-items:baseline;font-family:var(--display);font-weight:600;
+  font-size:clamp(17px,1.5vw,21px);transition:color .35s var(--ease)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:hover{color:var(--accent)}
+.faq .tog{width:15px;height:15px;flex:0 0 auto;color:var(--accent);position:relative;top:2px;
+  transition:transform .45s var(--ease)}
+.faq details[open] .tog{transform:rotate(45deg)}
+.faq .ans{padding:0 0 24px 33px;color:var(--text-secondary);max-width:62ch;font-size:16.5px}
+.faq .list{margin-top:clamp(30px,5vh,52px)}
+
+/* --- the close -------------------------------------------------- */
+.close .wrap{max-width:840px;text-align:center}
+.close h2{margin-inline:auto}
+.close .lede{margin-inline:auto}
+.pickers{margin-top:clamp(34px,5vh,54px);display:grid;gap:26px;text-align:left}
+.pick>span{font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(237,239,242,.62);display:block;margin-bottom:12px}
+.opts{display:flex;flex-wrap:wrap;gap:10px}
+.opt{font-family:var(--body);font-size:15px;padding:11px 18px;border-radius:10px;
+  background:transparent;color:rgba(237,239,242,.86);cursor:pointer;
+  border:1px solid rgba(237,239,242,.2);
+  transition:border-color .35s var(--ease),background .35s var(--ease),color .35s var(--ease)}
+.opt:hover{border-color:rgba(0,194,184,.55);color:#fff}
+.opt[aria-pressed="true"]{border-color:var(--accent-bright);background:var(--accent-muted);
+  color:#fff}
+@media (pointer:coarse){.opt{min-height:44px;display:inline-flex;align-items:center;
+  justify-content:center}}
+.close .go{margin-top:clamp(30px,4vh,44px);display:flex;flex-direction:column;
+  align-items:center;gap:14px}
+.close .go .btn{font-size:17px;padding:16px 30px}
+.note{font-size:13.5px;color:rgba(237,239,242,.55);font-family:var(--mono);
+  letter-spacing:.03em}
+
+/* --- footer ----------------------------------------------------- */
+footer{position:relative;z-index:1;background:var(--deep);color:rgba(237,239,242,.62);
+  padding:clamp(44px,7vh,72px) var(--gut) 40px;font-size:14.5px}
+footer .wrap{display:flex;gap:26px;flex-wrap:wrap;align-items:baseline;
+  justify-content:space-between}
+footer a{color:var(--accent-bright);text-decoration:none}
+footer a:hover{text-decoration:underline}
+footer .brand b{color:var(--canvas)}
+
+/* --- motes: whisper-level drift in the dark sections only -------- */
+.motes{position:absolute;inset:0;pointer-events:none;overflow:hidden;opacity:.5}
+.motes i{position:absolute;width:2px;height:2px;border-radius:50%;
+  background:var(--accent-bright);opacity:.5;
+  animation:mote 26s linear infinite}
+@keyframes mote{
+  0%{transform:translate3d(0,14vh,0);opacity:0}
+  14%{opacity:.5}
+  86%{opacity:.4}
+  100%{transform:translate3d(1.6vw,-16vh,0);opacity:0}}
+
+/* --- pause everything off-screen and on hidden tabs -------------- */
+.motes i,.plate .glow,.proof .dot::after,.env{animation-play-state:running}
+body.paused *,body.paused *::before,body.paused *::after{animation-play-state:paused !important}
+.sec:not(.seen) .motes i,.sec:not(.seen) .plate .glow{animation-play-state:paused}
+
+/* --- masked text needs descender room ---------------------------- */
+.mask{overflow:hidden;padding-bottom:.18em;margin-bottom:-.18em;display:block}
+
+/* --- decorations never collide ----------------------------------- */
+@media (max-height:620px){.motes{display:none}}
+
+/* ============================================================
+   REDUCED MOTION, honored completely
+   ============================================================ */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms !important;animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;transition-delay:0s !important;
+    scroll-behavior:auto !important}
+  body{opacity:1;animation:none}
+  .rise .part{opacity:1;transform:none}
+  .seam::after{transform:scaleX(1)}
+  .rail::before{transform:scaleX(1)}
+  .whylist li{opacity:1;background:var(--deep-2)}
+  .plate img{opacity:1}
+  .motes{display:none}
+  /* re-apply positional transforms a blanket rule would have wiped */
+  .band-1,.band-3{transform:translateY(-50%)}
+  .band-2{transform:translateY(-50%)}
+  .band-4{transform:translateX(-50%)}
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+<div class="env" aria-hidden="true"></div>
+
+<nav class="nav" id="nav">
+  <a class="brand" href="#top" aria-label="Nexora, back to top">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><g fill="currentColor"><rect x="2" y="2" width="12" height="12" rx="3.4"/><rect x="18" y="2" width="12" height="12" rx="3.4" opacity=".42"/><rect x="2" y="18" width="12" height="12" rx="3.4" opacity=".42"/><rect x="18" y="18" width="12" height="12" rx="3.4"/></g></svg>
+    <b>NEXORA</b>
+  </a>
+  <div class="navlinks">
+    <a href="#panel">The panel</a>
+    <a href="#why">Why it works</a>
+    <a href="#install">Install</a>
+    <a href="#questions">Questions</a>
+  </div>
+  <a class="btn wa" href="#talk" data-wa>
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.13h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.36c0-4.54 3.7-8.23 8.24-8.23a8.18 8.18 0 0 1 5.82 2.42 8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.69 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.09-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.22.25-.87.85-.87 2.07 0 1.22.89 2.4 1.02 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.47-.07 1.47-.6 1.68-1.18.2-.58.2-1.08.14-1.18-.06-.1-.22-.17-.47-.29Z"/></svg>
+    WhatsApp
+  </a>
+</nav>
+
+<main id="main" tabindex="-1">
+<div id="top"></div>
+
+<!-- ===================== THE HERO ===================== -->
+<section class="hero" id="hero-sec">
+  <div class="stage" id="stage">
+    <div class="poster" id="poster" aria-hidden="true"></div>
+    <video id="hero" preload="none" muted playsinline aria-hidden="true" tabindex="-1"></video>
+    <div class="scrim" aria-hidden="true"></div>
+
+    <svg class="ring" id="ring" viewBox="0 0 48 48" aria-hidden="true">
+      <circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="2.4"
+              opacity=".22"/>
+      <circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="2.4"
+              stroke-linecap="round" stroke-dasharray="126"
+              style="stroke-dashoffset:var(--ld,126)"/>
+    </svg>
+
+    <h1 class="sr">Nexora. The smart part is in the wall.</h1>
+    <p class="sr">One panel runs the whole home. It answers instantly, and it keeps working when the internet does not.</p>
+
+    <div class="bands" id="bands" aria-hidden="true">
+      <div class="band band-1 e-depth" data-a="0" data-b="0.22">
+        <span class="chip">Nexora</span>
+        <h2 class="split" data-mode="depth">It answers before you finish touching it.</h2>
+      </div>
+      <div class="band band-2 e-grid" data-a="0.26" data-b="0.48" data-spread="0.42">
+        <h2 class="split" data-mode="grid">Because nothing has to leave the room.</h2>
+      </div>
+      <div class="band band-3 e-halves" data-a="0.52" data-b="0.74">
+        <h2 class="split" data-mode="halves">No cloud. No wait. No app to teach anyone.</h2>
+      </div>
+      <div class="band band-4 e-rise" data-a="0.78" data-b="1" data-ramp="0.036">
+        <h2 class="split" data-mode="rise">The smart part is in the wall.</h2>
+        <p class="sub">Nexora control panels put the whole home on one piece of glass, and keep it working when the internet does not.</p>
+        <div class="ctarow">
+          <a class="btn" href="#talk" data-wa>
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.13h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.36c0-4.54 3.7-8.23 8.24-8.23a8.18 8.18 0 0 1 5.82 2.42 8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.69 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.09-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.22.25-.87.85-.87 2.07 0 1.22.89 2.4 1.02 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.47-.07 1.47-.6 1.68-1.18.2-.58.2-1.08.14-1.18-.06-.1-.22-.17-.47-.29Z"/></svg>
+            Message us on WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="static-hero" id="statichero">
+      <span class="chip">Nexora</span>
+      <div class="sh-h" aria-hidden="true">The smart part is in the wall.</div>
+      <p aria-hidden="true">One panel runs the whole home. It answers instantly, and it keeps working when the internet does not.</p>
+      <div class="ctarow">
+        <a class="btn" href="#talk" data-wa>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.13h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.36c0-4.54 3.7-8.23 8.24-8.23a8.18 8.18 0 0 1 5.82 2.42 8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.69 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.09-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.22.25-.87.85-.87 2.07 0 1.22.89 2.4 1.02 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.47-.07 1.47-.6 1.68-1.18.2-.58.2-1.08.14-1.18-.06-.1-.22-.17-.47-.29Z"/></svg>
+          Message us on WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROOF ===================== -->
+<section class="proof sec rise" id="proof">
+  <div class="wrap">
+    <div class="part"><span class="dot" aria-hidden="true"></span>Works with the internet down</div>
+    <div class="part"><span class="dot" aria-hidden="true"></span>Fits your existing switch boxes</div>
+    <div class="part"><span class="dot" aria-hidden="true"></span>Fitted by our own team</div>
+  </div>
+</section>
+
+<!-- ===================== THE PANEL ===================== -->
+<section class="sec product rise" id="panel">
+  <div class="wrap">
+    <div>
+      <div class="part"><span class="kicker">The control panel</span></div>
+      <div class="part"><h2 class="big">One piece of glass. The whole house.</h2></div>
+      <div class="part"><p class="lede">Lights, fans, scenes and the front door, on one wall panel you can reach without hunting for your phone. It wakes when you walk up to it and it goes quiet when you walk away.</p></div>
+      <div class="part">
+        <ul class="specs">
+          <li>Wall mounted</li><li>Glass front</li><li>Works offline</li>
+          <li>Alexa and Google</li><li>Fits a standard box</li>
+          <li>No hub needed</li>
+        </ul>
+      </div>
+    </div>
+    <div class="part">
+      <div class="plate plate-wide">
+        <span class="glow" aria-hidden="true"></span>
+        <img src="assets/panel.jpg" alt="The Nexora wall control panel, lit, mounted on a wall" loading="lazy" decoding="async">
+        <svg class="grid" viewBox="0 0 100 76" aria-hidden="true"><g fill="currentColor"><rect x="2" y="2" width="30" height="30" rx="7" opacity=".85"/><rect x="35" y="2" width="30" height="30" rx="7" opacity=".38"/><rect x="68" y="2" width="30" height="30" rx="7" opacity=".55"/><rect x="2" y="44" width="30" height="30" rx="7" opacity=".38"/><rect x="35" y="44" width="30" height="30" rx="7" opacity=".7"/><rect x="68" y="44" width="30" height="30" rx="7" opacity=".38"/></g></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sec" style="padding-top:0;padding-bottom:0"><div class="wrap"><div class="seam" data-seam></div></div></div>
+
+<!-- ===================== WHY (the interactive moment) ===================== -->
+<section class="sec dark why rise" id="why">
+  <div class="motes" id="motes1" aria-hidden="true"></div>
+  <div class="wrap">
+    <div>
+      <div class="part"><span class="kicker">Why it is fast</span></div>
+      <div class="part"><h2 class="big">Nothing has to leave the room.</h2></div>
+      <div class="part"><p class="lede">Most smart switches send your touch to a server in another country and wait for permission to come back. Nexora decides in the wall. That is the whole trick, and it is why the light is already on before your finger leaves the glass.</p></div>
+      <div class="part">
+        <ul class="whylist" id="whylist">
+          <li><b>01</b><span>Your touch is read in the panel itself</span></li>
+          <li><b>02</b><span>The panel switches the circuit directly</span></li>
+          <li><b>03</b><span>The internet is told afterwards, if it is there</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="part holder" id="holder">
+      <div class="padwrap" id="padwrap" role="button" tabindex="0"
+           aria-label="Press and hold to see how the panel responds">
+        <span class="fill" aria-hidden="true"></span>
+        <svg class="pad" id="pad" viewBox="0 0 100 100" aria-hidden="true">
+          <g fill="currentColor">
+            <rect x="4" y="4" width="43" height="43" rx="10" opacity=".22"/>
+            <rect x="53" y="4" width="43" height="43" rx="10" opacity=".22"/>
+            <rect x="4" y="53" width="43" height="43" rx="10" opacity=".22"/>
+            <rect x="53" y="53" width="43" height="43" rx="10" opacity=".22"/>
+          </g>
+        </svg>
+      </div>
+      <div class="holdbar" aria-hidden="true"><i></i></div>
+      <span class="holdlabel" id="holdlabel">Press and hold</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== THE THREE WORRIES ===================== -->
+<section class="sec rise" id="worries">
+  <div class="wrap">
+    <div class="part"><span class="kicker">The three things people ask first</span></div>
+    <div class="part"><h2 class="big">Straight answers, before you spend anything.</h2></div>
+    <div class="cards">
+      <article class="card part">
+        <div class="plate">
+          <span class="glow" aria-hidden="true"></span>
+          <img src="assets/wiring.jpg" alt="An existing wall switch box being fitted with a Nexora panel" loading="lazy" decoding="async">
+          <svg class="grid" viewBox="0 0 100 60" aria-hidden="true"><g fill="currentColor"><rect x="6" y="6" width="40" height="48" rx="9" opacity=".7"/><rect x="54" y="6" width="40" height="48" rx="9" opacity=".3"/></g></svg>
+        </div>
+        <div class="body">
+          <h3>Do I have to rewire the house?</h3>
+          <p>No. It goes into the switch boxes you already have, in the walls you already have. Most homes are done in a day.</p>
+        </div>
+      </article>
+      <article class="card part">
+        <div class="plate">
+          <span class="glow" aria-hidden="true"></span>
+          <img src="assets/offline.jpg" alt="A Nexora panel lit in a room with the router light off" loading="lazy" decoding="async">
+          <svg class="grid" viewBox="0 0 100 60" aria-hidden="true"><g fill="currentColor"><rect x="6" y="6" width="88" height="21" rx="7" opacity=".7"/><rect x="6" y="33" width="88" height="21" rx="7" opacity=".3"/></g></svg>
+        </div>
+        <div class="body">
+          <h3>What happens when the wifi drops?</h3>
+          <p>You press it and the light comes on. It is still a switch. The app stops, the wall does not.</p>
+        </div>
+      </article>
+      <article class="card part">
+        <div class="plate">
+          <span class="glow" aria-hidden="true"></span>
+          <img src="assets/family.jpg" alt="A hand resting near a lit Nexora panel by a doorway" loading="lazy" decoding="async">
+          <svg class="grid" viewBox="0 0 100 60" aria-hidden="true"><g fill="currentColor"><rect x="6" y="6" width="26" height="48" rx="8" opacity=".7"/><rect x="37" y="6" width="26" height="48" rx="8" opacity=".45"/><rect x="68" y="6" width="26" height="48" rx="8" opacity=".3"/></g></svg>
+        </div>
+        <div class="body">
+          <h3>Will my family have to learn an app?</h3>
+          <p>No. It is glass you press, in the same place the old switch was. Nobody has to be taught anything.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== THE INSTALL ===================== -->
+<section class="sec dark rise" id="install">
+  <div class="motes" id="motes2" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="part"><span class="kicker">How the install goes</span></div>
+    <div class="part"><h2 class="big">We come, we fit it, we hand it over working.</h2></div>
+    <div class="rail" id="rail">
+      <div class="railitem part">
+        <div class="railnum">01</div>
+        <div class="plate">
+          <span class="glow" aria-hidden="true"></span>
+          <img src="assets/step-1.jpg" alt="A Nexora fitter measuring a switch board in a home" loading="lazy" decoding="async">
+          <svg class="grid" viewBox="0 0 100 60" aria-hidden="true"><g fill="currentColor"><rect x="10" y="10" width="80" height="40" rx="9" opacity=".5"/><rect x="18" y="20" width="20" height="20" rx="5" opacity=".9"/></g></svg>
+        </div>
+        <h3>We come and look</h3>
+        <p>We measure your boards, count your points, and tell you what it costs. No guessing over the phone.</p>
+      </div>
+      <div class="railitem part">
+        <div class="railnum">02</div>
+        <div class="plate">
+          <span class="glow" aria-hidden="true"></span>
+          <img src="assets/step-2.jpg" alt="A Nexora panel being seated into a wall box" loading="lazy" decoding="async">
+          <svg class="grid" viewBox="0 0 100 60" aria-hidden="true"><g fill="currentColor"><rect x="10" y="10" width="80" height="40" rx="9" opacity=".5"/><rect x="42" y="20" width="20" height="20" rx="5" opacity=".9"/></g></svg>
+        </div>
+        <h3>We fit it</h3>
+        <p>Our own team, not a subcontractor. Most homes take a day, and we clean up after ourselves.</p>
+      </div>
+      <div class="railitem part">
+        <div class="railnum">03</div>
+        <div class="plate">
+          <span class="glow" aria-hidden="true"></span>
+          <img src="assets/step-3.jpg" alt="A finished Nexora panel lit on a living room wall" loading="lazy" decoding="async">
+          <svg class="grid" viewBox="0 0 100 60" aria-hidden="true"><g fill="currentColor"><rect x="10" y="10" width="80" height="40" rx="9" opacity=".5"/><rect x="66" y="20" width="20" height="20" rx="5" opacity=".9"/></g></svg>
+        </div>
+        <h3>We hand it over working</h3>
+        <p>Set up, tested, and shown to whoever lives there. You do not get a box and a manual.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROS ===================== -->
+<section class="sec pros rise" id="pros">
+  <div class="wrap">
+    <div class="txt">
+      <div class="part"><span class="kicker">Trade</span></div>
+      <div class="part"><h2>Specifying it, or selling it?</h2></div>
+    </div>
+    <div class="txt part">
+      <p class="lede">We work with builders, interior designers and dealers on whole projects. Same panels, trade pricing, and we can fit them for you or leave that to your own team.</p>
+      <p style="margin-top:22px"><a class="btn btn-ghost" href="#talk" data-wa>Talk to us about a project</a></p>
+    </div>
+  </div>
+</section>
+
+<div class="sec" style="padding-top:0;padding-bottom:0"><div class="wrap"><div class="seam" data-seam></div></div></div>
+
+<!-- ===================== FAQ ===================== -->
+<section class="sec faq rise" id="questions">
+  <div class="wrap">
+    <div class="part"><span class="kicker">Questions</span></div>
+    <div class="part"><h2 class="big">The rest of it.</h2></div>
+    <div class="list part">
+      <details><summary><svg class="tog" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v14M1 8h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Do I need a neutral wire?</summary><div class="ans">Tell us what is in your board and we will tell you straight. Where a neutral is missing we have a way around it, and we work that out before you pay anything, not after.</div></details>
+      <details><summary><svg class="tog" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v14M1 8h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Do I need a hub?</summary><div class="ans">No separate hub to buy or hide. The panel is the hub.</div></details>
+      <details><summary><svg class="tog" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v14M1 8h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Does it work with Alexa and Google?</summary><div class="ans">Yes, both. And it still works when you never open either of them.</div></details>
+      <details><summary><svg class="tog" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v14M1 8h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>What happens in a power cut?</summary><div class="ans">Nothing you would not expect from a switch. When the power comes back, everything is where you left it.</div></details>
+      <details><summary><svg class="tog" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v14M1 8h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Can I start with one room?</summary><div class="ans">Yes, and most people do. Start with the living room, add the rest whenever you feel like it.</div></details>
+      <details><summary><svg class="tog" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v14M1 8h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>How long does the install take?</summary><div class="ans">A day for most homes. A big house with a lot of points can run into a second day, and we will tell you which one you are before we start.</div></details>
+      <details><summary><svg class="tog" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v14M1 8h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>What does it cost?</summary><div class="ans">It depends on how many points you have, which is why we come and count them. Message us and we will give you a real number, not a range.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== THE CLOSE ===================== -->
+<section class="sec dark close rise" id="talk">
+  <div class="motes" id="motes3" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="part"><span class="kicker" style="justify-content:center">Talk to us</span></div>
+    <div class="part"><h2 class="big" style="max-width:20ch">Tell us about your home.</h2></div>
+    <div class="part"><p class="lede">Two taps, then one message. We reply on WhatsApp, usually the same day.</p></div>
+
+    <div class="pickers part">
+      <div class="pick" data-pick="size">
+        <span id="lbl-size">How big is it?</span>
+        <div class="opts" role="group" aria-labelledby="lbl-size">
+          <button type="button" class="opt" aria-pressed="false">1 to 2 rooms</button>
+          <button type="button" class="opt" aria-pressed="false">3 to 4 rooms</button>
+          <button type="button" class="opt" aria-pressed="false">A whole house</button>
+          <button type="button" class="opt" aria-pressed="false">A project or site</button>
+        </div>
+      </div>
+      <div class="pick" data-pick="want">
+        <span id="lbl-want">What do you want first?</span>
+        <div class="opts" role="group" aria-labelledby="lbl-want">
+          <button type="button" class="opt" aria-pressed="false">The control panel</button>
+          <button type="button" class="opt" aria-pressed="false">Switches everywhere</button>
+          <button type="button" class="opt" aria-pressed="false">The front door</button>
+          <button type="button" class="opt" aria-pressed="false">Not sure yet</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="go part">
+      <a class="btn" id="wa-main" href="#" data-wa>
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.13h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.36c0-4.54 3.7-8.23 8.24-8.23a8.18 8.18 0 0 1 5.82 2.42 8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.69 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.09-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.22.25-.87.85-.87 2.07 0 1.22.89 2.4 1.02 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.47-.07 1.47-.6 1.68-1.18.2-.58.2-1.08.14-1.18-.06-.1-.22-.17-.47-.29Z"/></svg>
+        Message us on WhatsApp
+      </a>
+      <span class="note">Opens WhatsApp with your answers already typed in.</span>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Nexora, back to top">
+      <svg viewBox="0 0 32 32" aria-hidden="true" style="color:var(--accent-bright)"><g fill="currentColor"><rect x="2" y="2" width="12" height="12" rx="3.4"/><rect x="18" y="2" width="12" height="12" rx="3.4" opacity=".42"/><rect x="2" y="18" width="12" height="12" rx="3.4" opacity=".42"/><rect x="18" y="18" width="12" height="12" rx="3.4"/></g></svg>
+      <b>NEXORA</b>
+    </a>
+    <p>Smart control panels, switches and locks. Supplied and fitted by our own team.</p>
+    <p><a href="#talk" data-wa>Message us on WhatsApp</a></p>
+  </div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+
+/* ============================================================
+   0. WHATSAPP: SET THE NUMBER HERE
+   Country code first, digits only, no plus and no spaces.
+   ============================================================ */
+var WA_NUMBER = "919999999999";   /* <-- SET WHATSAPP NUMBER */
+
+/* ============================================================
+   1. Elements and small helpers
+   ============================================================ */
+var video      = document.getElementById('hero');
+var stage      = document.getElementById('stage');
+var heroSec    = document.getElementById('hero-sec');
+var posterLayer= document.getElementById('poster');
+var ring       = document.getElementById('ring');
+var nav        = document.getElementById('nav');
+
+var VIDEO_URL   = 'assets/hero-scrub.mp4';
+var POSTER_URL  = 'assets/hero-poster.jpg';
+var VIDEO_BYTES = 6000000;   /* real byte size; fallback when Content-Length is absent */
+
+var clamp = function(v,lo,hi){ return Math.min(hi, Math.max(lo, v)); };
+var smoothstep = function(p,e0,e1){
+  var t = clamp((p - e0) / (e1 - e0), 0, 1);
+  return t * t * (3 - 2 * t);
+};
+function rng(seed){
+  var s = seed >>> 0;
+  return function(){ return (s = (s * 1664525 + 1013904223) >>> 0) / 4294967296; };
+}
+
+/* ============================================================
+   2. Split the hero headlines once, at load, with a seeded RNG
+   ============================================================ */
+function splitAll(){
+  var nodes = document.querySelectorAll('.band .split');
+  for (var n = 0; n < nodes.length; n++){
+    var el = nodes[n];
+    var text = el.textContent.trim();
+    var mode = el.getAttribute('data-mode');
+    var band = el.closest('.band');
+    var spread = parseFloat(band.getAttribute('data-spread') || '0.5');
+    var rand = rng(1337 + n * 977);
+
+    var sr = document.createElement('span');
+    sr.className = 'sr'; sr.textContent = text;
+
+    var vis = document.createElement('span');
+    vis.setAttribute('aria-hidden','true');
+
+    if (mode === 'depth'){
+      /* approach-from-depth: one block, a static-blur soft copy under a sharp copy */
+      vis.className = 'stack';
+      var soft = document.createElement('span');
+      soft.className = 'soft'; soft.textContent = text;
+      var sharp = document.createElement('span');
+      sharp.className = 'vis'; sharp.textContent = text;
+      vis.appendChild(soft); vis.appendChild(sharp);
+
+    } else if (mode === 'halves'){
+      /* halves parting: split at the nearest word boundary to the middle */
+      var words = text.split(' ');
+      var cut = Math.round(words.length / 2);
+      var left = words.slice(0, cut).join(' ') + ' ';
+      var right = words.slice(cut).join(' ');
+      var a = document.createElement('span');
+      a.className = 'half'; a.textContent = left;
+      a.style.setProperty('--jx','-38px'); a.style.setProperty('--th','0');
+      var b = document.createElement('span');
+      b.className = 'half'; b.textContent = right;
+      b.style.setProperty('--jx','38px'); b.style.setProperty('--th','0.08');
+      vis.appendChild(a); vis.appendChild(b);
+
+    } else {
+      /* grid snap-align (per character) and rise (per word) */
+      var ws = text.split(' ');
+      var total = 0, i, j;
+      for (i = 0; i < ws.length; i++) total += ws[i].length;
+      var idx = 0;
+      for (i = 0; i < ws.length; i++){
+        var w = document.createElement('span');
+        w.className = 'w';
+        if (mode === 'rise'){
+          w.style.setProperty('--th', (i / Math.max(1, ws.length - 1) * 0.42).toFixed(3));
+          w.textContent = ws[i] + (i < ws.length - 1 ? ' ' : '');
+        } else {
+          for (j = 0; j < ws[i].length; j++){
+            var c = document.createElement('span');
+            c.className = 'c';
+            c.textContent = ws[i][j];
+            c.style.setProperty('--th', (idx / Math.max(1,total-1) * spread + rand() * 0.06).toFixed(3));
+            c.style.setProperty('--jx', (-26 - rand() * 22).toFixed(1) + 'px');
+            w.appendChild(c); idx++;
+          }
+          if (i < ws.length - 1) w.appendChild(document.createTextNode(' '));
+        }
+        vis.appendChild(w);
+      }
+    }
+    el.textContent = '';
+    el.appendChild(sr);
+    el.appendChild(vis);
+  }
+}
+splitAll();
+
+/* ============================================================
+   3. Band state, delta-gated
+   ============================================================ */
+var bands = [].map.call(document.querySelectorAll('.band'), function(el){
+  return {
+    el: el,
+    a: parseFloat(el.getAttribute('data-a')),
+    b: parseFloat(el.getAttribute('data-b')),
+    ramp: parseFloat(el.getAttribute('data-ramp') || '0'),
+    first: el.classList.contains('band-1'),
+    last: el.classList.contains('band-4'),
+    op: -1,
+    k: -1
+  };
+});
+
+var loadK = 0, loadStart = 0;
+
+function updateCaptions(p){
+  for (var i = 0; i < bands.length; i++){
+    var B = bands[i];
+    var f = Math.min(0.02, (B.b - B.a) / 3);
+    var inRamp  = B.first ? 1 : smoothstep(p, B.a, B.a + f);
+    var outRamp = B.last  ? 1 : (1 - smoothstep(p, B.b - f, B.b));
+    var op = inRamp * outRamp;
+
+    var ramp = B.ramp || Math.min(0.025, (B.b - B.a) * 0.35);
+    var k = clamp((p - B.a) / ramp, 0, 1);
+    if (B.first) k = Math.max(k, loadK);   /* band one's one-time load ramp */
+
+    if (Math.abs(op - B.op) > 0.004){
+      B.op = op;
+      B.el.style.opacity = op.toFixed(3);
+      B.el.classList.toggle('live', op > 0.5);
+    }
+    if (Math.abs(k - B.k) > 0.008){
+      B.k = k;
+      B.el.style.setProperty('--k', k.toFixed(3));
+    }
+  }
+}
+
+/* ============================================================
+   4. Gated seeks, with the deadlock escape
+   ============================================================ */
+var seekBusy = false, pendingTime = null;
+
+function requestSeek(t){
+  if (!video.duration || !isFinite(t)) return;
+  if (seekBusy){ pendingTime = t; return; }
+  seekBusy = true;
+  try { video.currentTime = t; } catch(e){ seekBusy = false; }
+}
+video.addEventListener('seeked', function(){
+  seekBusy = false;
+  if (pendingTime !== null){
+    var t = pendingTime; pendingTime = null; requestSeek(t);
+  }
+});
+video.addEventListener('error', function(){
+  seekBusy = false; pendingTime = null; failVideo();
+});
+
+/* ============================================================
+   5. The rAF loop: dt-normalized lerp that rests
+   ============================================================ */
+var target = 0, shown = 0, rafId = null, lastTick = 0, heroOnScreen = true;
+
+function heroProgress(){
+  var r = heroSec.getBoundingClientRect();
+  var range = heroSec.offsetHeight - window.innerHeight;
+  if (range <= 0) return 0;
+  return clamp(-r.top / range, 0, 1);
+}
+
+function tick(now){
+  var dt = Math.min(100, now - (lastTick || now));
+  lastTick = now;
+  var k = 0.16;
+  shown += (target - shown) * (1 - Math.pow(1 - k, dt / 16.667));
+
+  if (loadK < 1 && loadStart){
+    loadK = clamp((now - loadStart) / 900, 0, 1);
+  }
+
+  var converged = Math.abs(target - shown) < 0.0005 && loadK >= 1;
+  if (converged){
+    shown = target; rafId = null; lastTick = 0;
+  } else {
+    rafId = requestAnimationFrame(tick);
+  }
+  if (video.duration) requestSeek(shown * video.duration);
+  updateCaptions(shown);
+}
+
+function onScroll(){
+  target = heroProgress();
+  if (rafId === null && heroOnScreen) rafId = requestAnimationFrame(tick);
+}
+
+if ('IntersectionObserver' in window){
+  new IntersectionObserver(function(es){
+    heroOnScreen = es[0].isIntersecting;
+    if (heroOnScreen && rafId === null && scrubOn) rafId = requestAnimationFrame(tick);
+  }, {threshold: 0}).observe(heroSec);
+}
+
+/* ============================================================
+   6. The streamed Blob fetch, behind an honest ring
+   ============================================================ */
+var heroInit = false;
+
+function initHeroOnce(){
+  if (heroInit) return;
+  heroInit = true;
+
+  posterLayer.style.backgroundImage = "url('" + POSTER_URL + "')";
+  loadStart = performance.now();
+  if (rafId === null) rafId = requestAnimationFrame(tick);
+
+  var started = false;
+  function startBlobFetch(){
+    if (started) return;
+    started = true;
+    loadHeroBlob().catch(failVideo);
+  }
+  var posterImg = new Image();
+  posterImg.onload = startBlobFetch;
+  posterImg.onerror = startBlobFetch;
+  posterImg.src = POSTER_URL;
+  setTimeout(startBlobFetch, 4000);
+}
+
+function loadHeroBlob(){
+  var ctrl = new AbortController();
+  var watchdog = setTimeout(function(){ ctrl.abort(); }, 20000);
+
+  return fetch(VIDEO_URL, {signal: ctrl.signal}).then(function(res){
+    if (!res.ok || !res.body) throw new Error('no video');
+    var total = Number(res.headers.get('Content-Length')) || VIDEO_BYTES;
+    var reader = res.body.getReader();
+    var chunks = [], got = 0, lastRing = 0;
+
+    function pump(){
+      return reader.read().then(function(r){
+        if (r.done) return;
+        clearTimeout(watchdog);
+        watchdog = setTimeout(function(){ ctrl.abort(); }, 20000);
+        chunks.push(r.value);
+        got += r.value.length;
+        var frac = Math.min(1, got / total);
+        var now = performance.now();
+        if (now - lastRing > 100 || frac === 1){
+          lastRing = now;
+          ring.style.setProperty('--ld', Math.round(126 * (1 - frac)));
+        }
+        return pump();
+      });
+    }
+    return pump().then(function(){
+      clearTimeout(watchdog);
+      ring.style.setProperty('--ld', 0);
+      video.src = URL.createObjectURL(new Blob(chunks, {type: 'video/mp4'}));
+      video.load();
+      video.addEventListener('canplay', function(){
+        requestSeek(heroProgress() * video.duration);
+        stage.classList.add('video-ready');
+      }, {once: true});
+    });
+  });
+}
+
+var failed = false;
+function failVideo(){
+  if (failed) return;
+  failed = true;
+  stage.classList.add('video-failed');
+  if (ring && ring.parentNode){
+    var cue = document.createElementNS('http://www.w3.org/2000/svg','svg');
+    cue.setAttribute('class','cue');
+    cue.setAttribute('viewBox','0 0 24 24');
+    cue.setAttribute('aria-hidden','true');
+    cue.innerHTML = '<path d="M12 4v14M6 13l6 6 6-6" fill="none" stroke="currentColor" ' +
+                    'stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>';
+    ring.parentNode.replaceChild(cue, ring);
+  }
+}
+
+/* ============================================================
+   7. The five static-hero gates. These five strings match the CSS
+      media queries character for character. Change both or neither.
+   ============================================================ */
+var GATES = [
+  '(max-width: 720px)',
+  '(orientation: portrait) and (max-width: 1024px)',
+  '(orientation: portrait) and (pointer: coarse)',
+  '(orientation: landscape) and (pointer: coarse) and (max-height: 560px)',
+  '(prefers-reduced-motion: reduce)'
+];
+var MQLS = GATES.map(function(q){ return matchMedia(q); });
+var scrubOn = false;
+
+function enableScrub(){
+  if (scrubOn) return;
+  scrubOn = true;
+  initHeroOnce();
+  addEventListener('scroll', onScroll, {passive: true});
+  for (var i = 0; i < bands.length; i++){ bands[i].op = -1; bands[i].k = -1; }
+  unpinFinalStates();
+  updateCaptions(heroProgress());
+  onScroll();
+}
+function disableScrub(){
+  if (!scrubOn) return;
+  scrubOn = false;
+  removeEventListener('scroll', onScroll);
+  if (rafId !== null){ cancelAnimationFrame(rafId); rafId = null; }
+}
+function applyHeroMode(){
+  var gated = false;
+  for (var i = 0; i < MQLS.length; i++){ if (MQLS[i].matches){ gated = true; break; } }
+  if (gated) disableScrub(); else enableScrub();
+}
+MQLS.forEach(function(m){
+  if (m.addEventListener) m.addEventListener('change', applyHeroMode);
+  else m.addListener(applyHeroMode);
+});
+
+/* ============================================================
+   8. Section entrances, seams, and the living layer
+   ============================================================ */
+var secs = document.querySelectorAll('.rise, .sec');
+if ('IntersectionObserver' in window){
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (!e.isIntersecting) { e.target.classList.remove('seen'); return; }
+      e.target.classList.add('seen');
+      if (e.target.classList.contains('rise') && !e.target.classList.contains('in')){
+        e.target.classList.add('in');
+        setTimeout(function(){ e.target.classList.add('done'); }, 1400);
+      }
+    });
+  }, {threshold: 0.08, rootMargin: '0px 0px -6% 0px'});
+  for (var s = 0; s < secs.length; s++) io.observe(secs[s]);
+
+  var seamIO = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting){ e.target.style.setProperty('--draw', 1); }
+    });
+  }, {threshold: 0.4});
+  document.querySelectorAll('[data-seam]').forEach(function(el){ seamIO.observe(el); });
+  var rail = document.getElementById('rail');
+  if (rail){
+    new IntersectionObserver(function(en){
+      if (en[0].isIntersecting) rail.classList.add('drawn');
+    }, {threshold: 0.25}).observe(rail);
+  }
+} else {
+  for (var s2 = 0; s2 < secs.length; s2++) secs[s2].classList.add('in','done','seen');
+  document.querySelectorAll('[data-seam]').forEach(function(el){ el.classList.add('pin'); });
+}
+/* the seam draws with a transition declared in a class, never an inline style */
+var seamStyle = document.createElement('style');
+seamStyle.textContent = '.seam::after{transition:transform 1.5s cubic-bezier(.22,.61,.36,1)}';
+document.head.appendChild(seamStyle);
+
+/* motes: whisper level, negative delays so every loop is mid-cycle at first paint */
+['motes1','motes2','motes3'].forEach(function(id, n){
+  var host = document.getElementById(id);
+  if (!host) return;
+  var r = rng(4242 + n * 131);
+  var html = '';
+  for (var i = 0; i < 16; i++){
+    html += '<i style="left:' + (r()*100).toFixed(1) + '%;top:' + (r()*100).toFixed(1) +
+            '%;animation-duration:' + (20 + r()*18).toFixed(1) + 's;animation-delay:-' +
+            (r()*26).toFixed(1) + 's"></i>';
+  }
+  host.innerHTML = html;
+});
+
+/* nav solidifies once the hero is behind us */
+var navIO = ('IntersectionObserver' in window) ? new IntersectionObserver(function(e){
+  nav.classList.toggle('solid', !e[0].isIntersecting);
+}, {threshold: 0, rootMargin: '-70px 0px 0px 0px'}) : null;
+if (navIO) navIO.observe(heroSec); else nav.classList.add('solid');
+
+/* images: reveal only when they really load, so a missing file stays designed */
+document.querySelectorAll('.plate img').forEach(function(img){
+  function ok(){ img.classList.add('ok'); }
+  if (img.complete && img.naturalWidth > 0) ok();
+  else { img.addEventListener('load', ok); img.addEventListener('error', function(){ img.remove(); }); }
+});
+
+/* ============================================================
+   9. The one interactive moment: press and hold
+   ============================================================ */
+var padwrap  = document.getElementById('padwrap');
+var pad      = document.getElementById('pad');
+var holder   = document.getElementById('holder');
+var holdlabel= document.getElementById('holdlabel');
+var whylist  = document.getElementById('whylist');
+var zones    = pad ? pad.querySelectorAll('rect') : [];
+var rows     = whylist ? whylist.querySelectorAll('li') : [];
+
+var holdBar = document.querySelector('.holdbar i');
+var hold = 0, holding = false, holdRaf = null, holdLast = 0, holdDone = false;
+
+function paintHold(){
+  if (!padwrap) return;
+  padwrap.style.setProperty('--h', hold.toFixed(3));
+  if (holdBar) holdBar.style.setProperty('--h', hold.toFixed(3));
+  for (var i = 0; i < zones.length; i++){
+    var lit = hold > (i + 0.35) / zones.length;
+    zones[i].style.opacity = lit ? 1 : (0.22 + hold * 0.3).toFixed(2);
+  }
+  for (var j = 0; j < rows.length; j++){
+    /* once the hold completes the visitor keeps what they earned;
+       only the pad's own fill eases back */
+    rows[j].classList.toggle('lit', holdDone || hold > (j + 0.5) / rows.length);
+  }
+  padwrap.classList.toggle('on', hold > 0.05);
+  if (hold >= 1 && !holdDone){
+    holdDone = true;
+    holder.classList.add('done');
+    holdlabel.textContent = 'That is the whole idea.';
+  }
+}
+function holdTick(now){
+  var dt = Math.min(100, now - (holdLast || now));
+  holdLast = now;
+  if (holding) hold = clamp(hold + dt / 1100, 0, 1);
+  else         hold = clamp(hold - dt / 900, 0, 1);
+  paintHold();
+  if ((holding && hold < 1) || (!holding && hold > 0)){
+    holdRaf = requestAnimationFrame(holdTick);
+  } else {
+    holdRaf = null; holdLast = 0;
+  }
+}
+function holdStart(e){
+  if (e && e.cancelable) e.preventDefault();
+  holding = true;
+  if (holdRaf === null) holdRaf = requestAnimationFrame(holdTick);
+}
+function holdEnd(){
+  holding = false;
+  if (holdRaf === null) holdRaf = requestAnimationFrame(holdTick);
+}
+if (padwrap){
+  padwrap.addEventListener('pointerdown', holdStart);
+  addEventListener('pointerup', holdEnd);
+  addEventListener('pointercancel', holdEnd);
+  padwrap.addEventListener('keydown', function(e){
+    if (e.key === ' ' || e.key === 'Enter'){ e.preventDefault(); holdStart(); }
+  });
+  padwrap.addEventListener('keyup', function(e){
+    if (e.key === ' ' || e.key === 'Enter'){ holdEnd(); }
+  });
+}
+
+/* ============================================================
+   10. The WhatsApp picker: composes the message, no backend
+   ============================================================ */
+var picked = {size: '', want: ''};
+document.querySelectorAll('.pick').forEach(function(group){
+  var key = group.getAttribute('data-pick');
+  group.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      group.querySelectorAll('.opt').forEach(function(o){ o.setAttribute('aria-pressed','false'); });
+      btn.setAttribute('aria-pressed','true');
+      picked[key] = btn.textContent.trim();
+      refreshWA();
+    });
+  });
+});
+function waHref(){
+  var msg = 'Hi Nexora, I would like a quote.';
+  if (picked.size) msg += ' Home size: ' + picked.size + '.';
+  if (picked.want) msg += ' Interested in: ' + picked.want + '.';
+  return 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg);
+}
+function refreshWA(){
+  var main = document.getElementById('wa-main');
+  if (main) main.setAttribute('href', waHref());
+}
+refreshWA();
+/* every other WhatsApp control jumps to the picker so the message is never empty */
+document.querySelectorAll('[data-wa]').forEach(function(a){
+  if (a.id === 'wa-main') return;
+  a.addEventListener('click', function(){
+    setTimeout(function(){
+      var t = document.getElementById('talk');
+      if (t) t.classList.add('seen','in');
+    }, 10);
+  });
+});
+
+/* ============================================================
+   11. Reduced motion, live and in both directions
+   ============================================================ */
+var drawn = document.querySelectorAll('[data-seam]');
+function pinToFinalStates(){
+  drawn.forEach(function(el){ el.classList.add('pin'); });
+  var rl = document.getElementById('rail'); if (rl) rl.classList.add('drawn');
+  for (var i = 0; i < secs.length; i++) secs[i].classList.add('in','done','seen');
+  for (var j = 0; j < rows.length; j++) rows[j].classList.add('lit');
+  hold = 1; holding = false;
+  if (holdRaf !== null){ cancelAnimationFrame(holdRaf); holdRaf = null; }
+  if (padwrap) paintHold();
+}
+function unpinFinalStates(){
+  drawn.forEach(function(el){ el.classList.remove('pin'); });
+  if (!holdDone){
+    for (var j = 0; j < rows.length; j++) rows[j].classList.remove('lit');
+    hold = 0;
+    if (padwrap) paintHold();
+  }
+}
+var rmq = matchMedia('(prefers-reduced-motion: reduce)');
+function onRM(e){
+  if (e.matches) pinToFinalStates();
+  else applyHeroMode();
+}
+if (rmq.addEventListener) rmq.addEventListener('change', onRM);
+else rmq.addListener(onRM);
+if (rmq.matches) pinToFinalStates();
+
+/* pause every animation on a hidden tab */
+document.addEventListener('visibilitychange', function(){
+  document.body.classList.toggle('paused', document.hidden);
+});
+
+/* ============================================================
+   12. Go
+   ============================================================ */
+applyHeroMode();
+
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+import {connect,boot,goto,evalJS,metrics} from './cdp.mjs';
+const c = await connect(); await boot(c);
+await metrics(c,1440,900); await goto(c,'http://127.0.0.1:8099/');
+await new Promise(r=>setTimeout(r,1500));
+await evalJS(c,`document.getElementById('why').scrollIntoView({behavior:'instant'})`);
+await new Promise(r=>setTimeout(r,500));
+const b = JSON.parse(await evalJS(c,`(()=>{const r=document.getElementById('padwrap').getBoundingClientRect();return JSON.stringify({x:Math.round(r.x+r.width/2),y:Math.round(r.y+r.height/2)})})()`));
+const h = async ()=> await evalJS(c,`+document.getElementById('padwrap').style.getPropertyValue('--h')`);
+const press=()=>c.send('Input.dispatchMouseEvent',{type:'mousePressed',x:b.x,y:b.y,button:'left',clickCount:1});
+const rel=()=>c.send('Input.dispatchMouseEvent',{type:'mouseReleased',x:b.x,y:b.y,button:'left',clickCount:1});
+
+console.log('--- short press, release, let it decay, press again ---');
+await press(); await new Promise(r=>setTimeout(r,450));
+console.log('  hold1 mid  h=', await h());
+await rel();  await new Promise(r=>setTimeout(r,900));
+console.log('  decayed    h=', await h());
+await press(); await new Promise(r=>setTimeout(r,1400));
+console.log('  hold2 full h=', await h(), 'label=', await evalJS(c,`document.getElementById('holdlabel').textContent`));
+await rel();  await new Promise(r=>setTimeout(r,400));
+console.log('  after rel  h=', await h(), 'lit rows=', await evalJS(c,`[...document.querySelectorAll('#whylist li')].filter(l=>l.classList.contains('lit')).length`));
+console.log('--- keyboard path (space) ---');
+await evalJS(c,`document.getElementById('padwrap').focus()`);
+await c.send('Input.dispatchKeyEvent',{type:'keyDown',key:' ',code:'Space',windowsVirtualKeyCode:32});
+await new Promise(r=>setTimeout(r,700));
+console.log('  space held h=', await h());
+await c.send('Input.dispatchKeyEvent',{type:'keyUp',key:' ',code:'Space',windowsVirtualKeyCode:32});
+c.close(); process.exit(0);
