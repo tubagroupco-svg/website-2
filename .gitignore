@@ -1,3 +1,7 @@
 review/audit/
 review/node_modules/
 *.log
+review/raw/
+review/uploads/
+review/cutouts/
+review/__pycache__/

@@ -1,7 +1,15 @@
 # Nexora Design Package
 
-Tier 1, single continuous shot. Written before generation, consumed by the build.
+Tier 1. Written before generation, consumed by the build.
 Every line of copy marked verbatim ships exactly as written.
+
+**Hero decision, revised.** Three generated hero concepts were rejected at the
+video gate (a brass object, a black slab, a lit screen). Per the rule that three
+failures make it a concept problem rather than a prompt problem, the hero was
+changed rather than re-rolled a fourth time. The hero is now the client's own
+product photograph, background removed locally and driven by scroll: no AI video
+in the page at all. The scroll engine is unchanged in shape, it drives a CSS
+transform on a real photo instead of a video's currentTime.
 
 ---
 
@@ -14,17 +22,18 @@ intelligence lives in the wall, not on somebody's server, and that one fact is
 why the touch lands instantly, why it keeps working when the internet does not,
 and why a guest can walk up and press it without being taught anything.
 
-The hero opens the panel to show that. Every section below cashes the promise in.
+The hero is the real panel, screen lit, rising and turning to face the visitor
+as they scroll. Every section below cashes the promise in.
 If a section does not serve it, it does not belong on the page.
 
 ---
 
 ## 2. Palette as CSS tokens
 
-Direction: **brass in the dark**. The brand's own colours are black and gold, so
-gold is treated as the light the panel gives off rather than as decoration. The
-page is the room at night with the panel lit. Exact values get re-sampled from
-the approved footage after the video gate.
+Direction: **brass in the dark**. The brand's own colours are black and gold
+(confirmed from the client's own logo and business card), so gold is treated as
+the light the panel gives off rather than as decoration. The page is the room at
+night with the panel lit.
 
 **Stated deviation.** Near-black with a warm gold accent is on the banned list in
 `scrub-pipeline.md`, because it is where "dark and cinematic" briefs drift by
@@ -71,25 +80,32 @@ Hero height 560vh, so the scroll range is 460vh. Four bands, each with a plateau
 of roughly 92vh, which survives six 120px flicks. Ranges are starting points,
 validated by the flick test.
 
-| Band | Range | Footage moment | Copy (verbatim) | Entrance |
+| Band | Range | What the hero is doing | Copy (verbatim) | Entrance |
 |---|---|---|---|---|
-| 1 | 0.00 to 0.22 | Panel dark and still, beginning to turn toward the viewer | "It answers before you finish touching it." | Approach-from-depth. The panel turns toward us, so the words come toward us: scale 0.82 to 1 with a static-blur soft copy sharpening through. Skips the ease-in; opens settled with a one-time load ramp. |
-| 2 | 0.26 to 0.48 | Light wakes under the glass and travels across the face | "Because nothing has to leave the room." | Grid snap-align. Characters slide horizontally into place in reading order, echoing the light travelling across the panel. |
-| 3 | 0.52 to 0.74 | The front parts along a seam of light, dust in the escaping glow | "No cloud. No wait. No app to teach anyone." | Halves parting. The line splits at the centre and the two halves slide outward to rest, echoing the panel's seam opening. Deliberate brand triplet, protected by the copy gate carve-out. |
-| 4 | 0.78 to 1.00 | The panel rests open, the lit interior composed and centred | Headline: "The smart part is in the wall." Subline: "Nexora control panels put the whole home on one piece of glass, and keep it working when the internet does not." CTA: "Message us on WhatsApp" | Word-by-word rise into a staged settle. Headline words rise in reading order, then the subline at k 0.66, then the CTA row at k 0.78. Skips the ease-out. |
+| 1 | 0.00 to 0.22 | Panel small, turned away, dim | "It answers before you finish touching it." | Approach-from-depth, echoing the panel turning toward us. Skips the ease-in; opens settled with a one-time load ramp. |
+| 2 | 0.26 to 0.48 | Panel growing, gold bloom building behind it | "Because nothing has to leave the room." | Grid snap-align: characters slide into place in reading order. |
+| 3 | 0.52 to 0.74 | Panel near full size, halo ring widening | "No cloud. No wait. No app to teach anyone." | Halves parting: the line splits at the centre and slides outward. Deliberate brand triplet, protected by the copy gate carve-out. |
+| 4 | 0.78 to 1.00 | Panel risen and settled high, clear space beneath it | Headline: "The smart part is in the wall." Subline: "Nexora Homes control panels put the whole home on one piece of glass, and keep it working when the internet does not." CTA: "Message us on WhatsApp" | Word-by-word rise into a staged settle: headline, then subline at k 0.66, then the CTA row at k 0.78. Skips the ease-out. |
+
+**The scroll driver.** One custom property, `--p`, written to the hero stage by
+the same dt-normalized lerp loop that drives the captions, delta-gated at 0.002.
+It drives the product's translate, scale and rotateY, plus the bloom, halo and
+floor glow. The product rises 17vh across the scroll so the closing headline and
+button land in clear space rather than on top of it.
 
 Gaps of 0.04 between bands let the footage breathe alone.
 
-**Layout rule from the composition.** The panel bisects the frame dead centre, so
-the action lane is the centre and the captions flank it in two columns, left and
-right. This triggers the two-sided scrim variant: one ellipse anchored on each
-text column, the centre lane left completely alone so the product stays bright.
-Band 4, where the columns converge, gets a single upper-centred ellipse instead.
+**Layout rule.** The panel holds the centre lane, so captions flank it in two
+columns. The two-sided scrim variant applies: one ellipse anchored on each text
+column, the centre left alone so the product stays bright. Band 4 gets a single
+lower-centred ellipse, since the product rises out of that space at the settle.
 
 ## 5. The static-hero copy block
 
 For phones, portrait tablets, coarse-pointer portrait, landscape phones, and
-reduced motion. Composed over the ending frame.
+reduced motion. Composed over the same real product photo, which is shown once and only in this
+layout; the scroll stage is hidden behind all five gates so the product never
+renders twice.
 
 - Headline: "The smart part is in the wall."
 - Subline: "One panel runs the whole home. It answers instantly, and it keeps working when the internet does not."
@@ -219,7 +235,14 @@ the staccato "The app stops, the wall does not."
 
 ---
 
-## The hero prompts
+## Appendix: the abandoned generation route
+
+The prompts below produced the three rejected hero concepts. They are kept for
+the record, not as instructions. Nothing in the shipped page uses them.
+
+Total spent before the change of direction: 30.5 credits of the account's 590.
+
+### The prompts as written
 
 **Start frame** (image, 16:9, 2k). Uses the user's real panel photo as reference
 so the hero features the actual product.

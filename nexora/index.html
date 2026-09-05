@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <script>document.documentElement.className+=" js"</script>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Nexora | The smart part is in the wall</title>
-<meta name="description" content="Nexora control panels put the whole home on one piece of glass, and keep it working when the internet does not. Supplied and fitted by our own team.">
+<title>Nexora Homes | The smart part is in the wall</title>
+<meta name="description" content="Nexora Homes control panels put the whole home on one piece of glass, and keep it working when the internet does not. Supplied and fitted by our own team.">
 <meta name="theme-color" content="#0A0908">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230A0908'/%3E%3Cg fill='%23D4AF37'%3E%3Crect x='7' y='7' width='7.5' height='7.5' rx='2.2'/%3E%3Crect x='17.5' y='7' width='7.5' height='7.5' rx='2.2' opacity='.45'/%3E%3Crect x='7' y='17.5' width='7.5' height='7.5' rx='2.2' opacity='.45'/%3E%3Crect x='17.5' y='17.5' width='7.5' height='7.5' rx='2.2'/%3E%3C/g%3E%3C/svg%3E">
 
 <!-- DEPLOY STEP: patch og:url and og:image with the live absolute URL before zipping -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="Nexora | The smart part is in the wall">
+<meta property="og:title" content="Nexora Homes | The smart part is in the wall">
 <meta property="og:description" content="One panel runs the whole home. It answers instantly, and it keeps working when the internet does not.">
 <meta property="og:url" content="https://REPLACE-AT-DEPLOY/">
 <meta property="og:image" content="https://REPLACE-AT-DEPLOY/assets/hero-ending.jpg">
@@ -98,10 +98,10 @@ a{color:inherit}
   border-bottom:1px solid transparent}
 .nav.solid{background:rgba(10,9,8,.82);backdrop-filter:blur(14px);border-bottom-color:var(--line)}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex:0 0 auto}
-.brand svg{width:26px;height:26px;flex:0 0 auto;color:var(--accent-bright);
-  transition:color .5s var(--ease)}
-.nav.solid .brand svg{color:var(--accent)}
-.brand b{font-family:var(--display);font-weight:700;font-size:19px;letter-spacing:.01em;
+.brand .mark{width:auto;height:30px;flex:0 0 auto;mix-blend-mode:screen}
+.brand b{white-space:nowrap}
+@media (max-width:520px){.brand b{font-size:16px}.brand .mark{height:26px}}
+.brand b{font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:.02em;
   color:var(--hero-text);transition:color .5s var(--ease)}
 .nav.solid .brand b{color:var(--text-primary)}
 .navlinks{display:flex;gap:clamp(14px,2vw,28px);margin-left:auto;align-items:baseline}
@@ -136,25 +136,37 @@ a{color:inherit}
 .stage::after{content:"";position:absolute;inset:0;pointer-events:none;
   background:linear-gradient(to bottom,rgba(11,16,22,.55) 0%,transparent 22%,transparent 78%,rgba(11,16,22,.7) 100%)}
 
-.poster{position:absolute;inset:0;background-size:cover;background-position:center;
-  background-color:var(--deep);
-  background-image:radial-gradient(58% 48% at 50% 50%,rgba(240,213,132,.10),transparent 72%)}
-#hero{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  opacity:0;transition:opacity .8s var(--ease);
-  will-change:transform;transform:translateZ(0)}
-.stage.video-ready #hero{opacity:1}
-.stage.video-failed #hero{display:none}
+/* the hero product: the real panel, driven by scroll progress --p */
+.prodstage{position:absolute;inset:0;display:grid;place-items:center;
+  perspective:1400px;pointer-events:none}
+.prod{position:relative;z-index:3;width:min(30vw,392px);height:auto;
+  /* the product rises and settles high as the scroll ends, so the closing
+     headline and the button land in clear space beneath it */
+  transform:translateY(calc(2.6vh - var(--p,0) * 17vh))
+            scale(calc(.80 + .17*var(--p,0)))
+            rotateY(calc((1 - var(--p,0)) * -15deg));
+  filter:drop-shadow(0 26px 60px rgba(0,0,0,.85))
+         drop-shadow(0 0 calc(18px + 46px*var(--p,0)) rgba(212,175,55,.28));
+  will-change:transform}
+.bloom{position:absolute;z-index:2;width:min(56vw,760px);aspect-ratio:1;border-radius:50%;
+  translate:0 calc(var(--p,0) * -13vh);
+  background:radial-gradient(circle,rgba(212,175,55,.30) 0%,rgba(212,175,55,.10) 38%,transparent 70%);
+  opacity:calc(.12 + .88*var(--p,0));
+  transform:scale(calc(.62 + .38*var(--p,0)));will-change:transform,opacity}
+.halo{position:absolute;z-index:2;width:min(34vw,440px);aspect-ratio:1;border-radius:50%;
+  translate:0 calc(var(--p,0) * -15vh);
+  border:1px solid rgba(240,213,132,.28);
+  opacity:calc(var(--p,0)*.5);
+  transform:scale(calc(.9 + .5*var(--p,0)));will-change:transform,opacity}
+.floorglow{position:absolute;z-index:1;bottom:calc(13% + var(--p,0) * 13vh);width:min(44vw,620px);height:12vh;
+  background:radial-gradient(ellipse at center,rgba(212,175,55,.18),transparent 70%);
+  opacity:calc(.1 + .9*var(--p,0));filter:blur(6px)}
+@media (max-width:1100px){.prod{width:min(38vw,340px)}}
 
 /* the global base scrim, always on */
 .scrim{position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(ellipse 120% 90% at 50% 45%,rgba(5,4,3,0) 35%,rgba(5,4,3,.62) 100%)}
+  background:radial-gradient(ellipse 120% 90% at 50% 45%,rgba(5,4,3,0) 28%,rgba(5,4,3,.70) 100%)}
 
-/* the loading ring */
-.ring{position:absolute;right:clamp(20px,4vw,54px);bottom:clamp(20px,4vw,54px);
-  width:44px;height:44px;color:var(--accent-bright);opacity:.85;
-  transform:rotate(-90deg);pointer-events:none}
-.ring circle{transition:stroke-dashoffset .18s linear}
-.stage.video-ready .ring,.stage.video-failed .ring{opacity:0;transition:opacity .5s var(--ease)}
 .cue{position:absolute;right:clamp(20px,4vw,54px);bottom:clamp(20px,4vw,54px);
   width:44px;height:44px;color:var(--accent-bright);opacity:.7;
   animation:cuebob 2.6s var(--ease-soft) -.6s infinite}
@@ -170,15 +182,15 @@ a{color:inherit}
 /* the two-sided scrim: an ellipse anchored on each column, centre lane untouched */
 .band::before{content:"";position:absolute;inset:-14% -22%;pointer-events:none;z-index:-1;
   opacity:calc(.25 + .75*var(--k,1));
-  background:radial-gradient(ellipse 78% 66% at 50% 50%,
-    rgba(4,3,2,.66) 0%,rgba(4,3,2,.44) 46%,rgba(4,3,2,0) 76%)}
-.band-1::before,.band-3::before{background:radial-gradient(ellipse 82% 66% at 42% 50%,
-  rgba(4,3,2,.68) 0%,rgba(4,3,2,.45) 46%,rgba(4,3,2,0) 76%)}
-.band-2::before{background:radial-gradient(ellipse 82% 66% at 58% 50%,
-  rgba(4,3,2,.68) 0%,rgba(4,3,2,.45) 46%,rgba(4,3,2,0) 76%)}
+  background:radial-gradient(ellipse 84% 70% at 50% 50%,
+    rgba(4,3,2,.84) 0%,rgba(4,3,2,.62) 48%,rgba(4,3,2,0) 84%)}
+.band-1::before,.band-3::before{background:radial-gradient(ellipse 88% 70% at 42% 50%,
+  rgba(4,3,2,.86) 0%,rgba(4,3,2,.64) 48%,rgba(4,3,2,0) 84%)}
+.band-2::before{background:radial-gradient(ellipse 88% 70% at 58% 50%,
+  rgba(4,3,2,.88) 0%,rgba(4,3,2,.66) 48%,rgba(4,3,2,0) 84%)}
 .band-4::before{inset:-10% -14%;
-  background:radial-gradient(ellipse 72% 74% at 50% 62%,
-  rgba(4,3,2,.72) 0%,rgba(4,3,2,.48) 48%,rgba(4,3,2,0) 78%)}
+  background:radial-gradient(ellipse 78% 78% at 50% 62%,
+  rgba(4,3,2,.88) 0%,rgba(4,3,2,.66) 50%,rgba(4,3,2,0) 86%)}
 
 .band-1,.band-3{left:var(--gut);top:50%;transform:translateY(-50%);width:min(34vw,29rem)}
 .band-2{right:var(--gut);top:50%;transform:translateY(-50%);width:min(34vw,29rem);text-align:right}
@@ -234,6 +246,8 @@ a{color:inherit}
 .band-4 .chip{margin-inline:auto}
 
 /* --- the static hero (phones, reduced motion) -------------------- */
+.static-hero .shot{width:min(52vw,260px);margin:0 auto 6vh;display:block;
+  filter:drop-shadow(0 18px 44px rgba(0,0,0,.8)) drop-shadow(0 0 40px rgba(212,175,55,.26))}
 .static-hero{position:absolute;inset:0;display:none;flex-direction:column;
   justify-content:flex-end;padding:0 var(--gut) clamp(48px,10vh,110px);z-index:3}
 .static-hero .chip{margin-bottom:20px;align-self:flex-start}
@@ -249,24 +263,24 @@ a{color:inherit}
 /* THE FIVE STATIC-HERO GATES. These five strings are duplicated
    character for character in the JS GATES array. Change both or neither. */
 @media (max-width: 720px){
-  .hero{height:100vh}.stage{position:relative}.bands,.ring,.cue{display:none}
+  .hero{height:100vh}.stage{position:relative}.bands,.cue,.prodstage{display:none}
   .static-hero{display:flex}}
 @media (orientation: portrait) and (max-width: 1024px){
-  .hero{height:100vh}.stage{position:relative}.bands,.ring,.cue{display:none}
+  .hero{height:100vh}.stage{position:relative}.bands,.cue,.prodstage{display:none}
   .static-hero{display:flex}}
 @media (orientation: portrait) and (pointer: coarse){
-  .hero{height:100vh}.stage{position:relative}.bands,.ring,.cue{display:none}
+  .hero{height:100vh}.stage{position:relative}.bands,.cue,.prodstage{display:none}
   .static-hero{display:flex}}
 @media (orientation: landscape) and (pointer: coarse) and (max-height: 560px){
-  .hero{height:100vh}.stage{position:relative}.bands,.ring,.cue{display:none}
+  .hero{height:100vh}.stage{position:relative}.bands,.cue,.prodstage{display:none}
   .static-hero{display:flex}}
 @media (prefers-reduced-motion: reduce){
-  .hero{height:100vh}.stage{position:relative}.bands,.ring,.cue{display:none}
+  .hero{height:100vh}.stage{position:relative}.bands,.cue,.prodstage{display:none}
   .static-hero{display:flex}}
 
 /* scrub-capable but merely short: keep the scrub, drop the small overlays */
 @media (min-width:721px) and (max-height:560px) and (pointer:fine){
-  .ring,.cue{display:none}}
+  .cue{display:none}}
 
 /* ============================================================
    THE PAGE BELOW
@@ -348,6 +362,12 @@ h3{font-size:clamp(19px,1.7vw,24px);letter-spacing:-.015em}
   background:radial-gradient(50% 42% at 50% 46%,rgba(240,213,132,.22),transparent 70%);
   animation:pulse 7s var(--ease-soft) -2.4s infinite}
 .plate-wide{aspect-ratio:16/10}
+/* real product cutouts: shown whole, lit from behind, never cropped */
+.plate img.prodshot{object-fit:contain;padding:9% 11%;
+  filter:drop-shadow(0 16px 34px rgba(0,0,0,.7)) drop-shadow(0 0 30px rgba(212,175,55,.16))}
+.plate:has(img.prodshot.ok)::before{
+  background:radial-gradient(58% 52% at 50% 46%,rgba(212,175,55,.16),transparent 72%),
+             linear-gradient(160deg,#16130D,#0A0908 68%)}
 
 /* --- the range selector -------------------------------------- */
 .rangetabs{display:flex;flex-wrap:wrap;gap:10px;margin-top:clamp(30px,4.5vh,46px)}
@@ -498,6 +518,8 @@ footer .wrap{display:flex;gap:26px;flex-wrap:wrap;align-items:baseline;
 footer a{color:var(--accent-bright);text-decoration:none}
 footer a:hover{text-decoration:underline}
 footer .brand b{color:var(--text-primary)}
+footer .tag{font-family:var(--mono);font-size:11.5px;letter-spacing:.17em;
+  text-transform:uppercase;color:var(--accent)}
 
 /* --- motes: whisper-level drift in the dark sections only -------- */
 .motes{position:absolute;inset:0;pointer-events:none;overflow:hidden;opacity:.5}
@@ -549,9 +571,9 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
 <div class="env" aria-hidden="true"></div>
 
 <nav class="nav" id="nav">
-  <a class="brand" href="#top" aria-label="Nexora, back to top">
-    <svg viewBox="0 0 32 32" aria-hidden="true"><g fill="currentColor"><rect x="2" y="2" width="12" height="12" rx="3.4"/><rect x="18" y="2" width="12" height="12" rx="3.4" opacity=".42"/><rect x="2" y="18" width="12" height="12" rx="3.4" opacity=".42"/><rect x="18" y="18" width="12" height="12" rx="3.4"/></g></svg>
-    <b>NEXORA</b>
+  <a class="brand" href="#top" aria-label="Nexora Homes, back to top">
+    <img class="mark" src="assets/nexora-mark.png" alt="" width="132" height="157" decoding="async">
+    <b>NEXORA HOMES</b>
   </a>
   <div class="navlinks">
     <a href="#panel">The panel</a>
@@ -571,17 +593,13 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
 <!-- ===================== THE HERO ===================== -->
 <section class="hero" id="hero-sec">
   <div class="stage" id="stage">
-    <div class="poster" id="poster" aria-hidden="true"></div>
-    <video id="hero" preload="none" muted playsinline aria-hidden="true" tabindex="-1"></video>
+    <div class="prodstage" id="prodstage" aria-hidden="true">
+      <span class="floorglow"></span>
+      <span class="bloom"></span>
+      <span class="halo"></span>
+      <img class="prod" id="prod" src="assets/panel-alexa.png" alt="" decoding="async" fetchpriority="high">
+    </div>
     <div class="scrim" aria-hidden="true"></div>
-
-    <svg class="ring" id="ring" viewBox="0 0 48 48" aria-hidden="true">
-      <circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="2.4"
-              opacity=".22"/>
-      <circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="2.4"
-              stroke-linecap="round" stroke-dasharray="126"
-              style="stroke-dashoffset:var(--ld,126)"/>
-    </svg>
 
     <h1 class="sr">Nexora. The smart part is in the wall.</h1>
     <p class="sr">One panel runs the whole home. It answers instantly, and it keeps working when the internet does not.</p>
@@ -599,7 +617,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
       </div>
       <div class="band band-4 e-rise" data-a="0.78" data-b="1" data-ramp="0.036">
         <h2 class="split" data-mode="rise">The smart part is in the wall.</h2>
-        <p class="sub">Nexora control panels put the whole home on one piece of glass, and keep it working when the internet does not.</p>
+        <p class="sub">Nexora Homes control panels put the whole home on one piece of glass, and keep it working when the internet does not.</p>
         <div class="ctarow">
           <a class="btn" href="#talk" data-wa>
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.13h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.36c0-4.54 3.7-8.23 8.24-8.23a8.18 8.18 0 0 1 5.82 2.42 8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.69 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.09-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.22.25-.87.85-.87 2.07 0 1.22.89 2.4 1.02 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.47-.07 1.47-.6 1.68-1.18.2-.58.2-1.08.14-1.18-.06-.1-.22-.17-.47-.29Z"/></svg>
@@ -610,6 +628,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
     </div>
 
     <div class="static-hero" id="statichero">
+      <img class="shot" src="assets/panel-alexa.png" alt="" decoding="async">
       <span class="chip">Nexora</span>
       <div class="sh-h" aria-hidden="true">The smart part is in the wall.</div>
       <p aria-hidden="true">One panel runs the whole home. It answers instantly, and it keeps working when the internet does not.</p>
@@ -642,9 +661,11 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
       <div class="rangetabs" role="tablist" aria-label="Nexora products">
         <button class="rtab" type="button" role="tab" id="tab-panel" aria-controls="prod-panel" aria-selected="true">Control panel</button>
         <button class="rtab" type="button" role="tab" id="tab-alexa" aria-controls="prod-alexa" aria-selected="false">4 inch panel with Alexa</button>
-        <button class="rtab" type="button" role="tab" id="tab-g8" aria-controls="prod-g8" aria-selected="false">8 gang touch switch</button>
-        <button class="rtab" type="button" role="tab" id="tab-g4" aria-controls="prod-g4" aria-selected="false">4 gang touch switch</button>
+        <button class="rtab" type="button" role="tab" id="tab-g8" aria-controls="prod-g8" aria-selected="false">Glass touch switch</button>
+        <button class="rtab" type="button" role="tab" id="tab-g4" aria-controls="prod-g4" aria-selected="false">Soft touch switch</button>
         <button class="rtab" type="button" role="tab" id="tab-lock" aria-controls="prod-lock" aria-selected="false">Smart door lock</button>
+        <button class="rtab" type="button" role="tab" id="tab-fan" aria-controls="prod-fan" aria-selected="false">Fan regulator</button>
+        <button class="rtab" type="button" role="tab" id="tab-curtain" aria-controls="prod-curtain" aria-selected="false">Curtain motor</button>
       </div>
       <div class="rprod" id="prod-panel" role="tabpanel" aria-labelledby="tab-panel">
         <div>
@@ -654,7 +675,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
         </div>
         <div class="plate plate-wide">
           <span class="glow" aria-hidden="true"></span>
-          <img src="assets/panel.jpg" alt="The Nexora wall control panel, lit, mounted on a wall" loading="lazy" decoding="async">
+          <img src="assets/panel.png" class="prodshot" alt="The Nexora wall control panel, lit, mounted on a wall" loading="lazy" decoding="async">
           <svg class="grid" viewBox="0 0 100 60" aria-hidden="true"><g fill="currentColor"><rect x="4.0" y="4.0" width="28.0" height="24.0" rx="6" opacity=".85"/><rect x="36.0" y="4.0" width="28.0" height="24.0" rx="6" opacity=".42"/><rect x="68.0" y="4.0" width="28.0" height="24.0" rx="6" opacity=".62"/><rect x="4.0" y="32.0" width="28.0" height="24.0" rx="6" opacity=".38"/><rect x="36.0" y="32.0" width="28.0" height="24.0" rx="6" opacity=".72"/><rect x="68.0" y="32.0" width="28.0" height="24.0" rx="6" opacity=".45"/></g></svg>
         </div>
       </div>
@@ -666,31 +687,31 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
         </div>
         <div class="plate plate-wide">
           <span class="glow" aria-hidden="true"></span>
-          <img src="assets/panel-alexa.jpg" alt="The Nexora 4 inch control panel with Alexa, lit on a wall" loading="lazy" decoding="async">
+          <img src="assets/panel-alexa.png" class="prodshot" alt="The Nexora 4 inch control panel with Alexa, lit on a wall" loading="lazy" decoding="async">
           <svg class="grid" viewBox="0 0 100 60" aria-hidden="true"><g fill="currentColor"><rect x="4.0" y="4.0" width="44.0" height="24.0" rx="6" opacity=".85"/><rect x="52.0" y="4.0" width="44.0" height="24.0" rx="6" opacity=".42"/><rect x="4.0" y="32.0" width="44.0" height="24.0" rx="6" opacity=".62"/><rect x="52.0" y="32.0" width="44.0" height="24.0" rx="6" opacity=".38"/></g></svg>
         </div>
       </div>
       <div class="rprod" id="prod-g8" role="tabpanel" aria-labelledby="tab-g8">
         <div>
-          <h3>The 8 gang touch switch</h3>
-          <p>For the big board in the hall or the living room, where eight things used to mean eight ugly rockers. One sheet of glass instead, backlit so you can find it in the dark.</p>
-          <ul class="specs"><li>8 points</li><li>Soft touch glass</li><li>Backlit</li><li>Works offline</li><li>Fits a standard box</li><li>No hub needed</li></ul>
+          <h3>The glass touch switch</h3>
+          <p>For the big board in the hall or the living room, where six or eight things used to mean a row of ugly rockers. One sheet of glass instead, backlit so you can find it in the dark.</p>
+          <ul class="specs"><li>2 to 8 points</li><li>Soft touch glass</li><li>Backlit</li><li>Works offline</li><li>Fits a standard box</li><li>No hub needed</li></ul>
         </div>
         <div class="plate plate-wide">
           <span class="glow" aria-hidden="true"></span>
-          <img src="assets/switch-8.jpg" alt="The Nexora 8 gang glass touch switch, backlit" loading="lazy" decoding="async">
+          <img src="assets/switch-glass.png" class="prodshot" alt="The Nexora 8 gang glass touch switch, backlit" loading="lazy" decoding="async">
           <svg class="grid" viewBox="0 0 100 60" aria-hidden="true"><g fill="currentColor"><rect x="4.0" y="4.0" width="20.0" height="24.0" rx="6" opacity=".85"/><rect x="28.0" y="4.0" width="20.0" height="24.0" rx="6" opacity=".42"/><rect x="52.0" y="4.0" width="20.0" height="24.0" rx="6" opacity=".62"/><rect x="76.0" y="4.0" width="20.0" height="24.0" rx="6" opacity=".38"/><rect x="4.0" y="32.0" width="20.0" height="24.0" rx="6" opacity=".72"/><rect x="28.0" y="32.0" width="20.0" height="24.0" rx="6" opacity=".45"/><rect x="52.0" y="32.0" width="20.0" height="24.0" rx="6" opacity=".55"/><rect x="76.0" y="32.0" width="20.0" height="24.0" rx="6" opacity=".9"/></g></svg>
         </div>
       </div>
       <div class="rprod" id="prod-g4" role="tabpanel" aria-labelledby="tab-g4">
         <div>
-          <h3>The 4 gang touch switch</h3>
-          <p>The one that goes in most rooms. Four points, soft touch, and it sits flush where the old switch was. Your guests will press it without asking how.</p>
-          <ul class="specs"><li>4 points</li><li>Soft touch glass</li><li>Backlit</li><li>Works offline</li><li>Fits a standard box</li><li>No hub needed</li></ul>
+          <h3>The soft touch switch</h3>
+          <p>The one that goes in most rooms. Soft touch, in black or grey, sitting flush where the old switch was. Your guests will press it without asking how.</p>
+          <ul class="specs"><li>2 to 8 points</li><li>Soft touch glass</li><li>Backlit</li><li>Works offline</li><li>Fits a standard box</li><li>No hub needed</li></ul>
         </div>
         <div class="plate plate-wide">
           <span class="glow" aria-hidden="true"></span>
-          <img src="assets/switch-4.jpg" alt="The Nexora 4 gang soft touch glass switch, backlit" loading="lazy" decoding="async">
+          <img src="assets/switch-soft.png" class="prodshot" alt="The Nexora 4 gang soft touch glass switch, backlit" loading="lazy" decoding="async">
           <svg class="grid" viewBox="0 0 100 60" aria-hidden="true"><g fill="currentColor"><rect x="4.0" y="4.0" width="44.0" height="24.0" rx="6" opacity=".85"/><rect x="52.0" y="4.0" width="44.0" height="24.0" rx="6" opacity=".42"/><rect x="4.0" y="32.0" width="44.0" height="24.0" rx="6" opacity=".62"/><rect x="52.0" y="32.0" width="44.0" height="24.0" rx="6" opacity=".38"/></g></svg>
         </div>
       </div>
@@ -702,8 +723,32 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
         </div>
         <div class="plate plate-wide">
           <span class="glow" aria-hidden="true"></span>
-          <img src="assets/lock.jpg" alt="The Nexora smart door lock fitted to a front door" loading="lazy" decoding="async">
+          <img src="assets/lock.png" class="prodshot" alt="The Nexora smart door lock fitted to a front door" loading="lazy" decoding="async">
           <svg class="grid" viewBox="0 0 100 60" aria-hidden="true"><g fill="currentColor"><rect x="4.0" y="4.0" width="92.0" height="14.7" rx="6" opacity=".85"/><rect x="4.0" y="22.7" width="92.0" height="14.7" rx="6" opacity=".42"/><rect x="4.0" y="41.3" width="92.0" height="14.7" rx="6" opacity=".62"/></g></svg>
+        </div>
+      </div>
+      <div class="rprod" id="prod-fan" role="tabpanel" aria-labelledby="tab-fan">
+        <div>
+          <h3>The fan regulator</h3>
+          <p>A proper dial for the fan, not a menu three taps deep. Turn it and the speed changes there and then, and the light switches sit on the same plate so one hand does everything.</p>
+          <ul class="specs"><li>Stepless dial</li><li>Fan and light on one plate</li><li>Works offline</li><li>Backlit</li><li>Fits a standard box</li><li>No hub needed</li></ul>
+        </div>
+        <div class="plate plate-wide">
+          <span class="glow" aria-hidden="true"></span>
+          <img src="assets/fan-dial.png" class="prodshot" alt="The Nexora Homes fan regulator plate with a rotary speed dial" loading="lazy" decoding="async">
+          <svg class="grid" viewBox="0 0 100 60" aria-hidden="true"><g fill="currentColor"><circle cx="50" cy="30" r="20" opacity=".7"/><rect x="6" y="44" width="18" height="12" rx="5" opacity=".4"/><rect x="76" y="44" width="18" height="12" rx="5" opacity=".4"/></g></svg>
+        </div>
+      </div>
+      <div class="rprod" id="prod-curtain" role="tabpanel" aria-labelledby="tab-curtain">
+        <div>
+          <h3>The curtain motor</h3>
+          <p>Curtains that open themselves in the morning and close when the sun goes down. It fits the track you already have, it runs quietly, and you can still pull them by hand any time you want.</p>
+          <ul class="specs"><li>Fits your track</li><li>Quiet motor</li><li>Remote and app</li><li>Still opens by hand</li><li>Times and scenes</li><li>Works offline</li></ul>
+        </div>
+        <div class="plate plate-wide">
+          <span class="glow" aria-hidden="true"></span>
+          <img src="assets/curtain.jpg" alt="The Nexora Homes smart curtain motor on a ceiling track" loading="lazy" decoding="async">
+          <svg class="grid" viewBox="0 0 100 60" aria-hidden="true"><g fill="currentColor"><rect x="4" y="12" width="92" height="10" rx="5" opacity=".8"/><rect x="10" y="30" width="34" height="24" rx="6" opacity=".45"/><rect x="56" y="30" width="34" height="24" rx="6" opacity=".45"/></g></svg>
         </div>
       </div>
     </div>
@@ -906,11 +951,11 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
 
 <footer>
   <div class="wrap">
-    <a class="brand" href="#top" aria-label="Nexora, back to top">
-      <svg viewBox="0 0 32 32" aria-hidden="true" style="color:var(--accent-bright)"><g fill="currentColor"><rect x="2" y="2" width="12" height="12" rx="3.4"/><rect x="18" y="2" width="12" height="12" rx="3.4" opacity=".42"/><rect x="2" y="18" width="12" height="12" rx="3.4" opacity=".42"/><rect x="18" y="18" width="12" height="12" rx="3.4"/></g></svg>
-      <b>NEXORA</b>
+    <a class="brand" href="#top" aria-label="Nexora Homes, back to top">
+      <img class="mark" src="assets/nexora-mark.png" alt="" width="132" height="157" decoding="async">
+      <b>NEXORA HOMES</b>
     </a>
-    <p>Smart control panels, switches and locks. Supplied and fitted by our own team.</p>
+    <p><span class="tag">Ultra luxury needs future technology</span><br>Smart control panels, switches, curtains and locks. Supplied and fitted by our own team. DHA Phase 6.</p>
     <p><a href="#talk" data-wa>Message us on WhatsApp</a></p>
   </div>
 </footer>
@@ -923,21 +968,16 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
    0. WHATSAPP: SET THE NUMBER HERE
    Country code first, digits only, no plus and no spaces.
    ============================================================ */
-var WA_NUMBER = "919999999999";   /* <-- SET WHATSAPP NUMBER */
+var WA_NUMBER = "923234508739";   /* Nexora Homes, from the business card: 0323 4508739 */
 
 /* ============================================================
    1. Elements and small helpers
    ============================================================ */
-var video      = document.getElementById('hero');
 var stage      = document.getElementById('stage');
 var heroSec    = document.getElementById('hero-sec');
-var posterLayer= document.getElementById('poster');
-var ring       = document.getElementById('ring');
+var prodStage  = document.getElementById('prodstage');
+var prod       = document.getElementById('prod');
 var nav        = document.getElementById('nav');
-
-var VIDEO_URL   = 'assets/hero-scrub.mp4';
-var POSTER_URL  = 'assets/hero-poster.jpg';
-var VIDEO_BYTES = 6000000;   /* real byte size; fallback when Content-Length is absent */
 
 var clamp = function(v,lo,hi){ return Math.min(hi, Math.max(lo, v)); };
 var smoothstep = function(p,e0,e1){
@@ -1067,25 +1107,15 @@ function updateCaptions(p){
 }
 
 /* ============================================================
-   4. Gated seeks, with the deadlock escape
+   4. The product driver, delta-gated like every other DOM write
    ============================================================ */
-var seekBusy = false, pendingTime = null;
+var lastP = -1;
 
-function requestSeek(t){
-  if (!video.duration || !isFinite(t)) return;
-  if (seekBusy){ pendingTime = t; return; }
-  seekBusy = true;
-  try { video.currentTime = t; } catch(e){ seekBusy = false; }
+function paintProduct(p){
+  if (Math.abs(p - lastP) < 0.002) return;   /* converged frames cost nothing */
+  lastP = p;
+  prodStage.style.setProperty('--p', p.toFixed(4));
 }
-video.addEventListener('seeked', function(){
-  seekBusy = false;
-  if (pendingTime !== null){
-    var t = pendingTime; pendingTime = null; requestSeek(t);
-  }
-});
-video.addEventListener('error', function(){
-  seekBusy = false; pendingTime = null; failVideo();
-});
 
 /* ============================================================
    5. The rAF loop: dt-normalized lerp that rests
@@ -1115,7 +1145,7 @@ function tick(now){
   } else {
     rafId = requestAnimationFrame(tick);
   }
-  if (video.duration) requestSeek(shown * video.duration);
+  paintProduct(shown);
   updateCaptions(shown);
 }
 
@@ -1132,84 +1162,24 @@ if ('IntersectionObserver' in window){
 }
 
 /* ============================================================
-   6. The streamed Blob fetch, behind an honest ring
+   6. Hero init. Nothing heavy loads: the hero is one real product photo.
    ============================================================ */
 var heroInit = false;
 
 function initHeroOnce(){
   if (heroInit) return;
   heroInit = true;
-
-  posterLayer.style.backgroundImage = "url('" + POSTER_URL + "')";
   loadStart = performance.now();
+  lastP = -1;
   if (rafId === null) rafId = requestAnimationFrame(tick);
-
-  var started = false;
-  function startBlobFetch(){
-    if (started) return;
-    started = true;
-    loadHeroBlob().catch(failVideo);
-  }
-  var posterImg = new Image();
-  posterImg.onload = startBlobFetch;
-  posterImg.onerror = startBlobFetch;
-  posterImg.src = POSTER_URL;
-  setTimeout(startBlobFetch, 4000);
 }
 
-function loadHeroBlob(){
-  var ctrl = new AbortController();
-  var watchdog = setTimeout(function(){ ctrl.abort(); }, 20000);
-
-  return fetch(VIDEO_URL, {signal: ctrl.signal}).then(function(res){
-    if (!res.ok || !res.body) throw new Error('no video');
-    var total = Number(res.headers.get('Content-Length')) || VIDEO_BYTES;
-    var reader = res.body.getReader();
-    var chunks = [], got = 0, lastRing = 0;
-
-    function pump(){
-      return reader.read().then(function(r){
-        if (r.done) return;
-        clearTimeout(watchdog);
-        watchdog = setTimeout(function(){ ctrl.abort(); }, 20000);
-        chunks.push(r.value);
-        got += r.value.length;
-        var frac = Math.min(1, got / total);
-        var now = performance.now();
-        if (now - lastRing > 100 || frac === 1){
-          lastRing = now;
-          ring.style.setProperty('--ld', Math.round(126 * (1 - frac)));
-        }
-        return pump();
-      });
-    }
-    return pump().then(function(){
-      clearTimeout(watchdog);
-      ring.style.setProperty('--ld', 0);
-      video.src = URL.createObjectURL(new Blob(chunks, {type: 'video/mp4'}));
-      video.load();
-      video.addEventListener('canplay', function(){
-        requestSeek(heroProgress() * video.duration);
-        stage.classList.add('video-ready');
-      }, {once: true});
-    });
+/* the page must be complete even if the product image never arrives */
+if (prod){
+  prod.addEventListener('error', function(){
+    prod.style.display = 'none';
+    stage.classList.add('no-shot');
   });
-}
-
-var failed = false;
-function failVideo(){
-  if (failed) return;
-  failed = true;
-  stage.classList.add('video-failed');
-  if (ring && ring.parentNode){
-    var cue = document.createElementNS('http://www.w3.org/2000/svg','svg');
-    cue.setAttribute('class','cue');
-    cue.setAttribute('viewBox','0 0 24 24');
-    cue.setAttribute('aria-hidden','true');
-    cue.innerHTML = '<path d="M12 4v14M6 13l6 6 6-6" fill="none" stroke="currentColor" ' +
-                    'stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>';
-    ring.parentNode.replaceChild(cue, ring);
-  }
 }
 
 /* ============================================================
@@ -1429,7 +1399,7 @@ document.querySelectorAll('.pick').forEach(function(group){
   });
 });
 function waHref(){
-  var msg = 'Hi Nexora, I would like a quote.';
+  var msg = 'Hi Nexora Homes, I would like a quote.';
   if (picked.size) msg += ' Home size: ' + picked.size + '.';
   if (picked.want) msg += ' Interested in: ' + picked.want + '.';
   return 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg);
