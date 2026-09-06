@@ -136,32 +136,39 @@ a{color:inherit}
 .stage::after{content:"";position:absolute;inset:0;pointer-events:none;
   background:linear-gradient(to bottom,rgba(11,16,22,.55) 0%,transparent 22%,transparent 78%,rgba(11,16,22,.7) 100%)}
 
-/* the hero product: the real panel, driven by scroll progress --p */
+/* the hero: the real panel, coming apart layer by layer as you scroll.
+   Every layer sits centred at --p 0 (one assembled panel, glass in front) and
+   travels to its own place in the exploded view as --p reaches 1. */
 .prodstage{position:absolute;inset:0;display:grid;place-items:center;
-  perspective:1400px;pointer-events:none}
-.prod{position:relative;z-index:3;width:min(30vw,392px);height:auto;
-  /* the product rises and settles high as the scroll ends, so the closing
-     headline and the button land in clear space beneath it */
-  transform:translateY(calc(2.6vh - var(--p,0) * 17vh))
-            scale(calc(.80 + .17*var(--p,0)))
-            rotateY(calc((1 - var(--p,0)) * -15deg));
-  filter:drop-shadow(0 26px 60px rgba(0,0,0,.85))
-         drop-shadow(0 0 calc(18px + 46px*var(--p,0)) rgba(212,175,55,.28));
+  perspective:1600px;pointer-events:none}
+.strip{position:relative;z-index:3;width:min(88vw,1180px);aspect-ratio:1402/416;
+  transform:translateY(calc(1vh - var(--p,0) * 22.5vh)) scale(calc(.90 + .04*var(--p,0)));
   will-change:transform}
-.bloom{position:absolute;z-index:2;width:min(56vw,760px);aspect-ratio:1;border-radius:50%;
+.lyr{position:absolute;inset:0;display:grid;place-items:center;z-index:var(--z);
+  transform:translateX(calc((var(--cx) - .5) * var(--p,0) * 100%))
+            rotateY(calc((1 - var(--p,0)) * -13deg));
+  will-change:transform}
+.lyr img{height:calc(var(--lh) * 100%);width:auto;
+  filter:drop-shadow(0 18px 40px rgba(0,0,0,.9))
+         drop-shadow(0 0 26px rgba(212,175,55,.18))}
+/* stacked, only the glass front reads; the rest emerge as the panel opens up */
+.lyr:not(:last-child){opacity:calc(.10 + .90*var(--p,0))}
+@media (max-width:1100px){.strip{width:94vw}}
+
+.bloom{position:absolute;z-index:2;width:min(60vw,820px);aspect-ratio:1;border-radius:50%;
+  translate:0 calc(var(--p,0) * -12vh);
+  background:radial-gradient(circle,rgba(212,175,55,.28) 0%,rgba(212,175,55,.09) 40%,transparent 70%);
+  opacity:calc(.14 + .86*var(--p,0));
+  transform:scale(calc(.60 + .40*var(--p,0)));will-change:transform,opacity}
+.halo{position:absolute;z-index:2;width:min(36vw,470px);aspect-ratio:1;border-radius:50%;
+  border:1px solid rgba(240,213,132,.24);
   translate:0 calc(var(--p,0) * -13vh);
-  background:radial-gradient(circle,rgba(212,175,55,.30) 0%,rgba(212,175,55,.10) 38%,transparent 70%);
-  opacity:calc(.12 + .88*var(--p,0));
-  transform:scale(calc(.62 + .38*var(--p,0)));will-change:transform,opacity}
-.halo{position:absolute;z-index:2;width:min(34vw,440px);aspect-ratio:1;border-radius:50%;
-  translate:0 calc(var(--p,0) * -15vh);
-  border:1px solid rgba(240,213,132,.28);
-  opacity:calc(var(--p,0)*.5);
-  transform:scale(calc(.9 + .5*var(--p,0)));will-change:transform,opacity}
-.floorglow{position:absolute;z-index:1;bottom:calc(13% + var(--p,0) * 13vh);width:min(44vw,620px);height:12vh;
-  background:radial-gradient(ellipse at center,rgba(212,175,55,.18),transparent 70%);
-  opacity:calc(.1 + .9*var(--p,0));filter:blur(6px)}
-@media (max-width:1100px){.prod{width:min(38vw,340px)}}
+  opacity:calc(var(--p,0)*.42);
+  transform:scale(calc(.9 + .6*var(--p,0)));will-change:transform,opacity}
+.floorglow{position:absolute;z-index:1;bottom:calc(16% + var(--p,0) * 12vh);
+  width:min(52vw,720px);height:12vh;
+  background:radial-gradient(ellipse at center,rgba(212,175,55,.16),transparent 70%);
+  opacity:calc(.1 + .9*var(--p,0));filter:blur(8px)}
 
 /* the global base scrim, always on */
 .scrim{position:absolute;inset:0;pointer-events:none;
@@ -598,7 +605,15 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
       <span class="floorglow"></span>
       <span class="bloom"></span>
       <span class="halo"></span>
-      <img class="prod" id="prod" src="assets/panel-alexa.png" alt="" decoding="async" fetchpriority="high">
+      <div class="strip" id="strip">
+        <span class="lyr" style="--cx:0.919;--lh:0.731;--z:1"><img src="assets/layers/bracket.png" alt="" decoding="async" loading="lazy"></span>
+        <span class="lyr" style="--cx:0.785;--lh:0.851;--z:2"><img src="assets/layers/housing.png" alt="" decoding="async" loading="lazy"></span>
+        <span class="lyr" style="--cx:0.674;--lh:0.678;--z:3"><img src="assets/layers/power.png" alt="" decoding="async" loading="lazy"></span>
+        <span class="lyr" style="--cx:0.569;--lh:0.849;--z:4"><img src="assets/layers/pcb.png" alt="" decoding="async" loading="lazy"></span>
+        <span class="lyr" style="--cx:0.432;--lh:0.796;--z:5"><img src="assets/layers/lcd.png" alt="" decoding="async" loading="lazy"></span>
+        <span class="lyr" style="--cx:0.302;--lh:0.894;--z:6"><img src="assets/layers/touch.png" alt="" decoding="async" loading="lazy"></span>
+        <span class="lyr" style="--cx:0.133;--lh:0.94;--z:7"><img src="assets/layers/glass.png" alt="" decoding="async" fetchpriority="high"></span>
+      </div>
     </div>
     <div class="scrim" aria-hidden="true"></div>
 
@@ -977,7 +992,7 @@ var WA_NUMBER = "923234508739";   /* Nexora Homes, from the business card: 0323 
 var stage      = document.getElementById('stage');
 var heroSec    = document.getElementById('hero-sec');
 var prodStage  = document.getElementById('prodstage');
-var prod       = document.getElementById('prod');
+var strip      = document.getElementById('strip');
 var nav        = document.getElementById('nav');
 
 var clamp = function(v,lo,hi){ return Math.min(hi, Math.max(lo, v)); };
@@ -1175,13 +1190,14 @@ function initHeroOnce(){
   if (rafId === null) rafId = requestAnimationFrame(tick);
 }
 
-/* the page must be complete even if the product image never arrives */
-if (prod){
-  prod.addEventListener('error', function(){
-    prod.style.display = 'none';
-    stage.classList.add('no-shot');
+/* the page must be complete even if a layer never arrives: drop the one that
+   failed and let the rest carry the hero */
+[].forEach.call(document.querySelectorAll('.lyr img'), function(img){
+  img.addEventListener('error', function(){
+    var w = img.parentNode;
+    if (w && w.parentNode) w.parentNode.removeChild(w);
   });
-}
+});
 
 /* ============================================================
    7. The five static-hero gates. These five strings match the CSS
