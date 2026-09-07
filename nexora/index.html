@@ -264,6 +264,11 @@ main{position:relative;z-index:1}
 }
 .band.b5 .sub{margin-inline:auto}
 .band .cta-row{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+/* .bands ignores clicks so the footage reads through it. The settle's
+   buttons have to opt back in, and only while that band is actually on,
+   or invisible buttons would swallow clicks further up the scroll. */
+.band .cta-row{pointer-events:none}
+.band.live .cta-row{pointer-events:auto}
 .band .btn{text-shadow:none}
 
 /* split text: word and character spans, seeded so every load matches */
@@ -449,12 +454,23 @@ section{position:relative;z-index:1}
    into the plate so there is no seam, and the black glass reads hard against
    it. Light plates inset into a dark page is the deliberate device here. */
 .card .shot{
-  position:relative;aspect-ratio:16/10;overflow:hidden;
+  /* 4/3 rather than 16/10: the range includes a door lock that is twice as
+     tall as it is wide, and a taller plate gives it real presence without
+     making the cards differ from one another. */
+  position:relative;aspect-ratio:4/3;overflow:hidden;
   background:radial-gradient(78% 86% at 50% 38%,#efece4 0%,#cfc9bb 62%,#b7b0a1 100%);
   display:grid;place-items:center;
 }
 .card .shot img{
-  width:84%;height:84%;object-fit:contain;
+  /* The range mixes wide products with very tall ones (the door lock is
+     654x1272). An <img> is a replaced element, so auto width or height with
+     offsets resolves to the INTRINSIC size and the offsets are ignored: the
+     lock rendered 1035px tall inside a 333px plate. Explicit 100% against a
+     definite containing block, with the breathing room as padding, is what
+     actually holds. box-sizing:border-box makes the padding subtract. */
+  position:absolute;inset:0;
+  width:100%;height:100%;padding:7% 8%;
+  object-fit:contain;
   mix-blend-mode:multiply;
   filter:contrast(1.04);
 }
@@ -757,7 +773,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
 
         <div class="band b2 e-grid" data-a="0.19" data-b="0.36" data-spread="0.42">
           <div class="inner"><div class="col">
-            <h2 data-split="char">Lights, locks, curtains, air.</h2>
+            <h2 data-split="char">Lights, locks, curtains.</h2>
           </div></div>
         </div>
 
@@ -832,10 +848,10 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
       </div>
       <div class="range-grid stagger">
         <article class="card">
-          <div class="shot"><img src="assets/panels.jpg" alt="The Nexora 4 inch control panel beside the wide multi zone control panel, both in black glass" loading="lazy" decoding="async"></div>
+          <div class="shot"><img src="assets/panel-4in.jpg" alt="The Nexora 4 inch black glass control panel showing temperature, date and scene buttons" loading="lazy" decoding="async"></div>
           <div class="body">
             <h3>Control panels</h3>
-            <p>A 4 inch or wide HD touch screen that runs scenes, lights, climate and cameras from one place on the wall. Works with Alexa.</p>
+            <p>A 4 inch HD touch screen that runs scenes, lights, climate and cameras from one place on the wall. Works with Alexa.</p>
           </div>
         </article>
         <article class="card">
@@ -1129,8 +1145,8 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
         <ul>
           <li><a href="https://wa.me/923234508739" target="_blank" rel="noopener">WhatsApp 0323 450 8739</a></li>
           <li><a href="tel:+923234508739">Call 0323 450 8739</a></li>
-          <li><a href="https://instagram.com/nexorahomes" target="_blank" rel="noopener">Instagram</a></li>
-          <li><a href="https://facebook.com/nexorahomes" target="_blank" rel="noopener">Facebook</a></li>
+          <li><a href="https://instagram.com/nexorahomesautomations" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://facebook.com/Nexorahomes" target="_blank" rel="noopener">Facebook</a></li>
         </ul>
       </div>
     </div>
@@ -1223,7 +1239,8 @@ var bands = bandEls.map(function(el){
     op: -1,
     k: -1,
     ks: -1,
-    kb: -1
+    kb: -1,
+    live: null
   };
 });
 
@@ -1318,6 +1335,11 @@ function updateCaptions(p){
     if (Math.abs(op - B.op) > 0.004){
       B.op = op;
       B.el.style.opacity = op.toFixed(3);
+    }
+    var live = op > 0.5;
+    if (live !== B.live){
+      B.live = live;
+      B.el.classList.toggle('live', live);
     }
     if (Math.abs(k - B.k) > 0.008){
       B.k = k;
@@ -1419,7 +1441,7 @@ function enableScrub(){
   scrubOn = true;
   initHeroOnce();
   window.addEventListener('scroll', onScroll, { passive:true });
-  bands.forEach(function(b){ b.op = -1; b.k = -1; b.ks = -1; b.kb = -1; });
+  bands.forEach(function(b){ b.op = -1; b.k = -1; b.ks = -1; b.kb = -1; b.live = null; });
   unpinFinalStates();
   updateCaptions(heroProgress());
   onScroll();
