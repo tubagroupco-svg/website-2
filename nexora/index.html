@@ -403,15 +403,23 @@ section{position:relative;z-index:1}
   transition:opacity .9s var(--ease),transform .9s var(--ease)}
 .stagger.in > *{opacity:1;transform:none}
 .stagger.in > *:nth-child(1){transition-delay:0ms}
-.stagger.in > *:nth-child(2){transition-delay:90ms}
-.stagger.in > *:nth-child(3){transition-delay:180ms}
-.stagger.in > *:nth-child(4){transition-delay:270ms}
+.stagger.in > *:nth-child(2){transition-delay:70ms}
+.stagger.in > *:nth-child(3){transition-delay:140ms}
+.stagger.in > *:nth-child(4){transition-delay:210ms}
+.stagger.in > *:nth-child(5){transition-delay:280ms}
+.stagger.in > *:nth-child(6){transition-delay:350ms}
+.stagger.in > *:nth-child(7){transition-delay:420ms}
+.stagger.in > *:nth-child(8){transition-delay:490ms}
 /* retire the delays once the entrance is done, at matching specificity,
    or every later hover lags by its stagger forever */
 .stagger.done > *:nth-child(1),
 .stagger.done > *:nth-child(2),
 .stagger.done > *:nth-child(3),
-.stagger.done > *:nth-child(4){transition-delay:0ms}
+.stagger.done > *:nth-child(4),
+.stagger.done > *:nth-child(5),
+.stagger.done > *:nth-child(6),
+.stagger.done > *:nth-child(7),
+.stagger.done > *:nth-child(8){transition-delay:0ms}
 
 /* ---------- S1 the problem ---------- */
 .problem-grid{
@@ -437,10 +445,13 @@ section{position:relative;z-index:1}
 @media (max-width:880px){.problem-grid{grid-template-columns:1fr}}
 
 /* ---------- S2 the range ---------- */
+/* eight products, so the column count has to divide into eight or a card
+   ends up alone in a row: four across on a wide screen, two below that. */
 .range-grid{
-  display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(18px,2.2vw,28px);
+  display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,1.6vw,22px);
   margin-top:60px;
 }
+@media (max-width:1180px){.range-grid{grid-template-columns:repeat(2,1fr);gap:clamp(18px,2.2vw,28px)}}
 .card{
   position:relative;overflow:hidden;
   border:1px solid var(--line);border-radius:18px;
@@ -487,7 +498,7 @@ section{position:relative;z-index:1}
 .card .body{padding:26px 26px 30px}
 .card h3{font-size:clamp(19px,1.7vw,24px)}
 .card p{margin-top:11px;color:var(--text-secondary);font-size:15px;max-width:42ch}
-@media (max-width:760px){.range-grid{grid-template-columns:1fr}}
+@media (max-width:660px){.range-grid{grid-template-columns:1fr}}
 
 /* ---------- S3 how it works ---------- */
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,2.6vw,34px);margin-top:60px}
@@ -855,6 +866,13 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
           </div>
         </article>
         <article class="card">
+          <div class="shot"><img src="assets/panel-wide.jpg" alt="The Nexora wide control panel showing room zones, media and a round thermostat dial" loading="lazy" decoding="async"></div>
+          <div class="body">
+            <h3>Wide control panels</h3>
+            <p>A longer screen for the main rooms. Zones down one side, the temperature dial on the other, everything on one wall plate.</p>
+          </div>
+        </article>
+        <article class="card">
           <div class="shot"><img src="assets/switches-soft.jpg" alt="Nexora soft touch glass gang switches in white, grey and black" loading="lazy" decoding="async"></div>
           <div class="body">
             <h3>Touch switches</h3>
@@ -862,14 +880,35 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
           </div>
         </article>
         <article class="card">
-          <div class="shot"><img src="assets/lock.jpg" alt="Nexora smart door lock with camera, keypad and fingerprint reader" loading="lazy" decoding="async"></div>
+          <div class="shot"><img src="assets/switch-8gang.jpg" alt="A Nexora eight gang white glass touch switch beside a phone running the app" loading="lazy" decoding="async"></div>
+          <div class="body">
+            <h3>Eight gang switches</h3>
+            <p>One plate for a whole room. Eight circuits under glass, and the same eight on your phone when you are not in the room.</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="shot"><img src="assets/switch-display.jpg" alt="Nexora display switches in grey, white, red and black, each with a small screen showing time and weather" loading="lazy" decoding="async"></div>
+          <div class="body">
+            <h3>Display switches</h3>
+            <p>A touch switch with a small screen for the time, the date and the weather. Black, grey, white or red.</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="shot"><img src="assets/lock.jpg" alt="A Nexora smart door lock with camera, keypad and fingerprint reader, shown front and back" loading="lazy" decoding="async"></div>
           <div class="body">
             <h3>Smart locks</h3>
             <p>Camera, keypad, fingerprint and app. Your door stops needing a key.</p>
           </div>
         </article>
         <article class="card">
-          <div class="shot"><img src="assets/dimmer.jpg" alt="Nexora glass dial panel for fan speed and light level" loading="lazy" decoding="async"></div>
+          <div class="shot"><img src="assets/curtain-motor.jpg" alt="A Nexora curtain motor, the quiet drive unit that mounts on the track" loading="lazy" decoding="async"></div>
+          <div class="body">
+            <h3>Curtain motors</h3>
+            <p>A quiet motor on the track. Curtains open on a scene, a schedule, the remote or a word to Alexa.</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="shot"><img src="assets/dimmer.jpg" alt="A Nexora glass dial panel for fan speed and light level" loading="lazy" decoding="async"></div>
           <div class="body">
             <h3>Dimmers and knobs</h3>
             <p>A single glass dial for fan speed and light level, where a plastic regulator used to be.</p>
@@ -1145,6 +1184,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
         <ul>
           <li><a href="https://wa.me/923234508739" target="_blank" rel="noopener">WhatsApp 0323 450 8739</a></li>
           <li><a href="tel:+923234508739">Call 0323 450 8739</a></li>
+          <!-- CONFIRM: exact social URLs pending from the owner -->
           <li><a href="https://instagram.com/nexorahomesautomations" target="_blank" rel="noopener">Instagram</a></li>
           <li><a href="https://facebook.com/Nexorahomes" target="_blank" rel="noopener">Facebook</a></li>
         </ul>
