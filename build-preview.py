@@ -14,6 +14,12 @@ Two things change for the preview and nothing else:
    shipping path silently fails there and the page falls back to the poster.
 2. A lighter 1440-wide encode stands in for the 1080p master, because the whole
    film has to travel inside the HTML as base64.
+3. Only the reduced-motion static-hero gate survives. The other four are size,
+   orientation and pointer gates that correctly give a real phone a composed
+   still instead of a 6 MB film. A preview panel is narrow and portrait, so
+   every one of them fires there and the film never loads, which is exactly
+   what "there is no hero film, it is a still image" looks like. The deployed
+   site keeps all five.
 
 The deployed site keeps the streamed blob loader, which is what makes seeking
 work on hosts without HTTP Range support.
@@ -91,6 +97,28 @@ video.addEventListener('error', function(){   /* the deadlock escape */
 });''' % ('true' if fallback else 'false')
     assert old_err in out, 'error handler moved; update build-preview.py'
     out = out.replace(old_err, new_err)
+
+    # the preview panel is narrow and portrait, so the phone gates fire and
+    # hide the film. Keep only reduced motion, which is a real preference.
+    old_css_gate = '''@media (max-width: 720px),
+       (orientation: portrait) and (max-width: 1024px),
+       (orientation: portrait) and (pointer: coarse),
+       (orientation: landscape) and (pointer: coarse) and (max-height: 560px),
+       (prefers-reduced-motion: reduce){'''
+    assert old_css_gate in out, 'CSS gate block moved; update build-preview.py'
+    out = out.replace(old_css_gate, '@media (prefers-reduced-motion: reduce){')
+
+    old_js_gate = '''var GATES = [
+  '(max-width: 720px)',
+  '(orientation: portrait) and (max-width: 1024px)',
+  '(orientation: portrait) and (pointer: coarse)',
+  '(orientation: landscape) and (pointer: coarse) and (max-height: 560px)',
+  '(prefers-reduced-motion: reduce)'
+];'''
+    assert old_js_gate in out, 'JS GATES array moved; update build-preview.py'
+    out = out.replace(old_js_gate, '''var GATES = [
+  '(prefers-reduced-motion: reduce)'
+];''')
 
     out = out.replace('<!DOCTYPE html>\n<html lang="en">\n<head>\n', '')
     out = out.replace('</head>\n<body>\n', '')
