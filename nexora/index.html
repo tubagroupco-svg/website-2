@@ -744,6 +744,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
   <div class="nav-links">
     <a href="#range">Range</a>
     <a href="#how">How it works</a>
+    <a href="about.html">About</a>
     <a href="#questions">Questions</a>
   </div>
   <a class="btn" href="https://wa.me/923234508739" target="_blank" rel="noopener">
@@ -1176,6 +1177,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
           <li><a href="#range">Range</a></li>
           <li><a href="#how">How it works</a></li>
           <li><a href="#try">Try it</a></li>
+          <li><a href="about.html">About us</a></li>
           <li><a href="#questions">Questions</a></li>
         </ul>
       </div>
@@ -1771,10 +1773,27 @@ window.addEventListener('resize', function(){
   rsz = setTimeout(function(){ buildSpine(); if (scrubOn) onScroll(); }, 180);
 }, { passive:true });
 
+
+/* A hash arriving from another page should land, not smooth-scroll seven
+   thousand pixels. Smooth stays on for anchors clicked while already here. */
+function landOnHash(){
+  if (!location.hash) return;
+  var target;
+  try { target = document.querySelector(location.hash); } catch (e) { return; }
+  if (!target) return;
+  var root = document.documentElement;
+  var prev = root.style.scrollBehavior;
+  root.style.scrollBehavior = 'auto';
+  target.scrollIntoView();
+  root.style.scrollBehavior = prev;
+}
+
 function boot(){
   navState();
   buildSpine();
   applyHeroMode();
+  landOnHash();
+  if (scrubOn) onScroll();
   if (reduced()) pinToFinalStates();
 }
 if (document.readyState === 'complete') boot();
