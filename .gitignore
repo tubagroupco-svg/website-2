@@ -25,4 +25,5 @@ review/nexora-about-preview.html
 # keeps the source rather than a second copy of every asset
 #   cd nexora && zip -r -9 ../nexora-website.zip .
 nexora-website.zip
-nexora-homes.zip
+# nexora-homes.zip is committed on purpose: the in-chat download was not
+# working for the owner, so GitHub serves as a second route to the file.
