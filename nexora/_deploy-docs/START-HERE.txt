@@ -1,0 +1,335 @@
+================================================================
+  NEXORA HOMES, WEBSITE
+  How to put it online on Hostinger and point your GoDaddy
+  domain at it.
+================================================================
+
+Read this once through before you start. The whole job is about
+twenty minutes of clicking, plus waiting for the domain to catch
+up, which is out of anyone's hands.
+
+
+----------------------------------------------------------------
+  FIRST, THE QUESTION YOU ASKED: IS THERE A BUILD STEP?
+----------------------------------------------------------------
+
+No. There is nothing to compile, generate, or run.
+
+The files in this folder ARE the finished website. index.html is
+already the final file a browser reads: the styling and the code
+are written inside it, so there is no separate CSS or JS file to
+assemble, no npm, no framework, no Node, no Python needed to
+produce it.
+
+Upload the folder and the site is live. That is the whole build
+process.
+
+There is ONE optional Python script, set-domain.py, in this
+folder. It is a convenience, not a build step: it writes your
+domain into four files so that link previews and Google get the
+full address. You can do the same thing by hand in a text editor
+in two minutes. Step 1 below covers both ways.
+
+(If you ever saw a file called build-preview.py in the project,
+that was only used to squeeze the site into a single file for the
+preview links. It has nothing to do with your website and is not
+in this folder.)
+
+
+----------------------------------------------------------------
+  WHAT IS IN THE FOLDER
+----------------------------------------------------------------
+
+  index.html            the home page, with the scrolling film
+  about.html            the About page
+  404.html              shown if someone reaches a wrong address
+  .htaccess             server settings: https, compression,
+                        caching, the 404 page. See the note
+                        about hidden files in step 2.
+  robots.txt            tells search engines they may index it
+  sitemap.xml           lists the two pages for search engines
+  favicon.ico           the little icon in the browser tab
+  favicon.svg           the same icon, sharp at any size
+  apple-touch-icon.png  the icon iPhones use on a home screen
+
+  assets/               every photo, the hero film, and the fonts
+    fonts/              3 font files, served from your own site
+                        rather than from Google
+
+  _deploy-docs/         this guide and set-domain.py.
+                        Not part of the website. You can delete
+                        it after uploading; if you leave it, the
+                        .htaccess already blocks it from being
+                        read by visitors.
+
+
+----------------------------------------------------------------
+  STEP 1. PUT YOUR DOMAIN INTO THE FILES
+----------------------------------------------------------------
+
+Four files carry a placeholder, SITE_URL_HERE, because the site
+was built before the domain was known. These are the addresses
+that WhatsApp, Facebook and Google read. The site works without
+this step, but link previews and search results will not.
+
+  THE EASY WAY, if you have Python on your computer:
+
+    Open a terminal in this _deploy-docs folder and run
+
+        python3 set-domain.py yourdomain.com
+
+    Use your real domain. If you want the site to live at
+    www.yourdomain.com, type it with the www and the script sets
+    that up too. It prints what it changed.
+
+  THE OTHER WAY, no Python needed:
+
+    Open these four files in any text editor (Notepad, TextEdit,
+    VS Code) and replace every SITE_URL_HERE with your address,
+    written in full and with NO slash on the end:
+
+        https://yourdomain.com
+
+    The four files are:
+        index.html      (3 places)
+        about.html      (3 places)
+        sitemap.xml     (2 places)
+        robots.txt      (1 place)
+
+    Then open .htaccess and find the block headed
+    "Pick ONE address for the site". Remove the "# " from the
+    front of the two or three lines under whichever you want,
+    www or non-www. Uncomment ONE of them, never both: turning
+    on both sends visitors in a loop and the site stops loading.
+
+
+----------------------------------------------------------------
+  STEP 2. UPLOAD TO HOSTINGER
+----------------------------------------------------------------
+
+Log in to Hostinger and open hPanel. Go to your website, then
+File Manager. You want the folder called public_html. That is
+the web root: whatever sits there is what the world sees.
+
+  If there is a default Hostinger placeholder page in there
+  already, delete it first, or your site will not show.
+
+  THE FAST WAY:
+
+    1. Zip up the CONTENTS of this folder. Not the folder
+       itself, the files inside it: index.html, about.html,
+       assets, and the rest.
+    2. In File Manager, open public_html and upload that zip.
+    3. Right-click it and choose Extract.
+    4. Delete the zip afterwards.
+
+    When it is done, index.html must be sitting directly inside
+    public_html. If instead you see public_html/nexora/index.html
+    then everything is one level too deep, and the site will not
+    load. Move the files up a level and remove the empty folder.
+
+  OR BY FTP:
+
+    hPanel shows your FTP host, username and port under Files,
+    FTP Accounts. Connect with FileZilla, go to public_html, and
+    drag everything in.
+
+  ABOUT .htaccess, PLEASE READ:
+
+    That file starts with a dot, which makes it hidden. File
+    Manager and FileZilla both hide it by default, so it is very
+    easy to upload everything else and silently leave it behind.
+
+    In Hostinger File Manager, turn on "Show hidden files" in
+    the settings menu.
+    In FileZilla, Server menu, "Force showing hidden files".
+
+    Then check that .htaccess really is in public_html. Without
+    it you lose the https redirect, the compression, the caching
+    and the custom 404 page. The site still loads, so nothing
+    will look obviously wrong, which is exactly why it is worth
+    checking.
+
+
+----------------------------------------------------------------
+  STEP 3. POINT THE GODADDY DOMAIN AT HOSTINGER
+----------------------------------------------------------------
+
+The domain is at GoDaddy and the site is at Hostinger, so
+GoDaddy has to be told where to send people. Two ways. Pick one.
+
+  OPTION A, NAMESERVERS. Recommended.
+
+  Hostinger then handles all DNS for the domain, which makes
+  everything after this easier, including email.
+
+    1. In Hostinger hPanel, find the nameservers for your plan.
+       They are shown under your hosting plan's details, usually
+       in a panel headed Nameservers or in the domain setup
+       screen. There are normally two, sometimes four. Copy them
+       down exactly as shown. Do not use nameservers from a blog
+       post or from memory, including any in this guide: read
+       them off your own hPanel, because they differ between
+       plans and they do change.
+
+    2. Log in to GoDaddy. Go to My Products, find the domain,
+       and open its DNS or Nameservers settings.
+
+    3. Choose to use your own / custom nameservers, and enter
+       the ones you copied. Save.
+
+    4. In hPanel, add the domain to your hosting plan if it is
+       not already there, so Hostinger knows to answer for it.
+
+  OPTION B, AN A RECORD. Use this if you want to keep GoDaddy
+  in charge of DNS, for instance because email is set up there.
+
+    1. In hPanel, find your hosting account's IP address. It is
+       shown in the plan details.
+
+    2. In GoDaddy, open the domain's DNS records and set:
+
+         Type   Name    Value                TTL
+         A      @       your Hostinger IP    1 hour
+         CNAME  www     @                    1 hour
+
+       If an A record for @ already exists, edit it rather than
+       adding a second one. Two A records for @ pointing at
+       different places will make the site load about half the
+       time, which is a horrible thing to debug.
+
+    3. In hPanel, add the domain to your hosting plan.
+
+  THEN WAIT.
+
+  DNS changes are not instant. Usually it is minutes to an hour,
+  but it can take up to 24 to 48 hours to reach everyone. During
+  that window some people see the new site and some do not, and
+  that is normal, not a fault. Check progress at
+  https://dnschecker.org by entering your domain.
+
+
+----------------------------------------------------------------
+  STEP 4. TURN ON HTTPS
+----------------------------------------------------------------
+
+Once the domain actually points at Hostinger, go to hPanel,
+Security, SSL, and install the free certificate for the domain.
+On most plans this happens by itself within an hour of the
+domain resolving.
+
+Do this AFTER the domain is pointing, not before. The
+certificate cannot be issued until the domain reaches Hostinger.
+
+The .htaccess already forces every visitor onto https. Which
+means that until the certificate is installed, visitors get a
+browser security warning. So: point the domain, install the
+certificate, then check the site. If you must test before the
+certificate exists, open .htaccess and put a # at the start of
+the four lines of the "Send everyone to https" rule, and take
+the # off once the certificate is in.
+
+
+----------------------------------------------------------------
+  STEP 5. CHECK IT
+----------------------------------------------------------------
+
+Open your site and walk through this list.
+
+  [ ] https://yourdomain.com loads the home page
+  [ ] the padlock shows in the address bar
+  [ ] http://yourdomain.com (no s) jumps to https by itself
+  [ ] scrolling the top of the home page plays the film
+  [ ] the About link in the menu works
+  [ ] the WhatsApp buttons open a chat to 0323 450 8739
+  [ ] the eight products all show their photo
+  [ ] yourdomain.com/a-page-that-does-not-exist shows the
+      Nexora 404 page, not a bare Hostinger error
+  [ ] open it on your phone: the top should be a still photo,
+      not the film. That is deliberate. Phones get a sharp
+      still instead of a 6 MB download.
+
+  If the film does not play on a laptop: check in File Manager
+  that assets/hero-scrub.mp4 really uploaded, and that it is
+  6,320,529 bytes. A half-finished upload is the usual cause.
+
+
+----------------------------------------------------------------
+  CHANGING THINGS LATER
+----------------------------------------------------------------
+
+Edit the file, upload it over the old one. That is all.
+
+  Text, prices, wording      index.html or about.html, edit and
+                             re-upload. Live immediately, because
+                             .htaccess tells browsers never to
+                             cache the pages.
+
+  A product photo            put the new picture in assets/ and
+                             either keep the same file name, or
+                             use a new name and change the name
+                             inside index.html too.
+
+                             NOTE: photos are cached in visitors'
+                             browsers for a week. If you replace
+                             one and keep the name, people who
+                             already visited may see the old one
+                             for a few days. Giving the new file
+                             a new name avoids this completely.
+
+  Phone number               it appears several times. Search
+                             index.html, about.html and 404.html
+                             for 923234508739 and change each.
+
+Always keep a copy of the folder on your own computer. The
+server copy is the only other one.
+
+
+----------------------------------------------------------------
+  TWO THINGS STILL WAITING ON YOU
+----------------------------------------------------------------
+
+  1. The Facebook page link.
+     It was removed rather than guessed. Two guesses were wrong,
+     so nothing is worse than sending customers to a stranger's
+     page. Send the real URL and it goes back in. Until then
+     the footer simply lists Instagram and the phone number.
+
+  2. The domain.
+     Step 1. Nothing else depends on it.
+
+
+----------------------------------------------------------------
+  IF SOMETHING IS WRONG
+----------------------------------------------------------------
+
+  Site shows a Hostinger placeholder
+      The old default page is still in public_html. Delete it.
+
+  "Index of /" or a list of file names
+      index.html is not in public_html, or it is one folder too
+      deep. Move it up.
+
+  500 Internal Server Error, everything dead
+      Almost always .htaccess. Rename it to htaccess-off and
+      reload. If the site comes back, something in that file is
+      not supported by your plan. Tell me and I will trim it.
+
+  Page loads, but no styling, no photos, plain black text
+      The assets folder did not upload, or it landed next to
+      public_html instead of inside it.
+
+  Redirect loop, "too many redirects"
+      Both the www and the non-www rule in .htaccess are
+      switched on. Only one may be. Comment the other back out
+      with a # at the front of its lines.
+
+  Film does not play, everything else fine
+      Check assets/hero-scrub.mp4 uploaded completely: it should
+      be 6,320,529 bytes.
+
+  Old version keeps showing after an edit
+      Hard refresh: Ctrl+Shift+R, or Cmd+Shift+R on a Mac.
+
+
+================================================================

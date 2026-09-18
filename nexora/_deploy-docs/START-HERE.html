@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nexora Homes. Putting the site online.</title>
+<meta name="robots" content="noindex">
+<style>
+:root{
+  --canvas:#0b0a09; --panel:#17140f; --panel-2:#1e1a13;
+  --line:#2a251c; --line-strong:#6b5f4a;
+  --accent:#e8c766; --accent-hover:#f5e0a0;
+  --text:#f4f1ea; --dim:#a8a094;
+  --warn:#f0b849;
+  --gut:clamp(20px,5vw,56px);
+}
+*,*::before,*::after{box-sizing:border-box}
+body{
+  margin:0;background:var(--canvas);color:var(--text);
+  font:16px/1.7 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.page{max-width:760px;margin:0 auto;padding:clamp(36px,7vw,72px) var(--gut) 120px}
+h1{font-size:clamp(30px,5.4vw,46px);line-height:1.04;letter-spacing:-.03em;margin:0 0 10px;font-weight:800}
+.sub{color:var(--dim);margin:0 0 8px;font-size:clamp(16px,2.2vw,19px)}
+.meta{color:var(--line-strong);font-size:13px;letter-spacing:.1em;text-transform:uppercase;margin:0 0 44px}
+h2{
+  font-size:clamp(20px,3.2vw,27px);letter-spacing:-.02em;margin:56px 0 14px;font-weight:800;
+  padding-top:26px;border-top:1px solid var(--line);
+}
+h2 .n{color:var(--accent);font-variant-numeric:tabular-nums;margin-right:12px}
+h3{font-size:17px;margin:30px 0 8px;font-weight:700;color:var(--accent-hover)}
+p{margin:0 0 14px}
+ul,ol{margin:0 0 14px;padding-left:22px}
+li{margin:0 0 7px}
+code{
+  font-family:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+  font-size:.9em;background:var(--panel-2);border:1px solid var(--line);
+  padding:1px 6px;border-radius:5px;color:var(--accent-hover);
+  overflow-wrap:anywhere;
+}
+pre{
+  background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);
+  padding:15px 18px;border-radius:8px;overflow-x:auto;margin:0 0 16px;
+  font-family:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;font-size:13.5px;line-height:1.65;
+}
+pre code{background:none;border:0;padding:0;color:var(--text)}
+.note,.warn{
+  border-radius:10px;padding:16px 20px;margin:0 0 18px;font-size:15px;
+  background:var(--panel);border:1px solid var(--line);
+}
+.warn{border-color:#5a4520;background:#1c1509}
+.warn strong,.note strong{display:block;margin-bottom:5px;letter-spacing:.02em}
+.warn strong{color:var(--warn)}
+.note strong{color:var(--accent)}
+.warn p:last-child,.note p:last-child{margin-bottom:0}
+table{border-collapse:collapse;width:100%;margin:0 0 18px;font-size:14.5px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--dim);font-weight:600;font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+td code{white-space:nowrap}
+.files{font-size:14.5px}
+.files td:first-child{white-space:nowrap;color:var(--accent-hover);font-family:ui-monospace,monospace;font-size:13px}
+.check{list-style:none;padding-left:0}
+.check li{padding-left:32px;position:relative;margin-bottom:10px}
+.check li::before{
+  content:"";position:absolute;left:0;top:4px;width:17px;height:17px;
+  border:1.5px solid var(--line-strong);border-radius:4px;
+}
+.tp{color:var(--dim);font-size:14px;margin-top:6px}
+a{color:var(--accent-hover)}
+hr{border:0;border-top:1px solid var(--line);margin:44px 0}
+.end{color:var(--line-strong);text-align:center;margin-top:70px;font-size:13px;letter-spacing:.14em;text-transform:uppercase}
+@media print{
+  body{background:#fff;color:#000}
+  .page{max-width:none;padding:0}
+  pre,code,.note,.warn{background:#f4f4f2;border-color:#ccc;color:#000}
+  pre code,code{color:#000}
+  h2{border-color:#ccc}
+  h2 .n,h3{color:#000}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<h1>Putting the site online</h1>
+<p class="sub">Nexora Homes, on Hostinger, with the domain from GoDaddy.</p>
+<p class="meta">Read this through once before you start</p>
+
+<p>The whole job is about twenty minutes of clicking, plus waiting for the
+domain to catch up, which is out of anyone&rsquo;s hands.</p>
+
+
+<h2><span class="n">00</span>The question you asked: is there a build step?</h2>
+
+<p><strong>No. There is nothing to compile, generate, or run.</strong></p>
+
+<p>The files in this folder <em>are</em> the finished website. <code>index.html</code>
+is already the final file a browser reads: the styling and the code are written
+inside it, so there is no separate CSS or JS file to assemble, no npm, no
+framework, no Node, and no Python needed to produce it.</p>
+
+<p>Upload the folder and the site is live. That is the whole build process.</p>
+
+<div class="note">
+  <strong>The one Python file, and what it is not</strong>
+  <p><code>set-domain.py</code> in this folder is a convenience, not a build step.
+  It writes your domain into four files so link previews and Google get the full
+  address. You can do the same by hand in a text editor in two minutes &mdash;
+  step 02 covers both ways.</p>
+  <p>If you ever saw <code>build-preview.py</code> in the project, that only
+  squeezed the site into a single file for the preview links. It has nothing to
+  do with your website and is not in this folder.</p>
+</div>
+
+
+<h2><span class="n">01</span>What is in the folder</h2>
+
+<table class="files">
+  <tr><td>index.html</td><td>The home page, with the scrolling film.</td></tr>
+  <tr><td>about.html</td><td>The About page.</td></tr>
+  <tr><td>404.html</td><td>Shown if someone reaches a wrong address.</td></tr>
+  <tr><td>.htaccess</td><td>Server settings: https, compression, caching, the 404 page. <strong>See the hidden-files warning in step 03.</strong></td></tr>
+  <tr><td>robots.txt</td><td>Tells search engines they may index the site.</td></tr>
+  <tr><td>sitemap.xml</td><td>Lists the two pages for search engines.</td></tr>
+  <tr><td>favicon.ico<br>favicon.svg</td><td>The small icon in the browser tab.</td></tr>
+  <tr><td>apple-touch-icon.png</td><td>The icon iPhones use on a home screen.</td></tr>
+  <tr><td>assets/</td><td>Every photo, the hero film, and the fonts.</td></tr>
+  <tr><td>assets/fonts/</td><td>Three font files, served from your own site rather than from Google.</td></tr>
+  <tr><td>_deploy-docs/</td><td>This guide and <code>set-domain.py</code>. Not part of the website. You may delete it after uploading; if you leave it, <code>.htaccess</code> already blocks visitors from reading it.</td></tr>
+</table>
+
+
+<h2><span class="n">02</span>Put your domain into the files</h2>
+
+<p>Four files carry a placeholder, <code>SITE_URL_HERE</code>, because the site was
+built before the domain was known. These are the addresses WhatsApp, Facebook and
+Google read. The site works without this step, but link previews and search
+results will not.</p>
+
+<h3>The easy way, if you have Python</h3>
+<p>Open a terminal in this <code>_deploy-docs</code> folder and run:</p>
+<pre><code>python3 set-domain.py yourdomain.com</code></pre>
+<p class="tp">Use your real domain. If you want the site at
+<code>www.yourdomain.com</code>, type it with the <code>www.</code> and the script
+sets that up too. It prints what it changed, and it is safe to run twice.</p>
+
+<h3>The other way, no Python needed</h3>
+<p>Open these files in any text editor and replace every <code>SITE_URL_HERE</code>
+with your address, written in full and with <strong>no slash on the end</strong>:
+<code>https://yourdomain.com</code></p>
+<table>
+  <tr><th>File</th><th>How many</th></tr>
+  <tr><td><code>index.html</code></td><td>3 places</td></tr>
+  <tr><td><code>about.html</code></td><td>3 places</td></tr>
+  <tr><td><code>sitemap.xml</code></td><td>2 places</td></tr>
+  <tr><td><code>robots.txt</code></td><td>1 place</td></tr>
+</table>
+<p>Then open <code>.htaccess</code>, find the block headed <em>Pick ONE address for
+the site</em>, and remove the <code>#&nbsp;</code> from the front of the lines under
+whichever you want, www or non-www.</p>
+
+<div class="warn">
+  <strong>Uncomment one, never both</strong>
+  <p>Turning on both the www and the non-www rule sends visitors round in a loop
+  and the site stops loading entirely.</p>
+</div>
+
+
+<h2><span class="n">03</span>Upload to Hostinger</h2>
+
+<p>Log in to Hostinger and open hPanel. Go to your website, then <strong>File
+Manager</strong>. You want the folder called <code>public_html</code>. That is the
+web root: whatever sits there is what the world sees.</p>
+
+<p>If a default Hostinger placeholder page is in there already, delete it first,
+or your site will not show.</p>
+
+<h3>The fast way</h3>
+<ol>
+  <li>Zip up the <strong>contents</strong> of this folder. Not the folder itself
+      &mdash; the files inside it: <code>index.html</code>, <code>about.html</code>,
+      <code>assets</code>, and the rest.</li>
+  <li>In File Manager, open <code>public_html</code> and upload that zip.</li>
+  <li>Right-click it and choose <strong>Extract</strong>.</li>
+  <li>Delete the zip afterwards.</li>
+</ol>
+<p>When it is done, <code>index.html</code> must sit <em>directly</em> inside
+<code>public_html</code>. If you instead see
+<code>public_html/nexora/index.html</code>, everything is one level too deep and
+the site will not load. Move the files up a level and remove the empty folder.</p>
+
+<h3>Or by FTP</h3>
+<p>hPanel shows your FTP host, username and port under <strong>Files &rarr; FTP
+Accounts</strong>. Connect with FileZilla, go to <code>public_html</code>, and drag
+everything in.</p>
+
+<div class="warn">
+  <strong>The .htaccess file is hidden. Do not lose it.</strong>
+  <p>That name starts with a dot, which makes it hidden. File Manager and FileZilla
+  both hide it by default, so it is very easy to upload everything else and
+  silently leave it behind.</p>
+  <p>In Hostinger File Manager, turn on <strong>Show hidden files</strong> in the
+  settings menu. In FileZilla: <strong>Server &rarr; Force showing hidden
+  files</strong>.</p>
+  <p>Then confirm <code>.htaccess</code> really is in <code>public_html</code>.
+  Without it you lose the https redirect, the compression, the caching and the
+  custom 404 page. The site still loads, so nothing looks obviously wrong, which
+  is exactly why it is worth checking.</p>
+</div>
+
+
+<h2><span class="n">04</span>Point the GoDaddy domain at Hostinger</h2>
+
+<p>The domain is at GoDaddy and the site is at Hostinger, so GoDaddy has to be
+told where to send people. Two ways &mdash; pick one.</p>
+
+<h3>Option A &mdash; nameservers (recommended)</h3>
+<p>Hostinger then handles all DNS for the domain, which makes everything
+afterwards easier, including email.</p>
+<ol>
+  <li>In Hostinger hPanel, find the <strong>nameservers</strong> for your plan.
+      They appear in your hosting plan&rsquo;s details, usually under a heading
+      like Nameservers, or in the domain setup screen. There are normally two,
+      sometimes four. Copy them exactly.</li>
+  <li>Log in to GoDaddy, go to <strong>My Products</strong>, find the domain, and
+      open its DNS or Nameservers settings.</li>
+  <li>Choose to use your own / custom nameservers and enter the ones you copied.
+      Save.</li>
+  <li>Back in hPanel, add the domain to your hosting plan if it is not already
+      there, so Hostinger knows to answer for it.</li>
+</ol>
+
+<div class="warn">
+  <strong>Read the nameservers off your own hPanel</strong>
+  <p>Do not use nameserver addresses from a blog post, from a video, or from
+  memory. They differ between plans and they do change. Yours are the only
+  correct ones.</p>
+</div>
+
+<h3>Option B &mdash; an A record</h3>
+<p>Use this if you want GoDaddy to stay in charge of DNS, for instance because
+email is set up there.</p>
+<ol>
+  <li>In hPanel, find your hosting account&rsquo;s <strong>IP address</strong>, shown
+      in the plan details.</li>
+  <li>In GoDaddy, open the domain&rsquo;s DNS records and set:</li>
+</ol>
+<table>
+  <tr><th>Type</th><th>Name</th><th>Value</th><th>TTL</th></tr>
+  <tr><td><code>A</code></td><td><code>@</code></td><td>your Hostinger IP</td><td>1 hour</td></tr>
+  <tr><td><code>CNAME</code></td><td><code>www</code></td><td><code>@</code></td><td>1 hour</td></tr>
+</table>
+<p>If an A record for <code>@</code> already exists, <strong>edit</strong> it rather
+than adding a second. Two A records for <code>@</code> pointing at different places
+make the site load about half the time, which is a horrible thing to debug.</p>
+<p>Then add the domain to your hosting plan in hPanel.</p>
+
+<div class="note">
+  <strong>Then wait</strong>
+  <p>DNS changes are not instant. Usually minutes to an hour, but it can take 24
+  to 48 hours to reach everyone. During that window some people see the new site
+  and some do not. That is normal, not a fault. Check progress at
+  <a href="https://dnschecker.org">dnschecker.org</a>.</p>
+</div>
+
+
+<h2><span class="n">05</span>Turn on https</h2>
+
+<p>Once the domain actually points at Hostinger, go to hPanel &rarr;
+<strong>Security</strong> &rarr; <strong>SSL</strong> and install the free
+certificate. On most plans this happens by itself within an hour of the domain
+resolving.</p>
+
+<div class="warn">
+  <strong>Do this after the domain is pointing, not before</strong>
+  <p>The certificate cannot be issued until the domain reaches Hostinger.</p>
+  <p><code>.htaccess</code> already forces every visitor onto https, which means
+  that until the certificate exists, visitors get a browser security warning. So:
+  point the domain, install the certificate, then check the site.</p>
+  <p>If you must test before the certificate is in, open <code>.htaccess</code> and
+  put a <code>#</code> at the start of the four lines of the
+  <em>Send everyone to https</em> rule. Take the <code>#</code> back off once the
+  certificate is installed.</p>
+</div>
+
+
+<h2><span class="n">06</span>Check it</h2>
+<ul class="check">
+  <li><code>https://yourdomain.com</code> loads the home page</li>
+  <li>The padlock shows in the address bar</li>
+  <li><code>http://yourdomain.com</code> (no s) jumps to https by itself</li>
+  <li>Scrolling the top of the home page plays the film</li>
+  <li>The About link in the menu works</li>
+  <li>The WhatsApp buttons open a chat to 0323 450 8739</li>
+  <li>All eight products show their photo</li>
+  <li><code>yourdomain.com/not-a-real-page</code> shows the Nexora 404 page, not a
+      bare Hostinger error</li>
+  <li>On your phone the top is a <em>still photo</em>, not the film. That is
+      deliberate: phones get a sharp still instead of a 6&nbsp;MB download.</li>
+</ul>
+<p class="tp">If the film does not play on a laptop, check in File Manager that
+<code>assets/hero-scrub.mp4</code> really uploaded and is
+<code>6,320,529</code> bytes. A half-finished upload is the usual cause.</p>
+
+
+<h2><span class="n">07</span>Changing things later</h2>
+<p>Edit the file, upload it over the old one. That is all.</p>
+<table>
+  <tr><th>What</th><th>How</th></tr>
+  <tr><td>Text, prices, wording</td>
+      <td>Edit <code>index.html</code> or <code>about.html</code> and re-upload.
+          Live immediately &mdash; <code>.htaccess</code> tells browsers never to
+          cache the pages.</td></tr>
+  <tr><td>A product photo</td>
+      <td>Put the new picture in <code>assets/</code>, keeping the same file name,
+          or use a new name and change it inside <code>index.html</code> too.</td></tr>
+  <tr><td>Phone number</td>
+      <td>It appears several times. Search <code>index.html</code>,
+          <code>about.html</code> and <code>404.html</code> for
+          <code>923234508739</code>.</td></tr>
+</table>
+
+<div class="note">
+  <strong>About replacing a photo under the same name</strong>
+  <p>Photos are cached in visitors&rsquo; browsers for a week. If you replace one
+  and keep the name, people who already visited may see the old one for a few
+  days. Giving the new file a new name avoids this completely.</p>
+</div>
+
+<p>Always keep a copy of the folder on your own computer. The server copy is the
+only other one.</p>
+
+
+<h2><span class="n">08</span>Two things still waiting on you</h2>
+<ol>
+  <li><strong>The Facebook page link.</strong> It was removed rather than guessed.
+      Two guesses were wrong, and nothing is worse than sending customers to a
+      stranger&rsquo;s page. Send the real URL and it goes back in. Until then the
+      footer lists Instagram and the phone number.</li>
+  <li><strong>The domain.</strong> Step 02. Nothing else depends on it.</li>
+</ol>
+
+
+<h2><span class="n">09</span>If something is wrong</h2>
+<table>
+  <tr><th>What you see</th><th>What it is</th></tr>
+  <tr><td>A Hostinger placeholder page</td>
+      <td>The old default page is still in <code>public_html</code>. Delete it.</td></tr>
+  <tr><td>&ldquo;Index of /&rdquo;, a list of file names</td>
+      <td><code>index.html</code> is not in <code>public_html</code>, or it is one
+          folder too deep. Move it up.</td></tr>
+  <tr><td>500 Internal Server Error, everything dead</td>
+      <td>Almost always <code>.htaccess</code>. Rename it to
+          <code>htaccess-off</code> and reload. If the site comes back, something
+          in it is not supported by your plan &mdash; tell me and I will trim it.</td></tr>
+  <tr><td>Page loads, no styling, no photos</td>
+      <td>The <code>assets</code> folder did not upload, or it landed next to
+          <code>public_html</code> instead of inside it.</td></tr>
+  <tr><td>&ldquo;Too many redirects&rdquo;</td>
+      <td>Both the www and non-www rules in <code>.htaccess</code> are on. Only one
+          may be. Comment the other out with a <code>#</code>.</td></tr>
+  <tr><td>Film does not play, everything else fine</td>
+      <td>Check <code>assets/hero-scrub.mp4</code> uploaded completely:
+          <code>6,320,529</code> bytes.</td></tr>
+  <tr><td>Old version still showing after an edit</td>
+      <td>Hard refresh: <code>Ctrl+Shift+R</code>, or <code>Cmd+Shift+R</code> on a
+          Mac.</td></tr>
+</table>
+
+<p class="end">Nexora Homes</p>
+
+</div>
+</body>
+</html>

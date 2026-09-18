@@ -1,0 +1,8 @@
+# Nexora Homes
+# Everything here is meant to be found.
+
+User-agent: *
+Allow: /
+Disallow: /_deploy-docs/
+
+Sitemap: SITE_URL_HERE/sitemap.xml

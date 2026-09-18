@@ -20,3 +20,8 @@ review/nexora-preview.html
 review/preview-hero.mp4
 review/preview-hero.webm
 review/nexora-about-preview.html
+
+# the deployment zip: rebuilt from nexora/ in one command, so the repo
+# keeps the source rather than a second copy of every asset
+#   cd nexora && zip -r -9 ../nexora-website.zip .
+nexora-website.zip

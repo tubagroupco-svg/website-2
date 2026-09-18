@@ -6,21 +6,70 @@
 <title>Nexora Homes. Smart panels, locks and switches, fitted in DHA.</title>
 <meta name="description" content="Nexora Homes replaces the switches, keyholes and thermostats in your house with one language of black glass. Supplied and installed across DHA and beyond.">
 <meta name="theme-color" content="#0b0a09">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230b0a09'/%3E%3Cg fill='none' stroke='%23e8c766' stroke-width='4.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 52V20l18 24 0-24 0 32'/%3E%3Cpath d='M24 14a11 11 0 0 1 16 0'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230b0a09'/%3E%3Cpath d='M18 51V19L46 51V19' fill='none' stroke='%23e8c766' stroke-width='6.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 
-<!-- DEPLOY STEP: patch og:url and og:image with the live absolute URL before zipping -->
+<!-- Absolute URLs, for search engines and for link previews in WhatsApp,
+     Facebook and X. These four have to be the full address, so they are
+     written in one pass by _deploy-docs/set-domain.py and need no hand
+     editing afterwards. -->
+<link rel="canonical" href="SITE_URL_HERE/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Nexora Homes. Smart panels, locks and switches.">
 <meta property="og:description" content="The switch is the last ugly thing in a beautiful room. One language of black glass, through the whole house.">
-<meta property="og:url" content="REPLACE_WITH_LIVE_URL">
-<meta property="og:image" content="REPLACE_WITH_LIVE_URL/assets/hero-ending.jpg">
+<meta property="og:url" content="SITE_URL_HERE/">
+<meta property="og:image" content="SITE_URL_HERE/assets/hero-ending.jpg">
 <meta name="twitter:card" content="summary_large_image">
+<meta property="og:site_name" content="Nexora Homes">
+<meta property="og:image:width" content="1400">
+<meta property="og:image:height" content="788">
+<meta property="og:image:alt" content="A living room at dusk, lit by Nexora panels set into the wall.">
+<meta property="og:locale" content="en_PK">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Manrope:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- Fonts are served from this site, not from Google. One less thing that
+     can be slow or unreachable, and nothing about a visitor leaves for a
+     third party just to render text. All three are variable fonts, so one
+     file covers every weight the page asks for. The two faces used above
+     the fold are preloaded so the headline never waits on the stylesheet. -->
+<link rel="preload" href="assets/fonts/sora-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/manrope-var.woff2" as="font" type="font/woff2" crossorigin>
 
 <style>
+/* ============================================================
+   FONTS, served from this site
+   Latin subset only: the site is English, so the cyrillic, greek,
+   vietnamese and latin-ext cuts would be weight nobody downloads.
+   Each file is a variable font, so the weight range below is the
+   axis the file really carries: one download per family, and the
+   browser instances 400/500/600/700 out of it rather than fetching
+   a separate cut for each.
+   ============================================================ */
+@font-face {
+  font-family: 'Sora';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url(assets/fonts/sora-var.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(assets/fonts/manrope-var.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url(assets/fonts/jetbrains-mono-var.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 /* ============================================================
    TOKENS
    Palette sampled from the brand's own materials: the gold mark

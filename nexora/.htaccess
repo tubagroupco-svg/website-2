@@ -1,0 +1,106 @@
+# ============================================================
+#  Nexora Homes, server rules
+#  Apache / LiteSpeed. Hostinger runs LiteSpeed, which reads this file.
+#  Every block is wrapped in <IfModule>, so if a module is missing the
+#  rule is skipped instead of taking the site down with a 500.
+# ============================================================
+
+# ---- Send everyone to https --------------------------------
+# Two conditions, because behind Hostinger's load balancer the request
+# reaches Apache over plain http and only the X-Forwarded-Proto header
+# says it started as https. Checking just %{HTTPS} would loop forever.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # ---- Pick ONE address for the site -----------------------
+  # A page reachable at both www and non-www is two pages to Google and
+  # splits its own ranking. Uncomment ONE of these two blocks. Leaving
+  # both commented is safe; it just means neither address redirects.
+  #
+  # Force non-www  (nexorahomes.com):
+  # RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+  # RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
+  #
+  # Force www  (www.nexorahomes.com):
+  # RewriteCond %{HTTP_HOST} !^www\. [NC]
+  # RewriteCond %{HTTP_HOST} !^localhost [NC]
+  # RewriteRule ^ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# ---- The 404 page ------------------------------------------
+ErrorDocument 404 /404.html
+
+# ---- No directory listings ---------------------------------
+# Without this, visiting /assets/ prints the whole folder.
+Options -Indexes
+
+# ---- Keep the deployment notes off the web -----------------
+<IfModule mod_rewrite.c>
+  RewriteRule ^_deploy-docs/ - [F,L]
+</IfModule>
+
+# ---- Correct types -----------------------------------------
+# LiteSpeed usually knows these, but a wrong type on the font file makes
+# the browser refuse it, and a wrong type on the video breaks the hero.
+<IfModule mod_mime.c>
+  AddType font/woff2         .woff2
+  AddType video/mp4          .mp4
+  AddType image/svg+xml      .svg
+  AddType image/x-icon       .ico
+  AddType application/xml    .xml
+</IfModule>
+
+# ---- Compression -------------------------------------------
+# Text only. woff2, jpg, png and mp4 are already compressed; running them
+# through gzip costs CPU, saves nothing, and changes Content-Length, which
+# the hero's progress ring reads to size its loading arc.
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml
+  AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+  AddOutputFilterByType DEFLATE application/json application/xml
+  AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# ---- Caching -----------------------------------------------
+# Fonts and the hero film never change, so they get a year.
+# Photos get a week, because replacing one should reach people quickly.
+# The two HTML pages are never cached, so an edit is live immediately.
+#
+# NOTE: if you replace a photo and want it seen the same day, either
+# rename the file (and update the name in index.html), or wait a week.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault                      "access plus 1 week"
+  ExpiresByType text/html             "access plus 0 seconds"
+  ExpiresByType font/woff2            "access plus 1 year"
+  ExpiresByType video/mp4             "access plus 1 year"
+  ExpiresByType image/jpeg            "access plus 1 week"
+  ExpiresByType image/png             "access plus 1 week"
+  ExpiresByType image/svg+xml         "access plus 1 week"
+  ExpiresByType image/x-icon          "access plus 1 month"
+  ExpiresByType text/css              "access plus 1 week"
+  ExpiresByType application/javascript "access plus 1 week"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(woff2|mp4)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+
+  # ---- A few safe headers ----------------------------------
+  # No Content-Security-Policy here: the pages carry their CSS and JS
+  # inline, so a useful policy would need 'unsafe-inline' anyway and
+  # would buy nothing. These three cost nothing and help.
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+</IfModule>
+
+# ---- Serve index.html for / --------------------------------
+DirectoryIndex index.html
