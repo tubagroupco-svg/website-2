@@ -25,3 +25,4 @@ review/nexora-about-preview.html
 # keeps the source rather than a second copy of every asset
 #   cd nexora && zip -r -9 ../nexora-website.zip .
 nexora-website.zip
+nexora-homes.zip
