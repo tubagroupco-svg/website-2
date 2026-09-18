@@ -15,16 +15,22 @@
   RewriteCond %{HTTP:X-Forwarded-Proto} !https
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-  # ---- Pick ONE address for the site -----------------------
+  # ---- One address for the site ----------------------------
   # A page reachable at both www and non-www is two pages to Google and
-  # splits its own ranking. Uncomment ONE of these two blocks. Leaving
-  # both commented is safe; it just means neither address redirects.
+  # splits its own ranking, so exactly one of the two blocks below is
+  # live and the other stays commented out.
   #
-  # Force non-www  (nexorahomes.com):
-  # RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
-  # RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
+  # _deploy-docs/set-domain.py sets this: give it nexorahomes.co for
+  # non-www, or www.nexorahomes.co for www, and it switches the other
+  # one back off. Never uncomment both by hand. The two rules would
+  # bounce a visitor between the addresses until the browser gave up,
+  # and the site would stop loading at all.
   #
-  # Force www  (www.nexorahomes.com):
+  # Force non-www  (nexorahomes.co):
+  RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+  RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
+  #
+  # Force www  (www.nexorahomes.co):
   # RewriteCond %{HTTP_HOST} !^www\. [NC]
   # RewriteCond %{HTTP_HOST} !^localhost [NC]
   # RewriteRule ^ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]

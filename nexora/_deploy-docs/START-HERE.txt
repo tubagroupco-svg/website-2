@@ -28,7 +28,8 @@ There is ONE optional Python script, set-domain.py, in this
 folder. It is a convenience, not a build step: it writes your
 domain into four files so that link previews and Google get the
 full address. You can do the same thing by hand in a text editor
-in two minutes. Step 1 below covers both ways.
+in two minutes. It has already been run for you; step 1
+says how to change it later.
 
 (If you ever saw a file called build-preview.py in the project,
 that was only used to squeeze the site into a single file for the
@@ -64,43 +65,30 @@ in this folder.)
 
 
 ----------------------------------------------------------------
-  STEP 1. PUT YOUR DOMAIN INTO THE FILES
+  STEP 1. YOUR DOMAIN IS ALREADY IN THE FILES
 ----------------------------------------------------------------
 
-Four files carry a placeholder, SITE_URL_HERE, because the site
-was built before the domain was known. These are the addresses
-that WhatsApp, Facebook and Google read. The site works without
-this step, but link previews and search results will not.
+Nothing to do here. nexorahomes.co is already written into
+index.html, about.html, sitemap.xml and robots.txt, and .htaccess
+is set so www.nexorahomes.co sends visitors to nexorahomes.co.
 
-  THE EASY WAY, if you have Python on your computer:
+Skip to step 2.
 
-    Open a terminal in this _deploy-docs folder and run
+  ONLY IF YOU CHANGE DOMAIN LATER:
 
-        python3 set-domain.py yourdomain.com
+    python3 set-domain.py your-new-domain.com
 
-    Use your real domain. If you want the site to live at
-    www.yourdomain.com, type it with the www and the script sets
-    that up too. It prints what it changed.
+    Add the www. to the front if you want the site to live at
+    www.your-new-domain.com instead. The script rewrites all four
+    files and flips the .htaccess redirect to match. Safe to run
+    as many times as you like.
 
-  THE OTHER WAY, no Python needed:
-
-    Open these four files in any text editor (Notepad, TextEdit,
-    VS Code) and replace every SITE_URL_HERE with your address,
-    written in full and with NO slash on the end:
-
-        https://yourdomain.com
-
-    The four files are:
-        index.html      (3 places)
-        about.html      (3 places)
-        sitemap.xml     (2 places)
-        robots.txt      (1 place)
-
-    Then open .htaccess and find the block headed
-    "Pick ONE address for the site". Remove the "# " from the
-    front of the two or three lines under whichever you want,
-    www or non-www. Uncomment ONE of them, never both: turning
-    on both sends visitors in a loop and the site stops loading.
+    Without Python: open those four files in a text editor and
+    replace every https://nexorahomes.co with the new address,
+    written in full and with no slash on the end. Then in
+    .htaccess uncomment ONE of the two redirect blocks and make
+    sure the other stays commented. Never both: they would send
+    visitors round in a loop and the site would stop loading.
 
 
 ----------------------------------------------------------------
@@ -236,14 +224,14 @@ the # off once the certificate is in.
 
 Open your site and walk through this list.
 
-  [ ] https://yourdomain.com loads the home page
+  [ ] https://nexorahomes.co loads the home page
   [ ] the padlock shows in the address bar
-  [ ] http://yourdomain.com (no s) jumps to https by itself
+  [ ] http://nexorahomes.co (no s) jumps to https by itself
   [ ] scrolling the top of the home page plays the film
   [ ] the About link in the menu works
   [ ] the WhatsApp buttons open a chat to 0323 450 8739
   [ ] the eight products all show their photo
-  [ ] yourdomain.com/a-page-that-does-not-exist shows the
+  [ ] nexorahomes.co/a-page-that-does-not-exist shows the
       Nexora 404 page, not a bare Hostinger error
   [ ] open it on your phone: the top should be a still photo,
       not the film. That is deliberate. Phones get a sharp
@@ -286,7 +274,7 @@ server copy is the only other one.
 
 
 ----------------------------------------------------------------
-  TWO THINGS STILL WAITING ON YOU
+  ONE THING STILL WAITING ON YOU
 ----------------------------------------------------------------
 
   1. The Facebook page link.
@@ -295,8 +283,7 @@ server copy is the only other one.
      page. Send the real URL and it goes back in. Until then
      the footer simply lists Instagram and the phone number.
 
-  2. The domain.
-     Step 1. Nothing else depends on it.
+  (The domain is done. nexorahomes.co is already in the files.)
 
 
 ----------------------------------------------------------------

@@ -131,37 +131,28 @@ framework, no Node, and no Python needed to produce it.</p>
 </table>
 
 
-<h2><span class="n">02</span>Put your domain into the files</h2>
+<h2><span class="n">02</span>Your domain is already in the files</h2>
 
-<p>Four files carry a placeholder, <code>SITE_URL_HERE</code>, because the site was
-built before the domain was known. These are the addresses WhatsApp, Facebook and
-Google read. The site works without this step, but link previews and search
-results will not.</p>
+<p><strong>Nothing to do here. Skip to step 03.</strong></p>
 
-<h3>The easy way, if you have Python</h3>
-<p>Open a terminal in this <code>_deploy-docs</code> folder and run:</p>
-<pre><code>python3 set-domain.py yourdomain.com</code></pre>
-<p class="tp">Use your real domain. If you want the site at
-<code>www.yourdomain.com</code>, type it with the <code>www.</code> and the script
-sets that up too. It prints what it changed, and it is safe to run twice.</p>
+<p><code>nexorahomes.co</code> is already written into <code>index.html</code>,
+<code>about.html</code>, <code>sitemap.xml</code> and <code>robots.txt</code>, and
+<code>.htaccess</code> is set so <code>www.nexorahomes.co</code> sends visitors to
+<code>nexorahomes.co</code>.</p>
 
-<h3>The other way, no Python needed</h3>
-<p>Open these files in any text editor and replace every <code>SITE_URL_HERE</code>
-with your address, written in full and with <strong>no slash on the end</strong>:
-<code>https://yourdomain.com</code></p>
-<table>
-  <tr><th>File</th><th>How many</th></tr>
-  <tr><td><code>index.html</code></td><td>3 places</td></tr>
-  <tr><td><code>about.html</code></td><td>3 places</td></tr>
-  <tr><td><code>sitemap.xml</code></td><td>2 places</td></tr>
-  <tr><td><code>robots.txt</code></td><td>1 place</td></tr>
-</table>
-<p>Then open <code>.htaccess</code>, find the block headed <em>Pick ONE address for
-the site</em>, and remove the <code>#&nbsp;</code> from the front of the lines under
-whichever you want, www or non-www.</p>
+<h3>Only if you change domain later</h3>
+<pre><code>python3 set-domain.py your-new-domain.com</code></pre>
+<p class="tp">Put <code>www.</code> on the front if you want the site to live at the
+www address instead. The script rewrites all four files and flips the
+<code>.htaccess</code> redirect to match. Safe to run as many times as you like.</p>
+
+<p>Without Python: open those four files in a text editor and replace every
+<code>https://nexorahomes.co</code> with the new address, in full and with
+<strong>no slash on the end</strong>. Then in <code>.htaccess</code> uncomment one of
+the two redirect blocks and make sure the other stays commented.</p>
 
 <div class="warn">
-  <strong>Uncomment one, never both</strong>
+  <strong>One redirect, never both</strong>
   <p>Turning on both the www and the non-www rule sends visitors round in a loop
   and the site stops loading entirely.</p>
 </div>
@@ -287,14 +278,14 @@ resolving.</p>
 
 <h2><span class="n">06</span>Check it</h2>
 <ul class="check">
-  <li><code>https://yourdomain.com</code> loads the home page</li>
+  <li><code>https://nexorahomes.co</code> loads the home page</li>
   <li>The padlock shows in the address bar</li>
-  <li><code>http://yourdomain.com</code> (no s) jumps to https by itself</li>
+  <li><code>http://nexorahomes.co</code> (no s) jumps to https by itself</li>
   <li>Scrolling the top of the home page plays the film</li>
   <li>The About link in the menu works</li>
   <li>The WhatsApp buttons open a chat to 0323 450 8739</li>
   <li>All eight products show their photo</li>
-  <li><code>yourdomain.com/not-a-real-page</code> shows the Nexora 404 page, not a
+  <li><code>nexorahomes.co/not-a-real-page</code> shows the Nexora 404 page, not a
       bare Hostinger error</li>
   <li>On your phone the top is a <em>still photo</em>, not the film. That is
       deliberate: phones get a sharp still instead of a 6&nbsp;MB download.</li>
@@ -332,14 +323,14 @@ resolving.</p>
 only other one.</p>
 
 
-<h2><span class="n">08</span>Two things still waiting on you</h2>
-<ol>
+<h2><span class="n">08</span>One thing still waiting on you</h2>
+<ul>
   <li><strong>The Facebook page link.</strong> It was removed rather than guessed.
       Two guesses were wrong, and nothing is worse than sending customers to a
       stranger&rsquo;s page. Send the real URL and it goes back in. Until then the
       footer lists Instagram and the phone number.</li>
-  <li><strong>The domain.</strong> Step 02. Nothing else depends on it.</li>
-</ol>
+</ul>
+<p class="tp">The domain is done: <code>nexorahomes.co</code> is already in the files.</p>
 
 
 <h2><span class="n">09</span>If something is wrong</h2>

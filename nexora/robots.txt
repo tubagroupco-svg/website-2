@@ -5,4 +5,4 @@ User-agent: *
 Allow: /
 Disallow: /_deploy-docs/
 
-Sitemap: SITE_URL_HERE/sitemap.xml
+Sitemap: https://nexorahomes.co/sitemap.xml
