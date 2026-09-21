@@ -19,6 +19,9 @@ Three things change for the preview and nothing else:
    so only a single film is inlined.
 3. Nothing is done to the static-hero gates any more. The site is down to one,
    reduced motion, which a preview should honour like any other browser.
+4. The landscape/portrait cut is chosen by window shape rather than by the
+   page's own media query, because that query needs the viewport meta tag this
+   script strips. See portrait_test.
 
 Because an Artifact is one page, the two pages become two Artifacts. Pass the
 other one's URL so the cross-links work:
@@ -40,7 +43,9 @@ OUT_INDEX = 'review/nexora-preview.html'
 OUT_ABOUT = 'review/nexora-about-preview.html'
 PREVIEW_VIDEO = 'review/preview-hero.mp4'      # lighter stand-in, if present
 PREVIEW_FALLBACK = 'review/preview-hero.webm'  # VP9, for anything without H.264
-MIME = {'.mp4': 'video/mp4', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.png': 'image/png'}
+PREVIEW_FALLBACK_PORTRAIT = 'review/preview-hero-portrait.webm'
+MIME = {'.mp4': 'video/mp4', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.png': 'image/png',
+        '.woff2': 'font/woff2', '.svg': 'image/svg+xml', '.ico': 'image/x-icon'}
 
 HEAD_ONLY = (r'<meta charset="utf-8">\n', r'<meta name="viewport"[^>]*>\n',
              r'<meta name="description"[^>]*>\n', r'<meta name="theme-color"[^>]*>\n',
@@ -58,7 +63,8 @@ def inline_assets(html):
         with open(path, 'rb') as fh:
             data = fh.read()
         return 'data:%s;base64,%s' % (MIME[ext], base64.b64encode(data).decode())
-    return re.sub(r'assets/([A-Za-z0-9._-]+)', repl, html)
+    # crosses a slash, because the fonts sit in assets/fonts/
+    return re.sub(r'assets/((?:[A-Za-z0-9._-]+/)*[A-Za-z0-9._-]+\.[A-Za-z0-9]+)', repl, html)
 
 
 def strip_wrapper(html, title):
@@ -71,16 +77,36 @@ def strip_wrapper(html, title):
     return re.sub(r'<title>.*?</title>', '<title>%s</title>' % title, html, count=1, flags=re.S)
 
 
+def portrait_test(html):
+    """Pick the cut by window shape, because a preview has no viewport meta.
+
+    The deployed page asks '(orientation: portrait) and (max-width: 900px)'.
+    That works because the page carries a viewport meta tag. strip_wrapper
+    removes it, since the Artifact host supplies the document, so a narrow
+    browser falls back to the default 980px layout viewport, 980 is wider
+    than 900, and a phone-shaped window would be handed the landscape cut,
+    which is the one thing a preview of this change has to get right.
+    Shape survives that: 980x1914 is portrait, 1440x900 is not.
+    """
+    return html.replace(
+        "matchMedia('(orientation: portrait) and (max-width: 900px)').matches",
+        "(window.innerHeight > window.innerWidth * 1.2)")
+
+
 def preview_loader(html):
     """Hand the data URI straight to the player, with a VP9 fallback."""
-    fallback = ''
-    if os.path.exists(PREVIEW_FALLBACK):
-        with open(PREVIEW_FALLBACK, 'rb') as fh:
-            fallback = 'data:video/webm;base64,' + base64.b64encode(fh.read()).decode()
+    def webm(path):
+        if not os.path.exists(path):
+            return ''
+        with open(path, 'rb') as fh:
+            return 'data:video/webm;base64,' + base64.b64encode(fh.read()).decode()
+
+    fallback = webm(PREVIEW_FALLBACK)
+    fallback_portrait = webm(PREVIEW_FALLBACK_PORTRAIT)
 
     old_call = '    loadHeroBlob().catch(failVideo);'
     new_call = '''    ring.style.setProperty('--ld', 0);
-    var PREVIEW_FALLBACK_SRC = %r;
+    var PREVIEW_FALLBACK_SRC = PORTRAIT_CUT ? %r : %r;
     var triedFallback = false;
     function armPreview(src){
       video.src = src;
@@ -97,7 +123,7 @@ def preview_loader(html):
       stage.classList.remove('video-failed');
       armPreview(PREVIEW_FALLBACK_SRC);
     });
-    armPreview(VIDEO_URL);''' % fallback
+    armPreview(VIDEO_URL);''' % (fallback_portrait, fallback)
     assert old_call in html, 'loader call site moved; update build-preview.py'
     html = html.replace(old_call, new_call)
 
@@ -111,7 +137,7 @@ video.addEventListener('error', function(){   /* the deadlock escape */
   seekBusy = false; pendingTime = null;
   if (previewFallbackPending) { previewFallbackPending = false; return; }
   failVideo();
-});''' % ('true' if fallback else 'false')
+});''' % ('true' if (fallback or fallback_portrait) else 'false')
     assert old_err in html, 'error handler moved; update build-preview.py'
     return html.replace(old_err, new_err)
 
@@ -130,14 +156,9 @@ def relax_gates(html):
 
 def build(src, out, title, is_index, other_url, other_file):
     html = io.open(src, encoding='utf-8').read()
-    if is_index:
-        # pin the landscape cut: an Artifact carries the film as base64, and
-        # inlining both cuts would put two films in one page
-        html = html.replace(
-            "matchMedia('(orientation: portrait) and (max-width: 900px)').matches",
-            'false')
     html = inline_assets(html)
     if is_index:
+        html = portrait_test(html)
         html = preview_loader(html)
         html = relax_gates(html)
     if other_url:
