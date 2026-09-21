@@ -14,12 +14,11 @@ Three things change for the preview and nothing else:
    so the shipping path silently fails there and falls back to the poster.
 2. A lighter 1440-wide encode stands in for the 1080p master, because the whole
    film has to travel inside the HTML as base64. A VP9 copy rides behind the
-   H.264 one for browsers with no H.264 decoder.
-3. Only the reduced-motion static-hero gate survives. The other four are size,
-   orientation and pointer gates that correctly give a real phone a composed
-   still instead of a 6 MB film. A preview panel is narrow and portrait, so
-   every one of them fires there and the film never loads. The deployed site
-   keeps all five.
+   H.264 one for browsers with no H.264 decoder. The page picks between a
+   landscape and a portrait cut at runtime; the preview pins the landscape one
+   so only a single film is inlined.
+3. Nothing is done to the static-hero gates any more. The site is down to one,
+   reduced motion, which a preview should honour like any other browser.
 
 Because an Artifact is one page, the two pages become two Artifacts. Pass the
 other one's URL so the cross-links work:
@@ -118,31 +117,25 @@ video.addEventListener('error', function(){   /* the deadlock escape */
 
 
 def relax_gates(html):
-    """A preview panel is narrow and portrait, so the phone gates fire and hide
-    the film. Keep only reduced motion, which is a real preference."""
-    old_css = '''@media (max-width: 720px),
-       (orientation: portrait) and (max-width: 1024px),
-       (orientation: portrait) and (pointer: coarse),
-       (orientation: landscape) and (pointer: coarse) and (max-height: 560px),
-       (prefers-reduced-motion: reduce){'''
-    assert old_css in html, 'CSS gate block moved; update build-preview.py'
-    html = html.replace(old_css, '@media (prefers-reduced-motion: reduce){')
+    """Nothing left to relax.
 
-    old_js = '''var GATES = [
-  '(max-width: 720px)',
-  '(orientation: portrait) and (max-width: 1024px)',
-  '(orientation: portrait) and (pointer: coarse)',
-  '(orientation: landscape) and (pointer: coarse) and (max-height: 560px)',
-  '(prefers-reduced-motion: reduce)'
-];'''
-    assert old_js in html, 'JS GATES array moved; update build-preview.py'
-    return html.replace(old_js, '''var GATES = [
-  '(prefers-reduced-motion: reduce)'
-];''')
+    This used to strip four device gates that sent any small screen to a
+    composed still. Those gates are gone from the site: a portrait screen now
+    gets its own cut of the film. The one remaining gate is reduced motion,
+    which a preview should honour like anything else, so this is a no-op kept
+    only so the call site reads the same.
+    """
+    return html
 
 
 def build(src, out, title, is_index, other_url, other_file):
     html = io.open(src, encoding='utf-8').read()
+    if is_index:
+        # pin the landscape cut: an Artifact carries the film as base64, and
+        # inlining both cuts would put two films in one page
+        html = html.replace(
+            "matchMedia('(orientation: portrait) and (max-width: 900px)').matches",
+            'false')
     html = inline_assets(html)
     if is_index:
         html = preview_loader(html)

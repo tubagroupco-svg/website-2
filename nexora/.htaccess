@@ -20,11 +20,11 @@
   # splits its own ranking, so exactly one of the two blocks below is
   # live and the other stays commented out.
   #
-  # _deploy-docs/set-domain.py sets this: give it nexorahomes.co for
-  # non-www, or www.nexorahomes.co for www, and it switches the other
-  # one back off. Never uncomment both by hand. The two rules would
-  # bounce a visitor between the addresses until the browser gave up,
-  # and the site would stop loading at all.
+  # Non-www is the live one: www.nexorahomes.co sends visitors to
+  # nexorahomes.co. To swap, comment these two lines out and uncomment
+  # the three below. Never both at once. The two rules would bounce a
+  # visitor between the addresses until the browser gave up, and the
+  # site would stop loading at all.
   #
   # Force non-www  (nexorahomes.co):
   RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]

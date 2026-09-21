@@ -24,17 +24,9 @@ produce it.
 Upload the folder and the site is live. That is the whole build
 process.
 
-There is ONE optional Python script, set-domain.py, in this
-folder. It is a convenience, not a build step: it writes your
-domain into four files so that link previews and Google get the
-full address. You can do the same thing by hand in a text editor
-in two minutes. It has already been run for you; step 1
-says how to change it later.
-
-(If you ever saw a file called build-preview.py in the project,
-that was only used to squeeze the site into a single file for the
-preview links. It has nothing to do with your website and is not
-in this folder.)
+There is no script of any kind in this folder. Nothing to run,
+nothing to install. Every file here is either a web page, a
+picture, a font, or a plain settings file the server reads.
 
 
 ----------------------------------------------------------------
@@ -53,15 +45,16 @@ in this folder.)
   favicon.svg           the same icon, sharp at any size
   apple-touch-icon.png  the icon iPhones use on a home screen
 
-  assets/               every photo, the hero film, and the fonts
+  assets/               every photo, both cuts of the hero film,
+                        and the fonts
     fonts/              3 font files, served from your own site
                         rather than from Google
 
-  _deploy-docs/         this guide and set-domain.py.
-                        Not part of the website. You can delete
-                        it after uploading; if you leave it, the
-                        .htaccess already blocks it from being
-                        read by visitors.
+  _deploy-docs/         this guide, in two formats. Not part of
+                        the website. You can delete it after
+                        uploading; if you leave it, the .htaccess
+                        already blocks it from being read by
+                        visitors.
 
 
 ----------------------------------------------------------------
@@ -76,20 +69,19 @@ Skip to step 2.
 
   ONLY IF YOU CHANGE DOMAIN LATER:
 
-    python3 set-domain.py your-new-domain.com
+    Open these four files in any text editor and replace every
+    https://nexorahomes.co with the new address, written in full
+    and with NO slash on the end:
 
-    Add the www. to the front if you want the site to live at
-    www.your-new-domain.com instead. The script rewrites all four
-    files and flips the .htaccess redirect to match. Safe to run
-    as many times as you like.
+        index.html      (3 places)
+        about.html      (3 places)
+        sitemap.xml     (2 places)
+        robots.txt      (1 place)
 
-    Without Python: open those four files in a text editor and
-    replace every https://nexorahomes.co with the new address,
-    written in full and with no slash on the end. Then in
-    .htaccess uncomment ONE of the two redirect blocks and make
-    sure the other stays commented. Never both: they would send
+    Then open .htaccess, find the block headed "One address for
+    the site", and make sure exactly ONE of the two redirect
+    blocks is uncommented. Never both: the two rules would send
     visitors round in a loop and the site would stop loading.
-
 
 ----------------------------------------------------------------
   STEP 2. UPLOAD TO HOSTINGER
@@ -233,9 +225,10 @@ Open your site and walk through this list.
   [ ] the eight products all show their photo
   [ ] nexorahomes.co/a-page-that-does-not-exist shows the
       Nexora 404 page, not a bare Hostinger error
-  [ ] open it on your phone: the top should be a still photo,
-      not the film. That is deliberate. Phones get a sharp
-      still instead of a 6 MB download.
+  [ ] open it on your phone: the film plays at the top there
+      too, in its own portrait cut. It is a different crop from
+      the one on a laptop, framed so the wall panel stays in
+      shot, and it is 2 MB rather than 6.
 
   If the film does not play on a laptop: check in File Manager
   that assets/hero-scrub.mp4 really uploaded, and that it is
@@ -312,8 +305,9 @@ server copy is the only other one.
       with a # at the front of its lines.
 
   Film does not play, everything else fine
-      Check assets/hero-scrub.mp4 uploaded completely: it should
-      be 6,320,529 bytes.
+      There are two cuts. Check both uploaded completely:
+        assets/hero-scrub.mp4           6,320,529 bytes (laptops)
+        assets/hero-scrub-portrait.mp4  2,029,846 bytes (phones)
 
   Old version keeps showing after an edit
       Hard refresh: Ctrl+Shift+R, or Cmd+Shift+R on a Mac.

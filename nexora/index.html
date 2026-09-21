@@ -379,12 +379,14 @@ main{position:relative;z-index:1}
 .static-hero{display:none}
 .static-hero .col{max-width:min(90%,860px);text-align:center;margin:0 auto}
 
-/* the five gates, character for character identical in CSS and JS */
-@media (max-width: 720px),
-       (orientation: portrait) and (max-width: 1024px),
-       (orientation: portrait) and (pointer: coarse),
-       (orientation: landscape) and (pointer: coarse) and (max-height: 560px),
-       (prefers-reduced-motion: reduce){
+/* ---- the static hero ----
+   Phones used to land here too: four size, orientation and pointer gates
+   sent every small screen to a composed still so nobody paid 6 MB on mobile
+   data for a film. The owner wants the film on phones, so those four are
+   gone and a portrait cut is served instead, 2.1 MB with the panel kept in
+   frame. What is left is the one gate that is a stated human preference
+   rather than a guess about the device. */
+@media (prefers-reduced-motion: reduce){
   .hero{height:100svh;height:100vh}
   .stage{position:relative}
   /* the static hero is a bright composed still, so the nav needs its own
@@ -394,6 +396,9 @@ main{position:relative;z-index:1}
   /* the static hero is a designed layout, not a fallback apology.
      declared here, inside the gate, so scrub screens never fetch it. */
   .poster{opacity:1!important;background-image:url('assets/hero-static.jpg')}
+  @media (orientation: portrait){
+    .poster{background-image:url('assets/hero-static-portrait.jpg')}
+  }
   .static-hero{
     display:flex;position:absolute;inset:0;
     align-items:center;justify-content:center;
@@ -888,7 +893,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
         <h2>Your house is beautiful. Your switches are not.</h2>
       </div>
       <div class="problem-grid">
-        <p class="lede rise">You spent two years on the marble, the joinery and the light fittings. Then a builder screwed a plastic rocker switch onto every wall at shoulder height, and a thermostat beside it, and a keyhole in the door. Five remotes in a drawer. Nothing matches anything.</p>
+        <p class="lede rise">Everything in the room was chosen. The marble, the joinery, the paint, the light fittings. Everything except the switch &mdash; a plastic rocker out of a box of twenty, sitting at shoulder height on the wall you look at most. A thermostat beside it. A keyhole in the door. Five remotes in a drawer, matching nothing and belonging to no one.</p>
         <blockquote class="pull rise">
           <p>Three different apps to turn on the lights.</p>
           <cite>What buyers actually say</cite>
@@ -1339,8 +1344,20 @@ var bands = bandEls.map(function(el){
 /* ============================================================
    2. THE SCRUB HERO
    ============================================================ */
-var VIDEO_URL  = 'assets/hero-scrub.mp4';
-var VIDEO_BYTES = 6320529;              /* real byte size, measured after encode */
+/* ---- which cut of the film this screen gets ----
+   The master is 1920x1080 landscape. A portrait phone filling itself with
+   object-fit:cover would keep only the middle 26% of that width, and the
+   panel, which is the whole subject, sits at 72% across: two of the three
+   corridor shots would have become a blank wall. So a portrait screen gets
+   its own cut, a 608x1080 window centred at 70% across, which keeps the
+   panel in frame the whole way through and costs 2.1 MB instead of 6.3.
+
+   Chosen once, at load. A phone rotated mid-visit keeps the cut it started
+   with rather than paying for the download twice. */
+var PORTRAIT_CUT = matchMedia('(orientation: portrait) and (max-width: 900px)').matches;
+var VIDEO_URL   = PORTRAIT_CUT ? 'assets/hero-scrub-portrait.mp4' : 'assets/hero-scrub.mp4';
+var VIDEO_BYTES = PORTRAIT_CUT ? 2029846 : 6320529;   /* measured after encode */
+var POSTER_URL  = PORTRAIT_CUT ? 'assets/hero-poster-portrait.jpg' : 'assets/hero-poster.jpg';
 
 var heroSec = document.getElementById('hero-sec');
 var stage   = document.getElementById('stage');
@@ -1451,7 +1468,7 @@ var heroInit = false;
 function initHeroOnce(){
   if (heroInit) return;
   heroInit = true;
-  poster.style.backgroundImage = "url('assets/hero-poster.jpg')";
+  poster.style.backgroundImage = "url('" + POSTER_URL + "')";
   var started = false;
   function startBlobFetch(){
     if (started) return;
@@ -1461,7 +1478,7 @@ function initHeroOnce(){
   var img = new Image();
   img.onload = startBlobFetch;
   img.onerror = startBlobFetch;
-  img.src = 'assets/hero-poster.jpg';
+  img.src = POSTER_URL;
   setTimeout(startBlobFetch, 4000);
 }
 
@@ -1517,12 +1534,10 @@ function failVideo(){
   }
 }
 
-/* ---- the five static-hero gates, live in both directions ---- */
+/* ---- the static-hero gate, live in both directions ----
+   Must stay character for character identical to the @media block in the
+   CSS, or the two disagree about which hero is on screen. */
 var GATES = [
-  '(max-width: 720px)',
-  '(orientation: portrait) and (max-width: 1024px)',
-  '(orientation: portrait) and (pointer: coarse)',
-  '(orientation: landscape) and (pointer: coarse) and (max-height: 560px)',
   '(prefers-reduced-motion: reduce)'
 ];
 var MQLS = GATES.map(function(q){ return matchMedia(q); });

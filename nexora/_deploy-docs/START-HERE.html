@@ -103,14 +103,10 @@ framework, no Node, and no Python needed to produce it.</p>
 <p>Upload the folder and the site is live. That is the whole build process.</p>
 
 <div class="note">
-  <strong>The one Python file, and what it is not</strong>
-  <p><code>set-domain.py</code> in this folder is a convenience, not a build step.
-  It writes your domain into four files so link previews and Google get the full
-  address. You can do the same by hand in a text editor in two minutes &mdash;
-  step 02 covers both ways.</p>
-  <p>If you ever saw <code>build-preview.py</code> in the project, that only
-  squeezed the site into a single file for the preview links. It has nothing to
-  do with your website and is not in this folder.</p>
+  <strong>Nothing in this folder runs</strong>
+  <p>There is no script of any kind here &mdash; nothing to install, nothing to
+  execute. Every file is either a web page, a picture, a font, or a plain
+  settings file the server reads.</p>
 </div>
 
 
@@ -127,7 +123,7 @@ framework, no Node, and no Python needed to produce it.</p>
   <tr><td>apple-touch-icon.png</td><td>The icon iPhones use on a home screen.</td></tr>
   <tr><td>assets/</td><td>Every photo, the hero film, and the fonts.</td></tr>
   <tr><td>assets/fonts/</td><td>Three font files, served from your own site rather than from Google.</td></tr>
-  <tr><td>_deploy-docs/</td><td>This guide and <code>set-domain.py</code>. Not part of the website. You may delete it after uploading; if you leave it, <code>.htaccess</code> already blocks visitors from reading it.</td></tr>
+  <tr><td>_deploy-docs/</td><td>This guide, in two formats. Not part of the website. You may delete it after uploading; if you leave it, <code>.htaccess</code> already blocks visitors from reading it.</td></tr>
 </table>
 
 
@@ -141,15 +137,18 @@ framework, no Node, and no Python needed to produce it.</p>
 <code>nexorahomes.co</code>.</p>
 
 <h3>Only if you change domain later</h3>
-<pre><code>python3 set-domain.py your-new-domain.com</code></pre>
-<p class="tp">Put <code>www.</code> on the front if you want the site to live at the
-www address instead. The script rewrites all four files and flips the
-<code>.htaccess</code> redirect to match. Safe to run as many times as you like.</p>
-
-<p>Without Python: open those four files in a text editor and replace every
+<p>Open these four files in any text editor and replace every
 <code>https://nexorahomes.co</code> with the new address, in full and with
-<strong>no slash on the end</strong>. Then in <code>.htaccess</code> uncomment one of
-the two redirect blocks and make sure the other stays commented.</p>
+<strong>no slash on the end</strong>:</p>
+<table>
+  <tr><th>File</th><th>How many</th></tr>
+  <tr><td><code>index.html</code></td><td>3 places</td></tr>
+  <tr><td><code>about.html</code></td><td>3 places</td></tr>
+  <tr><td><code>sitemap.xml</code></td><td>2 places</td></tr>
+  <tr><td><code>robots.txt</code></td><td>1 place</td></tr>
+</table>
+<p>Then open <code>.htaccess</code>, find the block headed <em>One address for the
+site</em>, and make sure exactly one of the two redirect blocks is uncommented.</p>
 
 <div class="warn">
   <strong>One redirect, never both</strong>
@@ -287,8 +286,9 @@ resolving.</p>
   <li>All eight products show their photo</li>
   <li><code>nexorahomes.co/not-a-real-page</code> shows the Nexora 404 page, not a
       bare Hostinger error</li>
-  <li>On your phone the top is a <em>still photo</em>, not the film. That is
-      deliberate: phones get a sharp still instead of a 6&nbsp;MB download.</li>
+  <li>On your phone the film plays at the top too, in its own portrait cut &mdash;
+      a different crop from the laptop one, framed so the wall panel stays in
+      shot, and 2&nbsp;MB rather than 6.</li>
 </ul>
 <p class="tp">If the film does not play on a laptop, check in File Manager that
 <code>assets/hero-scrub.mp4</code> really uploaded and is
@@ -352,8 +352,10 @@ only other one.</p>
       <td>Both the www and non-www rules in <code>.htaccess</code> are on. Only one
           may be. Comment the other out with a <code>#</code>.</td></tr>
   <tr><td>Film does not play, everything else fine</td>
-      <td>Check <code>assets/hero-scrub.mp4</code> uploaded completely:
-          <code>6,320,529</code> bytes.</td></tr>
+      <td>There are two cuts. Check both uploaded completely:
+          <code>assets/hero-scrub.mp4</code> at <code>6,320,529</code> bytes for
+          laptops, and <code>assets/hero-scrub-portrait.mp4</code> at
+          <code>2,029,846</code> bytes for phones.</td></tr>
   <tr><td>Old version still showing after an edit</td>
       <td>Hard refresh: <code>Ctrl+Shift+R</code>, or <code>Cmd+Shift+R</code> on a
           Mac.</td></tr>
