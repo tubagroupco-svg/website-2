@@ -132,8 +132,8 @@ main{position:relative;z-index:1}
 .nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;
   justify-content:space-between;gap:24px;padding:14px var(--gut);
   border-bottom:1px solid transparent;
-  transition:background .5s var(--ease),border-color .5s var(--ease),backdrop-filter .5s var(--ease)}
-.nav.solid{background:rgba(11,10,9,.82);backdrop-filter:blur(14px);border-bottom-color:var(--line)}
+  transition:background .5s var(--ease),border-color .5s var(--ease),-webkit-backdrop-filter .5s var(--ease),backdrop-filter .5s var(--ease)}
+.nav.solid{background:rgba(11,10,9,.82);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom-color:var(--line)}
 .brand{display:flex;align-items:center;gap:11px;text-decoration:none;flex:0 0 auto}
 .brand img{width:30px;height:auto;mix-blend-mode:screen}
 .brand span{font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:.14em;text-transform:uppercase}

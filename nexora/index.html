@@ -171,12 +171,12 @@ main{position:relative;z-index:1}
   position:fixed;top:0;left:0;right:0;z-index:60;
   display:flex;align-items:center;justify-content:space-between;
   gap:24px;padding:14px var(--gut);
-  transition:background .5s var(--ease),border-color .5s var(--ease),backdrop-filter .5s var(--ease);
+  transition:background .5s var(--ease),border-color .5s var(--ease),-webkit-backdrop-filter .5s var(--ease),backdrop-filter .5s var(--ease);
   border-bottom:1px solid transparent;
 }
 .nav.solid{
   background:rgba(11,10,9,.82);
-  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
   border-bottom-color:var(--line);
 }
 .brand{display:flex;align-items:center;gap:11px;text-decoration:none;flex:0 0 auto}
@@ -229,9 +229,14 @@ main{position:relative;z-index:1}
    HERO: pinned scroll-scrubbed film
    Sized in scroll distance, not seconds. Five beats need the room.
    ============================================================ */
-.hero{position:relative;height:760vh}
+/* svh, not vh: on a phone 100vh is the height with the browser
+   toolbar HIDDEN, so a pinned 100vh stage is taller than what is
+   actually on screen and its bottom sits behind the chrome. svh is
+   the toolbar-visible height, so the hero always fits. vh first as
+   the fallback for anything that does not know svh. */
+.hero{position:relative;height:760vh;height:760svh}
 .stage{
-  position:sticky;top:0;height:100vh;overflow:hidden;
+  position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;
   background:var(--canvas);
 }
 .poster{
@@ -387,11 +392,11 @@ main{position:relative;z-index:1}
    frame. What is left is the one gate that is a stated human preference
    rather than a guess about the device. */
 @media (prefers-reduced-motion: reduce){
-  .hero{height:100svh;height:100vh}
+  .hero{height:100vh;height:100svh}
   .stage{position:relative}
   /* the static hero is a bright composed still, so the nav needs its own
      dark ground from the first paint or the gold mark washes out over it */
-  .nav{background:rgba(11,10,9,.88);backdrop-filter:blur(14px);border-bottom-color:var(--line)}
+  .nav{background:rgba(11,10,9,.88);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom-color:var(--line)}
   .bands,.ring,.chev{display:none!important}
   /* the static hero is a designed layout, not a fallback apology.
      declared here, inside the gate, so scrub screens never fetch it. */
