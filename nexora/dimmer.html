@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>About Nexora Homes. Smart control for homes, hotels and whole buildings.</title>
-<meta name="description" content="Nexora Homes supplies and fits smart panels, switches, locks and curtain motors. Houses, commercial spaces, hotels, flats and apartments, and whole buildings, across DHA and beyond.">
+<title>Dimmers and knobs. The level, shown live. Nexora Homes.</title>
+<meta name="description" content="The Nexora glass dial for fan speed and light level, with the percentage shown live and two one-tap presets.">
 <meta name="theme-color" content="#0b0a09">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230b0a09'/%3E%3Cpath d='M18 51V19L46 51V19' fill='none' stroke='%23e8c766' stroke-width='6.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="icon" href="favicon.ico" sizes="any">
@@ -14,17 +14,17 @@
      Facebook and X. These have to be the full address rather than a
      relative path. If the domain ever changes, they are the lines to
      edit, along with sitemap.xml and robots.txt. -->
-<link rel="canonical" href="https://nexorahomes.co/about.html">
+<link rel="canonical" href="https://nexorahomes.co/dimmer.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="About Nexora Homes">
-<meta property="og:description" content="Houses, commercial spaces, hotels, flats and apartments, and whole buildings. We supply it, we fit it ourselves, and we stay after.">
-<meta property="og:url" content="https://nexorahomes.co/about.html">
-<meta property="og:image" content="https://nexorahomes.co/assets/hero-ending.jpg">
+<meta property="og:title" content="Dimmers and knobs. Nexora Homes.">
+<meta property="og:description" content="The Nexora glass dial for fan speed and light level, with the percentage shown live and two one-tap presets.">
+<meta property="og:url" content="https://nexorahomes.co/dimmer.html">
+<meta property="og:image" content="https://nexorahomes.co/assets/dimmer.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta property="og:site_name" content="Nexora Homes">
-<meta property="og:image:width" content="1400">
-<meta property="og:image:height" content="788">
-<meta property="og:image:alt" content="A living room at dusk, lit by Nexora panels set into the wall.">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="1227">
+<meta property="og:image:alt" content="A Nexora glass dial panel showing a fan speed of 50 percent on its own small screen, with 50 and 100 percent presets above and on and off touch zones for fan and light below.">
 <meta property="og:locale" content="en_PK">
 
 <!-- Fonts are served from this site, not from Google. One less thing that
@@ -36,6 +36,7 @@
 <link rel="preload" href="assets/fonts/manrope-var.woff2" as="font" type="font/woff2" crossorigin>
 
 <style>
+
 /* ============================================================
    FONTS, served from this site
    Latin subset only: the site is English, so the cyrillic, greek,
@@ -71,8 +72,9 @@
 }
 
 /* ============================================================
-   Same tokens as index.html. Kept inline per page so each file
-   stands alone and the folder still deploys with no build step.
+   Same tokens as index.html and about.html. Kept inline per page
+   so each file stands alone and the folder still deploys with no
+   build step.
    ============================================================ */
 :root{
   --canvas:#0b0a09;
@@ -166,21 +168,6 @@ main{position:relative;z-index:1}
   .nav-links a{min-height:44px;display:inline-flex;align-items:center}
 }
 
-/* ============================================================
-   PAGE BANNER
-   A composed still, not the scroll film. This page is read, not
-   travelled through, so it opens and gets straight to the point.
-   ============================================================ */
-.banner{position:relative;min-height:clamp(420px,62vh,620px);display:flex;align-items:flex-end;
-  overflow:hidden;border-bottom:1px solid var(--line)}
-.banner .shot{position:absolute;inset:0;background-image:url('assets/hero-ending.jpg');
-  background-size:cover;background-position:center 62%}
-.banner .veil{position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(8,7,5,.82) 0%,rgba(8,7,5,.5) 34%,rgba(8,7,5,.72) 78%,rgba(11,10,9,1) 100%)}
-.banner .wrap{position:relative;padding-block:clamp(56px,8vw,104px)}
-.banner h1{font-size:clamp(34px,5.6vw,74px);max-width:16ch;text-shadow:var(--tshadow)}
-.banner .sub{margin-top:22px;color:var(--text-primary);opacity:.86;max-width:52ch;
-  font-size:clamp(16px,1.3vw,19px);text-shadow:var(--tshadow)}
 .kicker{font-family:var(--mono);font-size:clamp(10px,.78vw,12px);letter-spacing:.26em;
   text-transform:uppercase;color:var(--accent);margin-bottom:18px}
 
@@ -194,63 +181,127 @@ section{position:relative;z-index:1}
 .rise{opacity:0;transform:translateY(26px);transition:opacity .95s var(--ease),transform .95s var(--ease)}
 .rise.in{opacity:1;transform:none}
 
-/* ---------- the story ---------- */
-.story{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(36px,5vw,84px);align-items:start;margin-top:52px}
-.story p + p{margin-top:20px}
-.story .body p{color:var(--text-secondary);font-size:clamp(16px,1.2vw,18px);max-width:56ch}
-.story .body p strong{color:var(--text-primary);font-weight:500}
-.creed{border-left:2px solid var(--accent);padding:30px 30px 30px 32px;border-radius:0 14px 14px 0;
-  background:linear-gradient(100deg,rgba(232,199,102,.055),transparent 72%)}
-.creed p{font-family:var(--display);font-weight:600;font-size:clamp(20px,2vw,28px);
-  line-height:1.3;letter-spacing:-.02em;max-width:18ch}
-.creed span{display:block;margin-top:18px;font-family:var(--mono);font-size:11.5px;
-  letter-spacing:.16em;text-transform:uppercase;color:var(--text-secondary)}
-@media (max-width:880px){.story{grid-template-columns:1fr}}
+/* ---------- NEW: breadcrumb, above the product banner ---------- */
+.crumb{position:relative;z-index:2;padding:clamp(96px,11vw,132px) 0 0}
+.crumb .wrap{display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--text-secondary)}
+.crumb a{text-decoration:none;transition:color .35s var(--ease)}
+.crumb a:hover{color:var(--accent)}
+.crumb span[aria-hidden]{color:var(--line-strong)}
+.crumb .here{color:var(--accent-hover)}
 
-/* ---------- where we work: an editorial row list, not more cards ---------- */
-.where{list-style:none;margin:56px 0 0;padding:0;border-top:1px solid var(--line)}
-.where li{display:grid;grid-template-columns:minmax(200px,260px) minmax(160px,.3fr) 1fr;
-  gap:clamp(20px,3vw,40px);
-  padding:clamp(24px,2.6vw,34px) 0;border-bottom:1px solid var(--line);align-items:center}
-/* a real photo, not a product cutout, so it takes the site's other photographic
-   treatment (the how-it-works steps) rather than the light-plate/multiply recipe
-   built for studio shots on white */
-.where .shot{aspect-ratio:4/3;border-radius:14px;overflow:hidden;
-  border:1px solid var(--line);background:var(--panel)}
-.where .shot img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
-.where li:hover .shot img{transform:scale(1.04)}
-.where h3{font-size:clamp(20px,2vw,27px)}
-.where p{color:var(--text-secondary);max-width:60ch}
-.where li:hover h3{color:var(--accent)}
-.where h3{transition:color .45s var(--ease)}
-@media (max-width:900px){
-  .where li{grid-template-columns:minmax(160px,200px) 1fr;grid-template-areas:"shot h3" "shot p"}
-  .where .shot{grid-area:shot}
-  .where h3{grid-area:h3}
-  .where p{grid-area:p}
+/* ---------- NEW: product banner, two columns ----------
+   The site's existing full-bleed photo banner (about.html) is
+   built for wide interior photography. A product is a small
+   studio shot on white, so it gets the range card's own light
+   plate treatment instead, just larger, rather than a new look. */
+.p-hero{padding:28px 0 clamp(56px,7vw,96px)}
+.p-hero .grid{display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(32px,5vw,72px);align-items:center}
+.p-hero h1{font-size:clamp(32px,4.6vw,60px);max-width:15ch}
+.p-hero .sub{margin-top:20px;color:var(--text-secondary);font-size:clamp(16px,1.25vw,19px);max-width:50ch}
+.p-hero .row{margin-top:32px;display:flex;gap:14px;flex-wrap:wrap}
+@media (max-width:960px){.p-hero .grid{grid-template-columns:1fr}}
+
+/* the light plate, same recipe as .card .shot, sized for a hero */
+.p-hero-shot{
+  position:relative;border-radius:20px;overflow:hidden;min-height:280px;
+  background:radial-gradient(78% 86% at 50% 38%,#efece4 0%,#cfc9bb 62%,#b7b0a1 100%);
+  display:grid;place-items:center;border:1px solid var(--line);
 }
-@media (max-width:600px){
-  .where li{grid-template-columns:1fr;grid-template-areas:"shot" "h3" "p";gap:16px}
-  .where .shot{aspect-ratio:16/9}
+.p-hero-shot img{
+  width:100%;height:auto;max-height:min(56vh,560px);
+  padding:6% 7%;object-fit:contain;
+  mix-blend-mode:multiply;filter:contrast(1.04);
+}
+.p-hero-shot::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  box-shadow:inset 0 0 0 1px rgba(11,10,9,.16),inset 0 -50px 80px -50px rgba(11,10,9,.32);
 }
 
-/* ---------- what we bring ---------- */
+/* ---------- NEW: facts strip, pills in the mono/kicker language ---------- */
+.p-facts{list-style:none;margin:30px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:10px}
+.p-facts li{
+  border:1px solid var(--line);border-radius:999px;background:var(--panel);
+  padding:9px 18px;font-family:var(--mono);font-size:12px;letter-spacing:.02em;
+  color:var(--text-secondary);
+}
+.p-facts b{color:var(--text-primary);font-weight:600}
+
+/* ---------- what it does / where it fits (reused from about.html) ---------- */
 .bring{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(22px,3vw,44px);margin-top:56px}
 .bring .item{padding-top:26px;border-top:1px solid var(--line)}
 .bring h3{font-size:clamp(19px,1.6vw,23px)}
 .bring p{margin-top:12px;color:var(--text-secondary);max-width:46ch}
 @media (max-width:760px){.bring{grid-template-columns:1fr;gap:32px}}
 
-/* ---------- how a bigger job runs ---------- */
-.phases{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(18px,2.4vw,32px);margin-top:56px}
+.phases{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.4vw,32px);margin-top:56px}
 .phase{padding:26px 24px 30px;border:1px solid var(--line);border-radius:16px;background:var(--panel);
   transition:border-color .55s var(--ease),background .55s var(--ease),transform .55s var(--ease)}
 .phase:hover{border-color:var(--accent-muted);background:var(--panel-2);transform:translateY(-4px)}
 .phase .n{font-family:var(--mono);font-size:11.5px;letter-spacing:.2em;color:var(--accent)}
 .phase h3{margin-top:14px;font-size:clamp(18px,1.5vw,22px)}
 .phase p{margin-top:11px;color:var(--text-secondary);font-size:15px}
-@media (max-width:1040px){.phases{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:600px){.phases{grid-template-columns:1fr}}
+@media (max-width:1040px){.phases{grid-template-columns:1fr}}
+
+/* ---------- how it works ---------- */
+.how p{color:var(--text-secondary);font-size:clamp(16px,1.2vw,18px);max-width:70ch;margin-top:24px}
+
+/* ---------- mini FAQ, identical to index.html's ---------- */
+.qa{margin-top:52px;border-top:1px solid var(--line)}
+.qa details{border-bottom:1px solid var(--line)}
+.qa summary{
+  list-style:none;cursor:pointer;padding:26px 46px 26px 0;position:relative;
+  font-family:var(--display);font-weight:600;letter-spacing:-.015em;
+  font-size:clamp(17px,1.55vw,22px);
+  transition:color .45s var(--ease);
+}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary:hover{color:var(--accent)}
+.qa summary::after{
+  content:"";position:absolute;right:6px;top:50%;
+  width:11px;height:11px;margin-top:-7px;
+  border-right:1.5px solid var(--accent);border-bottom:1.5px solid var(--accent);
+  transform:rotate(45deg);transition:transform .5s var(--ease);
+}
+.qa details[open] summary::after{transform:rotate(-135deg);margin-top:-3px}
+.qa .ans{padding:0 0 28px;color:var(--text-secondary);max-width:66ch}
+
+/* ---------- also in the range: the range card, reused smaller ---------- */
+.also-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,1.6vw,22px);margin-top:56px}
+@media (max-width:880px){.also-grid{grid-template-columns:1fr}}
+.card{
+  position:relative;overflow:hidden;text-decoration:none;display:block;
+  border:1px solid var(--line);border-radius:18px;
+  background:var(--panel);
+  transition:border-color .55s var(--ease),transform .55s var(--ease),background .55s var(--ease);
+}
+.card:hover{border-color:var(--accent-muted);transform:translateY(-4px);background:var(--panel-2)}
+.card .shot{
+  position:relative;aspect-ratio:4/3;overflow:hidden;
+  background:radial-gradient(78% 86% at 50% 38%,#efece4 0%,#cfc9bb 62%,#b7b0a1 100%);
+  display:grid;place-items:center;
+}
+.card .shot img{
+  position:absolute;inset:0;
+  width:100%;height:100%;padding:7% 8%;
+  object-fit:contain;
+  mix-blend-mode:multiply;
+  filter:contrast(1.04);
+}
+.card .shot::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  box-shadow:inset 0 0 0 1px rgba(11,10,9,.16),inset 0 -40px 60px -40px rgba(11,10,9,.35);
+}
+.card .shot::before{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(56% 56% at 50% 38%,rgba(232,199,102,.22),transparent 70%);
+  opacity:0;transition:opacity .7s var(--ease);
+}
+.card:hover .shot::before{opacity:1}
+.card .body{padding:22px 22px 26px}
+.card h3{font-size:clamp(17px,1.4vw,20px)}
+.card p{margin-top:9px;color:var(--text-secondary);font-size:14px;max-width:42ch}
 
 /* ---------- call to action ---------- */
 .talk{position:relative;overflow:hidden;padding-block:clamp(88px,11vw,150px)}
@@ -306,6 +357,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
   *,*::before,*::after{animation:none!important;transition-duration:.001ms!important;transition-delay:0ms!important}
   .rise{opacity:1;transform:none}
 }
+
 </style>
 </head>
 <body>
@@ -321,7 +373,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
   <div class="nav-links">
     <a href="index.html#range">Range</a>
     <a href="index.html#how">How it works</a>
-    <a href="about.html" aria-current="page">About</a>
+    <a href="about.html">About</a>
     <a href="index.html#questions">Questions</a>
   </div>
   <a class="btn" href="https://wa.me/923234508739" target="_blank" rel="noopener">
@@ -333,154 +385,174 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
 <main id="main" tabindex="-1">
 
   <!-- ==========================================================
-       BANNER
+       BREADCRUMB + PRODUCT BANNER
        ========================================================== -->
-  <header class="banner">
-    <div class="shot" aria-hidden="true"></div>
-    <div class="veil" aria-hidden="true"></div>
+  <div class="crumb">
     <div class="wrap">
-      <p class="kicker">About Nexora Homes</p>
-      <h1>We put the glass on the wall.</h1>
-      <p class="sub">Houses, commercial spaces, hotels, flats and apartments, and whole buildings. We supply it, we fit it ourselves, and we are still here after the handover.</p>
+      <a href="index.html">Home</a><span aria-hidden="true">/</span>
+      <a href="index.html#range">Range</a><span aria-hidden="true">/</span>
+      <span class="here">Dimmers and knobs</span>
+    </div>
+  </div>
+  <header class="p-hero">
+    <div class="wrap">
+      <div class="grid">
+        <div class="rise">
+          <p class="kicker">Dimmer</p>
+          <h1>One dial instead of a regulator.</h1>
+          <p class="sub">Turn it, and the fan or the light follows &mdash; with the level shown back to you on the glass, not hidden in a switch position nobody remembers.</p>
+          <div class="row">
+            <a class="btn" href="https://wa.me/923234508739" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.41a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.09-.16.04-.31-.02-.43-.06-.13-.56-1.35-.77-1.84-.2-.49-.4-.42-.55-.43h-.47c-.16 0-.43.06-.65.31-.22.25-.85.83-.85 2.03s.87 2.35.99 2.51c.12.17 1.71 2.61 4.15 3.66.58.25 1.03.4 1.39.51.58.19 1.11.16 1.53.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.22-.16-.47-.29Z"/></svg>
+              WhatsApp about this
+            </a>
+            <a class="btn ghost" href="index.html#range">See the full range</a>
+          </div>
+          <ul class="p-facts">
+          <li><b>Shown as:</b> Live percentage</li>
+          <li><b>Presets:</b> 50%, 100% one tap</li>
+          <li><b>Extra zones:</b> On/off, no dial needed</li>
+          <li><b>Control:</b> Touch, app</li>
+          </ul>
+        </div>
+        <div class="p-hero-shot rise">
+          <img src="assets/dimmer.jpg" alt="A Nexora glass dial panel showing a fan speed of 50 percent on its own small screen, with 50 and 100 percent presets above and on and off touch zones for fan and light below." decoding="async">
+        </div>
+      </div>
     </div>
   </header>
 
   <!-- ==========================================================
-       THE STORY
+       WHAT IT DOES
        ========================================================== -->
-  <section class="sec" id="story">
+  <section class="sec alt" id="does">
     <div class="motes" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
     <div class="wrap">
       <div class="rise">
-        <p class="kicker">Who we are</p>
-        <h2>One idea, carried through the whole building.</h2>
-      </div>
-      <div class="story">
-        <div class="body rise">
-          <p>Nexora Homes is a smart control company based in DHA Phase 6. We started from a single observation, and everything we do still comes back to it: <strong>a room can be finished beautifully and still have a plastic rocker switch screwed to the wall at shoulder height.</strong></p>
-          <p>So we replaced it. Then the thermostat beside it, then the keyhole in the door, then the regulator, then the remote in the drawer. One material, one language, whatever the room is for.</p>
-          <p>Some of our work is a single bedroom. Some of it is a floor of offices, or a hotel corridor, or a building that is still a drawing. The scale changes and the method does not: look at the wiring first, fit clean, name everything, and show the people who live or work there how it runs before we leave.</p>
-        </div>
-        <blockquote class="creed rise">
-          <p>The switch is the last ugly thing in a beautiful room.</p>
-          <span>What we build around</span>
-        </blockquote>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================================
-       WHERE WE WORK
-       ========================================================== -->
-  <section class="sec alt" id="where">
-    <div class="motes" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-    <div class="wrap">
-      <div class="rise">
-        <p class="kicker">Where we work</p>
-        <h2>Not only houses.</h2>
-        <p class="lede">The same panels, switches, locks and motors go into very different buildings. What changes is how the job is planned and how we work around the people already in it.</p>
-      </div>
-      <ul class="where">
-        <li class="rise">
-          <div class="shot"><img src="assets/where-homes.jpg" alt="A Nexora control panel mounted beside a fireplace in a warm, dimly lit living room at dusk" loading="lazy" decoding="async"></div>
-          <h3>Homes</h3>
-          <p>Houses under construction and houses finished ten years ago. Most switches drop into the back box that is already in the wall, so a finished home does not have to be opened up again to become a smart one.</p>
-        </li>
-        <li class="rise">
-          <div class="shot"><img src="assets/where-commercial.jpg" alt="A Nexora eight gang switch mounted beside a reception desk in a modern office lobby at dusk" loading="lazy" decoding="async"></div>
-          <h3>Commercial spaces</h3>
-          <p>Offices, showrooms, restaurants and salons. Scenes for opening, for trading hours and for closing, so the last person out presses one button instead of walking the floor flipping twelve. Lights that are not left burning all night cost less every month.</p>
-        </li>
-        <li class="rise">
-          <div class="shot"><img src="assets/where-hotels.jpg" alt="A Nexora display switch mounted at a hotel bedside, its screen lit, beside a lamp and a made bed" loading="lazy" decoding="async"></div>
-          <h3>Hotels</h3>
-          <p>Guest rooms, corridors and reception. A room that comes up warm and lit the way you want a guest to find it, and goes quiet when the room is empty. One panel by the bed instead of a row of unlabelled switches a guest has to guess at.</p>
-        </li>
-        <li class="rise">
-          <div class="shot"><img src="assets/where-flats.jpg" alt="A Nexora touch switch mounted in an apartment hallway beside a console table at dusk" loading="lazy" decoding="async"></div>
-          <h3>Flats and apartments</h3>
-          <p>Owned or rented, one unit or a whole floor. Nothing we fit needs the walls chased, which is what usually makes a flat impossible. No dust, no permission letters, no argument with the building.</p>
-        </li>
-        <li class="rise">
-          <div class="shot"><img src="assets/where-buildings.jpg" alt="A Nexora smart lock mounted beside a modern building's glass entrance door at dusk" loading="lazy" decoding="async"></div>
-          <h3>Whole buildings</h3>
-          <p>Floor by floor, including the common areas, the lobby and the corridors. We can come in at the drawing stage with your builder or your architect and lay the wiring out for what the building will actually need, or fit it after handover without touching the finished work.</p>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- ==========================================================
-       WHAT WE BRING
-       ========================================================== -->
-  <section class="sec" id="bring">
-    <div class="motes" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-    <div class="wrap">
-      <div class="rise">
-        <p class="kicker">What you get with us</p>
-        <h2>The part most people get wrong is the fitting.</h2>
+        <p class="kicker">What it does</p>
+        <h2>One dial, several jobs.</h2>
       </div>
       <div class="bring">
         <div class="item rise">
-          <h3>Our own team fits it.</h3>
-          <p>The people who install your system work for us. Not a subcontractor who has seen the product once and will not answer the phone in six months.</p>
+          <h3>One dial instead of a regulator</h3>
+          <p>Turn it, and the fan or the light follows.</p>
         </div>
         <div class="item rise">
-          <h3>We work around you.</h3>
-          <p>An occupied home, a shop that has to keep trading, a hotel with guests in it. We plan the hours around the building instead of asking the building to stop.</p>
+          <h3>The percentage is always on the glass</h3>
+          <p>No guessing what level you left it on.</p>
         </div>
         <div class="item rise">
-          <h3>Bring us in early and it costs less.</h3>
-          <p>If the walls are still open, the wiring gets laid out for what you actually want to control. Adding it after the plaster is on is always the expensive way round.</p>
+          <h3>Two quick presets</h3>
+          <p>50% and 100% are one tap away, set for the level you actually use.</p>
         </div>
         <div class="item rise">
-          <h3>Everything is labelled before we go.</h3>
-          <p>Rooms grouped, scenes named in plain words, phones paired. Nobody should need a manual to turn on a light in their own building.</p>
-        </div>
-        <div class="item rise">
-          <h3>One material, wall to wall.</h3>
-          <p>Panels, switches, locks, dimmers and curtain motors all come from the same family, so a house does not end up with four different looks on four different walls.</p>
-        </div>
-        <div class="item rise">
-          <h3>We stay after the handover.</h3>
-          <p>Something stops behaving, you message the same number you booked on. No ticket number, no queue, no being passed around.</p>
+          <h3>On and off without turning the dial</h3>
+          <p>Two small touch zones below it, for when you do not need to think about the level at all.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ==========================================================
-       HOW A BIGGER PROJECT RUNS
+       HOW IT WORKS
        ========================================================== -->
-  <section class="sec alt" id="phases">
+  <section class="sec how" id="how-it-works">
     <div class="motes" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
     <div class="wrap">
       <div class="rise">
-        <p class="kicker">Larger projects</p>
-        <h2>How a hotel or a building runs.</h2>
-        <p class="lede">A few rooms is a day of work. A building is a project, so it gets planned like one. These four steps are in order, because each one needs the one before it.</p>
+        <p class="kicker">How it works</p>
+        <h2>Plain wiring, a different surface.</h2>
+        <p>The dial reads the turn and shows the level back to you on the same glass &mdash; a fan speed or a light level, in place of the plastic regulator that did the same job with a click instead of a number. Tap 50% or 100% for the level you use most, or turn it to anywhere between. The two zones below the dial are plain on and off, for when you do not need to think about the level at all. Set from the app too, the same as everything else in the range.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       WHERE IT FITS
+       ========================================================== -->
+  <section class="sec alt" id="fits">
+    <div class="motes" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="wrap">
+      <div class="rise">
+        <p class="kicker">Where it fits</p>
+        <h2>Not only one kind of room.</h2>
       </div>
       <div class="phases">
         <div class="phase rise">
-          <p class="n">Step 01</p>
-          <h3>We walk the site.</h3>
-          <p>With you, and with your electrician or contractor if there is one. We look at the boards, the wiring and what each area is actually for.</p>
+          <h3>Homes</h3>
+          <p>Wherever a plastic fan regulator or a rotary dimmer already sits &mdash; the same wall position, the same job, done in glass.</p>
         </div>
         <div class="phase rise">
-          <p class="n">Step 02</p>
-          <h3>We draw it up.</h3>
-          <p>Every point, every panel, the scenes each area needs, and a written quote against it. You approve a plan, not a guess.</p>
+          <h3>Commercial spaces</h3>
+          <p>A restaurant or a salon, where the light level is part of the mood and gets changed more than once a day.</p>
         </div>
         <div class="phase rise">
-          <p class="n">Step 03</p>
-          <h3>We fit in phases.</h3>
-          <p>Floor by floor or wing by wing, so the rest of the building keeps working. Finished areas are handed back as we go.</p>
+          <h3>Hotels</h3>
+          <p>A guest room fan or reading light, with the level visible instead of hidden in a switch position nobody remembers.</p>
         </div>
-        <div class="phase rise">
-          <p class="n">Step 04</p>
-          <h3>We hand it over.</h3>
-          <p>Named, grouped and tested, with your staff or your family shown how it runs. Then we are one message away.</p>
-        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       QUESTIONS ABOUT THIS PRODUCT
+       ========================================================== -->
+  <section class="sec" id="questions">
+    <div class="motes" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="wrap">
+      <div class="rise">
+        <p class="kicker">Questions about this one</p>
+        <h2>What people ask before they book.</h2>
+      </div>
+      <div class="qa rise">
+        <details>
+          <summary>Does it work with LED bulbs?</summary>
+          <div class="ans">Worth checking on the free visit &mdash; it depends on what is already fitted, the same as anything else electrical in an older room.</div>
+        </details>
+        <details>
+          <summary>Is it for fans, lights, or both?</summary>
+          <div class="ans">Either &mdash; the dial and the two touch zones are set up for whichever is on that circuit.</div>
+        </details>
+        <details>
+          <summary>Can I set the level from my phone?</summary>
+          <div class="ans">Yes, the same percentage you would set on the glass.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       ALSO IN THE RANGE
+       ========================================================== -->
+  <section class="sec alt" id="also">
+    <div class="motes" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="wrap">
+      <div class="rise">
+        <p class="kicker">Also in the range</p>
+        <h2>The rest of the same material.</h2>
+      </div>
+      <div class="also-grid">
+        <a class="card" href="switches-soft.html" aria-label="See Touch switches">
+          <div class="shot"><img src="assets/switches-soft.jpg" alt="Nexora soft touch glass gang switches side by side in white, grey and black, the grey and black plates showing icon-labelled touch zones for power and lighting." loading="lazy" decoding="async"></div>
+          <div class="body">
+            <h3>Touch switches</h3>
+            <p>A touch switch that fits the back box you already have. No rewiring, no chasing walls, one finish repeated on every wall in the house.</p>
+          </div>
+        </a>
+        <a class="card" href="switch-8gang.html" aria-label="See Eight gang switches">
+          <div class="shot"><img src="assets/switch-8gang.jpg" alt="A Nexora eight gang white glass touch switch with eight blue-ringed touch zones in two rows of four, beside a hand holding a phone running the control app." loading="lazy" decoding="async"></div>
+          <div class="body">
+            <h3>Eight gang switches</h3>
+            <p>Eight circuits under one plate of glass, and the same eight on your phone when you are not standing in front of it.</p>
+          </div>
+        </a>
+        <a class="card" href="curtain-motor.html" aria-label="See Curtain motors">
+          <div class="shot"><img src="assets/curtain-motor.jpg" alt="A Nexora curtain motor, the quiet aluminium drive unit that mounts on the track, shown from the end with its drive spindle and mounting screws." loading="lazy" decoding="async"></div>
+          <div class="body">
+            <h3>Curtain motors</h3>
+            <p>Mounts on the track you already have and opens the curtain a hand used to &mdash; on a scene, a schedule, the remote, or a word to Alexa.</p>
+          </div>
+        </a>
       </div>
     </div>
   </section>
@@ -493,8 +565,8 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
     <div class="wrap">
       <div class="rise">
         <p class="kicker">Next step</p>
-        <h2>Send us the drawings, or a photo of the wall.</h2>
-        <p class="lede">For a house, one photo is enough to start. For a hotel, an office or a building, send the floor plans and we will come back with what is possible and what it costs.</p>
+        <h2>Tell us what is on that circuit now.</h2>
+        <p class="lede">A fan, a light, or both &mdash; send a photo of the switch it replaces.</p>
         <a class="big-wa" href="https://wa.me/923234508739" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.41a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.09-.16.04-.31-.02-.43-.06-.13-.56-1.35-.77-1.84-.2-.49-.4-.42-.55-.43h-.47c-.16 0-.43.06-.65.31-.22.25-.85.83-.85 2.03s.87 2.35.99 2.51c.12.17 1.71 2.61 4.15 3.66.58.25 1.03.4 1.39.51.58.19 1.11.16 1.53.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.22-.16-.47-.29Z"/></svg>
           0323 450 8739
@@ -546,7 +618,6 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
     </div>
   </div>
 </footer>
-
 <script>
 (function(){
 'use strict';

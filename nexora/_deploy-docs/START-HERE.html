@@ -114,11 +114,12 @@ framework, no Node, and no Python needed to produce it.</p>
 
 <table class="files">
   <tr><td>index.html</td><td>The home page, with the scrolling film.</td></tr>
-  <tr><td>about.html</td><td>The About page.</td></tr>
+  <tr><td>about.html</td><td>The About page, with photos of the range fitted in homes, offices, hotels, flats and buildings.</td></tr>
+  <tr><td>panel-4in.html<br>panel-wide.html<br>switches-soft.html<br>switch-8gang.html<br>switch-display.html<br>lock.html<br>curtain-motor.html<br>dimmer.html</td><td>One page per product: what it does, how it works, where it fits, and a small FAQ of its own. Reached by clicking any product on the home page.</td></tr>
   <tr><td>404.html</td><td>Shown if someone reaches a wrong address.</td></tr>
   <tr><td>.htaccess</td><td>Server settings: https, compression, caching, the 404 page. <strong>See the hidden-files warning in step 03.</strong></td></tr>
   <tr><td>robots.txt</td><td>Tells search engines they may index the site.</td></tr>
-  <tr><td>sitemap.xml</td><td>Lists the two pages for search engines.</td></tr>
+  <tr><td>sitemap.xml</td><td>Lists all ten pages for search engines.</td></tr>
   <tr><td>favicon.ico<br>favicon.svg</td><td>The small icon in the browser tab.</td></tr>
   <tr><td>apple-touch-icon.png</td><td>The icon iPhones use on a home screen.</td></tr>
   <tr><td>assets/</td><td>Every photo, the hero film, and the fonts.</td></tr>
@@ -131,20 +132,30 @@ framework, no Node, and no Python needed to produce it.</p>
 
 <p><strong>Nothing to do here. Skip to step 03.</strong></p>
 
-<p><code>nexorahomes.co</code> is already written into <code>index.html</code>,
-<code>about.html</code>, <code>sitemap.xml</code> and <code>robots.txt</code>, and
+<p><code>nexorahomes.co</code> is already written into every page,
+<code>sitemap.xml</code> and <code>robots.txt</code>, and
 <code>.htaccess</code> is set so <code>www.nexorahomes.co</code> sends visitors to
 <code>nexorahomes.co</code>.</p>
 
 <h3>Only if you change domain later</h3>
-<p>Open these four files in any text editor and replace every
+<p>Open these files in any text editor and replace every
 <code>https://nexorahomes.co</code> with the new address, in full and with
-<strong>no slash on the end</strong>:</p>
+<strong>no slash on the end</strong>. Every page follows the same pattern, so
+this is quicker as a find-and-replace across the whole folder than file by
+file, if your editor can do that.</p>
 <table>
   <tr><th>File</th><th>How many</th></tr>
   <tr><td><code>index.html</code></td><td>3 places</td></tr>
   <tr><td><code>about.html</code></td><td>3 places</td></tr>
-  <tr><td><code>sitemap.xml</code></td><td>2 places</td></tr>
+  <tr><td><code>panel-4in.html</code></td><td>3 places</td></tr>
+  <tr><td><code>panel-wide.html</code></td><td>3 places</td></tr>
+  <tr><td><code>switches-soft.html</code></td><td>3 places</td></tr>
+  <tr><td><code>switch-8gang.html</code></td><td>3 places</td></tr>
+  <tr><td><code>switch-display.html</code></td><td>3 places</td></tr>
+  <tr><td><code>lock.html</code></td><td>3 places</td></tr>
+  <tr><td><code>curtain-motor.html</code></td><td>3 places</td></tr>
+  <tr><td><code>dimmer.html</code></td><td>3 places</td></tr>
+  <tr><td><code>sitemap.xml</code></td><td>10 places</td></tr>
   <tr><td><code>robots.txt</code></td><td>1 place</td></tr>
 </table>
 <p>Then open <code>.htaccess</code>, find the block headed <em>One address for the
@@ -284,6 +295,10 @@ resolving.</p>
   <li>The About link in the menu works</li>
   <li>The WhatsApp buttons open a chat to 0323 450 8739</li>
   <li>All eight products show their photo</li>
+  <li>Clicking a product opens its own page, with a working link back to the
+      range and to two or three other products</li>
+  <li>The About page shows a photo for each of the five places the range gets
+      fitted, not just text</li>
   <li><code>nexorahomes.co/not-a-real-page</code> shows the Nexora 404 page, not a
       bare Hostinger error</li>
   <li>On your phone the film plays at the top too, in its own portrait cut &mdash;
@@ -300,15 +315,22 @@ resolving.</p>
 <table>
   <tr><th>What</th><th>How</th></tr>
   <tr><td>Text, prices, wording</td>
-      <td>Edit <code>index.html</code> or <code>about.html</code> and re-upload.
-          Live immediately &mdash; <code>.htaccess</code> tells browsers never to
-          cache the pages.</td></tr>
+      <td>Edit whichever page and re-upload. Live immediately &mdash;
+          <code>.htaccess</code> tells browsers never to cache the pages.</td></tr>
+  <tr><td>A product's own page</td>
+      <td>Each product has its own file, named after it:
+          <code>panel-4in.html</code>, <code>panel-wide.html</code>,
+          <code>switches-soft.html</code>, <code>switch-8gang.html</code>,
+          <code>switch-display.html</code>, <code>lock.html</code>,
+          <code>curtain-motor.html</code>, <code>dimmer.html</code>. Edit it the
+          same way as any other page.</td></tr>
   <tr><td>A product photo</td>
       <td>Put the new picture in <code>assets/</code>, keeping the same file name,
-          or use a new name and change it inside <code>index.html</code> too.</td></tr>
+          or use a new name and change it everywhere it is used &mdash; the card
+          on <code>index.html</code> and that product&rsquo;s own page both
+          reference it.</td></tr>
   <tr><td>Phone number</td>
-      <td>It appears several times. Search <code>index.html</code>,
-          <code>about.html</code> and <code>404.html</code> for
+      <td>It appears several times across every page. Search each file for
           <code>923234508739</code>.</td></tr>
 </table>
 

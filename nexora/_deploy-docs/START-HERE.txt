@@ -34,13 +34,23 @@ picture, a font, or a plain settings file the server reads.
 ----------------------------------------------------------------
 
   index.html            the home page, with the scrolling film
-  about.html            the About page
+  about.html            the About page, with photos of the range
+                        fitted in homes, offices, hotels, flats
+                        and buildings
+  panel-4in.html        one page per product in the range, each
+  panel-wide.html       with what it does, how it works, where it
+  switches-soft.html    fits, and a small FAQ of its own. Reached
+  switch-8gang.html     by clicking any product on the home page.
+  switch-display.html
+  lock.html
+  curtain-motor.html
+  dimmer.html
   404.html              shown if someone reaches a wrong address
   .htaccess             server settings: https, compression,
                         caching, the 404 page. See the note
                         about hidden files in step 2.
   robots.txt            tells search engines they may index it
-  sitemap.xml           lists the two pages for search engines
+  sitemap.xml           lists all ten pages for search engines
   favicon.ico           the little icon in the browser tab
   favicon.svg           the same icon, sharp at any size
   apple-touch-icon.png  the icon iPhones use on a home screen
@@ -61,22 +71,34 @@ picture, a font, or a plain settings file the server reads.
   STEP 1. YOUR DOMAIN IS ALREADY IN THE FILES
 ----------------------------------------------------------------
 
-Nothing to do here. nexorahomes.co is already written into
-index.html, about.html, sitemap.xml and robots.txt, and .htaccess
-is set so www.nexorahomes.co sends visitors to nexorahomes.co.
+Nothing to do here. nexorahomes.co is already written into every
+page, sitemap.xml and robots.txt, and .htaccess is set so
+www.nexorahomes.co sends visitors to nexorahomes.co.
 
 Skip to step 2.
 
   ONLY IF YOU CHANGE DOMAIN LATER:
 
-    Open these four files in any text editor and replace every
+    Open these files in any text editor and replace every
     https://nexorahomes.co with the new address, written in full
     and with NO slash on the end:
 
-        index.html      (3 places)
-        about.html      (3 places)
-        sitemap.xml     (2 places)
-        robots.txt      (1 place)
+        index.html            (3 places)
+        about.html            (3 places)
+        panel-4in.html        (3 places)
+        panel-wide.html       (3 places)
+        switches-soft.html    (3 places)
+        switch-8gang.html     (3 places)
+        switch-display.html   (3 places)
+        lock.html             (3 places)
+        curtain-motor.html    (3 places)
+        dimmer.html           (3 places)
+        sitemap.xml           (10 places)
+        robots.txt            (1 place)
+
+    Every page follows the same pattern, so it is quicker with a
+    find-and-replace across the whole folder than file by file, if
+    your text editor can do that.
 
     Then open .htaccess, find the block headed "One address for
     the site", and make sure exactly ONE of the two redirect
@@ -223,6 +245,10 @@ Open your site and walk through this list.
   [ ] the About link in the menu works
   [ ] the WhatsApp buttons open a chat to 0323 450 8739
   [ ] the eight products all show their photo
+  [ ] clicking a product opens its own page, with a working
+      link back to the range and to two or three other products
+  [ ] the About page shows a photo for each of the five places
+      the range gets fitted, not just text
   [ ] nexorahomes.co/a-page-that-does-not-exist shows the
       Nexora 404 page, not a bare Hostinger error
   [ ] open it on your phone: the film plays at the top there
@@ -241,15 +267,25 @@ Open your site and walk through this list.
 
 Edit the file, upload it over the old one. That is all.
 
-  Text, prices, wording      index.html or about.html, edit and
-                             re-upload. Live immediately, because
-                             .htaccess tells browsers never to
-                             cache the pages.
+  Text, prices, wording      edit whichever page and re-upload.
+                             Live immediately, because .htaccess
+                             tells browsers never to cache the
+                             pages.
+
+  A product's own page       each product's page is a separate
+                             file, named after it: panel-4in.html,
+                             panel-wide.html, switches-soft.html,
+                             switch-8gang.html, switch-display.html,
+                             lock.html, curtain-motor.html,
+                             dimmer.html. Edit that file the same
+                             way as any other page.
 
   A product photo            put the new picture in assets/ and
                              either keep the same file name, or
                              use a new name and change the name
-                             inside index.html too.
+                             everywhere it is used: the card on
+                             index.html and that product's own
+                             page both reference it.
 
                              NOTE: photos are cached in visitors'
                              browsers for a week. If you replace
@@ -258,9 +294,9 @@ Edit the file, upload it over the old one. That is all.
                              for a few days. Giving the new file
                              a new name avoids this completely.
 
-  Phone number               it appears several times. Search
-                             index.html, about.html and 404.html
-                             for 923234508739 and change each.
+  Phone number               it appears several times across every
+                             page. Search each file for
+                             923234508739 and change each.
 
 Always keep a copy of the folder on your own computer. The
 server copy is the only other one.
