@@ -501,7 +501,7 @@ section{position:relative;z-index:1}
 /* ---------- S5.5 reviews: the pull-quote recipe from S1, at card scale,
    so a customer's words use the same visual language the site already
    gives "what buyers actually say" rather than a new look ---------- */
-.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,2.4vw,30px);margin-top:56px}
+.reviews-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(20px,2.4vw,30px);margin-top:56px}
 .review{position:relative;padding:28px 26px;
   border-left:2px solid var(--accent);border-radius:0 14px 14px 0;
   background:linear-gradient(100deg,rgba(232,199,102,.055),transparent 72%);
@@ -757,13 +757,10 @@ section{position:relative;z-index:1}
 .form.sent .field,.form.sent .btn,.form.sent .note{display:none}
 .note{margin-top:4px;font-size:13px;color:var(--text-secondary);max-width:44ch}
 
-/* ---------- find us: a map, inverted to sit in the dark theme rather
-   than dropping a bright white rectangle into the page ---------- */
-.map-frame{margin-top:40px;position:relative;aspect-ratio:16/6;border-radius:18px;
-  overflow:hidden;border:1px solid var(--line);background:var(--panel)}
-.map-frame iframe{width:100%;height:100%;border:0;display:block;
-  filter:invert(92%) hue-rotate(180deg) brightness(.96) contrast(.92)}
-@media (max-width:700px){.map-frame{aspect-ratio:4/3}}
+/* ---------- find us: the owner's own map screenshot, framed like the
+   site's other photography rather than embedded live ---------- */
+.map-frame{margin-top:40px;border-radius:18px;overflow:hidden;border:1px solid var(--line)}
+.map-frame img{width:100%;height:auto;display:block}
 
 /* ---------- footer ---------- */
 footer{
@@ -1200,13 +1197,6 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
 
   <!-- ==========================================================
        S5.5 REVIEWS
-       Three review slots, ready to fill. No quotes were invented
-       here — the owner asked for customer reviews and the only
-       honest way to add real social proof is with real customers'
-       real words. Replace the <p> and <cite> in each blockquote
-       below with an actual review: quote, name, and area (or just
-       a first name, whatever the customer is comfortable with).
-       Delete this comment once they are filled in.
        ========================================================== -->
   <section class="sec" id="reviews">
     <div class="motes" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
@@ -1218,18 +1208,23 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
       <div class="reviews-grid stagger">
         <blockquote class="review">
           <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p>Add your customer's own words here.</p>
-          <cite>Their name, their area</cite>
+          <p>Nexora Home Automation is a great choice for smart home solutions. Their work is clean, professional, and reliable, with excellent attention to detail. The team provides quality service and makes the whole process easy. Highly recommended for anyone who wants a modern and connected home!</p>
+          <cite>Ibrahim Daud, Home owner</cite>
         </blockquote>
         <blockquote class="review">
           <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p>Add your customer's own words here.</p>
-          <cite>Their name, their area</cite>
+          <p>Nexora Home Automation is a great choice for smart home solutions. Their work is clean, professional, and reliable, with excellent attention to detail. The team provides quality service and makes the whole process easy. Highly recommended for anyone who wants a modern and connected home!</p>
+          <cite>Mahr Sahib, Home owner</cite>
         </blockquote>
         <blockquote class="review">
           <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p>Add your customer's own words here.</p>
-          <cite>Their name, their area</cite>
+          <p>The experience with Nexora Homes Automation has been great. Their touch plates offer a premium look with a modern and stylish design, and the touch controls make operating lights and other electrical devices very easy and convenient.</p>
+          <cite>Muhammad, Home owner</cite>
+        </blockquote>
+        <blockquote class="review">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p>Excellent experience with Nexora Homes Automations! The team was very professional, cooperative, and the quality of the products is excellent. The smart home system demo and installation process was smooth. The team explained everything.</p>
+          <cite>Amna Ilyas, Home owner</cite>
         </blockquote>
       </div>
     </div>
@@ -1332,7 +1327,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
         <h2>121 MB, DHA Phase 6, Lahore.</h2>
       </div>
       <div class="map-frame rise">
-        <iframe src="https://www.google.com/maps?q=121+MB+DHA+Phase+6+Lahore+Pakistan&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map to Nexora Homes, 121 MB, DHA Phase 6, Lahore"></iframe>
+        <img src="assets/map-location.png" alt="Google Maps view of Nexora Homes Automations, pinned near DHA Phase 6, with Allama Iqbal International Airport and DHA Phase 1 to 7 visible nearby" loading="lazy" decoding="async">
       </div>
     </div>
   </section>
