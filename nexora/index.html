@@ -481,16 +481,21 @@ section{position:relative;z-index:1}
 .stagger.done > *:nth-child(8){transition-delay:0ms}
 
 /* ---------- trust bar: a slim strip of facts, not a full editorial
-   section, so it gets its own compact padding rather than .sec's ---------- */
-.trust{padding-block:clamp(38px,5vw,60px);background:var(--canvas-2);border-bottom:1px solid var(--line)}
+   section, so it gets its own compact padding rather than .sec's.
+   Each stat sits in its own tile, the same bordered/radius recipe as
+   .phase and .card elsewhere, rather than bare text in a row ---------- */
+.trust{padding-block:clamp(38px,5vw,60px);background:var(--canvas-2)}
 .trust-kicker{margin-bottom:26px;text-align:center}
 .trust-grid{list-style:none;margin:0;padding:0;text-align:center;
-  display:grid;grid-template-columns:repeat(6,1fr);gap:clamp(20px,3vw,32px)}
+  display:grid;grid-template-columns:repeat(6,1fr);gap:clamp(12px,1.6vw,18px)}
+.trust-grid li{padding:22px 12px;border:1px solid var(--line);border-radius:16px;background:var(--panel);
+  transition:border-color .5s var(--ease),background .5s var(--ease),transform .5s var(--ease)}
+.trust-grid li:hover{border-color:var(--accent-muted);background:var(--panel-2);transform:translateY(-3px)}
 .trust-grid strong{display:block;font-family:var(--display);font-weight:700;
   font-size:clamp(21px,2.2vw,30px);letter-spacing:-.02em;color:var(--text-primary)}
-.trust-grid span{display:block;margin-top:7px;font-family:var(--mono);font-size:10.5px;
+.trust-grid span{display:block;margin-top:7px;font-family:var(--mono);font-size:10.5px;font-weight:700;
   letter-spacing:.06em;text-transform:uppercase;color:var(--text-secondary)}
-@media (max-width:900px){.trust-grid{grid-template-columns:repeat(3,1fr);row-gap:30px}}
+@media (max-width:900px){.trust-grid{grid-template-columns:repeat(3,1fr);row-gap:14px}}
 @media (max-width:520px){.trust-grid{grid-template-columns:repeat(2,1fr)}}
 
 /* ---------- S5.5 reviews: the pull-quote recipe from S1, at card scale,
@@ -751,6 +756,14 @@ section{position:relative;z-index:1}
 .form.sent .ok{display:block}
 .form.sent .field,.form.sent .btn,.form.sent .note{display:none}
 .note{margin-top:4px;font-size:13px;color:var(--text-secondary);max-width:44ch}
+
+/* ---------- find us: a map, inverted to sit in the dark theme rather
+   than dropping a bright white rectangle into the page ---------- */
+.map-frame{margin-top:40px;position:relative;aspect-ratio:16/6;border-radius:18px;
+  overflow:hidden;border:1px solid var(--line);background:var(--panel)}
+.map-frame iframe{width:100%;height:100%;border:0;display:block;
+  filter:invert(92%) hue-rotate(180deg) brightness(.96) contrast(.92)}
+@media (max-width:700px){.map-frame{aspect-ratio:4/3}}
 
 /* ---------- footer ---------- */
 footer{
@@ -1305,6 +1318,21 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
           <p class="note">This form does not send email. It saves your note on this page so you can copy it into WhatsApp, which is where we actually reply.</p>
           <p class="ok" id="ok" role="status">Got it. We will message you back today.</p>
         </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       S7.5 FIND US
+       ========================================================== -->
+  <section class="sec" id="visit">
+    <div class="wrap">
+      <div class="sec-head rise">
+        <p class="kicker">Find us</p>
+        <h2>121 MB, DHA Phase 6, Lahore.</h2>
+      </div>
+      <div class="map-frame rise">
+        <iframe src="https://www.google.com/maps?q=121+MB+DHA+Phase+6+Lahore+Pakistan&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map to Nexora Homes, 121 MB, DHA Phase 6, Lahore"></iframe>
       </div>
     </div>
   </section>
